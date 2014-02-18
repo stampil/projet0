@@ -125,7 +125,7 @@ function onDeviceReady() {
 
             $.ajax({
                 type: 'GET',
-                url: 'http://vps36292.ovh.net/mordu/API_2.7.php',
+                url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
                 jsonpCallback: 'API_SC1',
                 contentType: "application/json",
                 dataType: 'jsonp',
@@ -232,7 +232,7 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function save_ship(){
     $.ajax({
         type: 'GET',
-        url: 'http://vps36292.ovh.net/mordu/API_2.7.php',
+        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
         jsonpCallback: 'API_SC'+Math.round(Math.random()*9999),
         contentType: "application/json",
         dataType: 'jsonp',
@@ -257,7 +257,7 @@ function display_hangar() {
     $('#your_hangar').html(trad_loading_your_ship);
     $.ajax({
             type: 'GET',
-            url: 'http://vps36292.ovh.net/mordu/API_2.7.php',
+            url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
             jsonpCallback: 'API_SC32',
             contentType: "application/json",
             dataType: 'jsonp',
@@ -280,12 +280,29 @@ function display_hangar() {
         });
 }
 
+function save_ship(nom,img,role,crew){
+	$.ajax({
+        type: 'GET',
+        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+        jsonpCallback: 'API_SC1313',
+        contentType: "application/json",
+        dataType: 'jsonp',
+        data: 'action=save_infoship&nom='+nom+'&img='+img+'&role='+role+'&crew='+crew,
+        async: true,
+        success: function (data) {
+        },
+        error: function (e) {
+            console.log(e.message);
+        }
+    });
+}
+
 function display_ship() {
     $('#member_ship').html(
-            '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3 trad="trad_your_ships"></h3></div><div class="ui-body ui-body-b"><div class="slider"><ul class="slides"><li trad="trad_loading_your_ship"></li></ul></div></div></div>');
+            '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3 trad="trad_manage_ship"></h3></div><div class="ui-body ui-body-b"><div class="slider"><ul class="slides"><li trad="trad_loading_your_ship"></li></ul></div></div></div>');
     $.ajax({
             type: 'GET',
-            url: 'http://vps36292.ovh.net/mordu/API_2.7.php',
+            url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
             jsonpCallback: 'API_SC13',
             contentType: "application/json",
             dataType: 'jsonp',
@@ -296,22 +313,17 @@ function display_ship() {
                 var html = '';
                 for (var i = 0; i < data.ship.total; i++) {
                     html += ' <li class="slide"><img src="https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'
-                        + data.ship[i].imageurl
-                        + '" /><br />'
+                        + data.ship[i].imageurl  + '" /><br />'
                         + data.ship[i].title
-                        + ' ('
-                        + data.ship[i].manufacturer
-                        + ')<br />'
-                        + trad_max_crew
-                        + ':'
+                        + ' ('   + data.ship[i].manufacturer   + ')<br />'
+                        + trad_max_crew  + ':'
                         + data.ship[i].maxcrew
                         + '<br />'
-                        + trad_role
-                        + data.ship[i].role
+                        + trad_role  + data.ship[i].role
                         + '<br /><input type="button" class="save_ship" ship="'
-                        + data.ship[i].title
-                        + '" value="'
+                        + data.ship[i].title  + '" value="'
                         + trad_save_nb_ship + '" />' + '</li>';
+                    save_ship(data.ship[i].title, 'https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'+data.ship[i].imageurl, data.ship[i].role, data.ship[i].maxcrew);
                 }
                 $('.slides').html(html);
                 $('#nb_ship').show();
@@ -332,7 +344,7 @@ function info_orga() {
 
     $.ajax({
             type: 'GET',
-            url: 'http://vps36292.ovh.net/mordu/API_2.7.php',
+            url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
             jsonpCallback: 'API_SC2',
             contentType: "application/json",
             dataType: 'jsonp',
@@ -378,6 +390,7 @@ function info_orga() {
         });
 }
 
+
 setTimeout(function(){
 	onDeviceReady();
-},2000);
+},10000);

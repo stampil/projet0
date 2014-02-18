@@ -124,4 +124,6 @@ dd {
 	 display:none;
 	 position: relative;
 	 left: -6px;
+	 margin-bottom:15px;
+	 margin: 0 auto;
 }
