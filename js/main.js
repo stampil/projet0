@@ -133,7 +133,7 @@ function onDeviceReady() {
                 async: true,
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
-                    ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
+                    ctx.clearRect(0,0,3000,3000);
                 },
                 success: function (data) {
 
@@ -185,6 +185,7 @@ function onDeviceReady() {
 	                        };
                         }
                         $('#info_pseudo').html('');
+                        $('body').trigger('pagecreate');
                         
                         
                         
