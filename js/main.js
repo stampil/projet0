@@ -133,11 +133,12 @@ function onDeviceReady() {
                 async: true,
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+                    $('#canvas').show();
                 },
                 success: function (data) {
 
                     if (data.join_date.year) {
-                    	$('#canvas').show();
+                    	
 
 
                         /*$('#info_pseudo').html(
