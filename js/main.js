@@ -1,12 +1,16 @@
 var auto_switch = false;
 var name_ship ='';
 var nb_ship='';
+var c;
+var ctx;
 
 function onDeviceReady() {
     if(navigator.splashscreen) navigator.splashscreen.hide();
 
     $(document).ready(function () {
 
+    	c=document.getElementById("canvas");
+    	ctx=c.getContext("2d");
 
         $('.handle').show(500);
 
@@ -129,14 +133,53 @@ function onDeviceReady() {
 
 
 
-                        $('#info_pseudo').html(
+                        /*$('#info_pseudo').html(
                             '<img style="width:76px;height:76px;" src="'+ data.avatar
                                 + '" /><img src="'+ data.team.logo+ '" style="width:76px;height:76px;" /><div>'+ data.title+ ' '+ data.pseudo + ' ('+ data.handle  + ')<br />'
                                 + trad_your_team+': '+data.team.name
                                 + ' (' + data.team.tag+ ') <br /> '
                                 + data.team.nb_member + '</div><div>'+trad_inscrit_le+': '+ data.join_date.month   + '  '
                                 + data.join_date.year + '</div><div><span trad="trad_country"></span>: '  + data.live.country
-                                + '</div><div>'+trad_background+': ' + data.bio + '</div>');
+                                + '</div><div>'+trad_background+': ' + data.bio + '</div>');*/
+                    	ctx.clearRect(00,00,$('#canvas').width(),$('#canvas').height());
+                        
+                        
+                        var metrics;
+                        var width;
+                        var font=18;
+                        var upp_pseudo = data.pseudo.toUpperCase();
+                        
+                        do{
+                        	ctx.font=font+"px 'Orbitron'";
+	                        metrics = ctx.measureText(upp_pseudo );
+	                        width = metrics.width;
+	                        console.log('width:'+width+' font:'+font);
+	                        font--;
+                        }
+                        while(width>178 && font>9);
+                        ctx.fillText( upp_pseudo,120,110);
+                        
+                        var img = new Image();   // Crée un nouvel objet Image
+                        img.src = data.avatar; // Définit le chemin vers sa source
+                        img.onload = function(){
+                        	//ctx.drawImage(img, 220, 25,76,76);
+                        	ctx.drawImage(img, 0, 0, img.width, img.height, 217, 27, 76, 61);
+                        };
+                        
+                        if(data.team.logo){
+	                        var img2 = new Image();
+	                        img2.src = data.team.logo;
+	                        img2.onload = function() {
+	                            ctx.save();
+	                            ctx.globalAlpha = 0.4;
+	                            ctx.drawImage(img2, 0, 0, img2.width, img2.height, 125, 27, 76, 61);
+	                            ctx.restore();
+	                        };
+                        }
+                        $('#info_pseudo').html('');
+                        $('#canvas').show(500);
+                        
+                        
                         translate();
 
                         $.cookie('team',data.team.tag);
@@ -144,6 +187,10 @@ function onDeviceReady() {
                         $.cookie('pseudo', data.pseudo);
                         display_hangar();
                         info_orga();
+                        
+                        setTimeout(function(){
+                        	$('#left-menu').trigger('click');
+                        },1000);
 
                     } else {
                         $('#info_pseudo').html(
@@ -294,7 +341,7 @@ function info_orga() {
                     	}
                     	hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
                         html += '<div><img src="http://robertsspaceindustries.com'+ data[i].avatar  + '" style="'+(data[i].ship.nb>0?'border-color:gold':'border-color:gray')+'" />'
-                            + ' ' + data[i].pseudo + '<span class="handle"> ' + data[i].handle + '</span><br />'
+                            + ' ' + data[i].pseudo + '<span class="display_handle"> ' + data[i].handle + '</span><br />'
                             + data[i].title
                             + '<h2 trad="trad_role"></h2><ul>'
                             + data[i].role

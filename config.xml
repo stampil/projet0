@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.eckume.planner" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>Star Citizen planner</name>
+    <name>Star Citizen raid planner</name>
     <description>
-       star citizen calandar, manage team
+       star citizen calandar, manage raid in your team
     </description>
     <author email="developpeurntic@gmail.com" href="http://www.starpirates.fr">
         Detrios

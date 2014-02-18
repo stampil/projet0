@@ -32,7 +32,7 @@
 	margin-right: 4px;
 }
 
-.handle{
+.display_handle{
 	color:gray;
 	font-size:0.7em;
 }
@@ -114,4 +114,12 @@ dd {
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: cubic-bezier(.5, 0, 1, 1);
     -webkit-animation-duration: 1.7s;
+}
+
+#canvas{
+	 width:300px;
+	 height:189px;
+	 background:url('../img/canevas.png') no-repeat transparent;
+	 font-family : "orbitron";
+	 display:none;
 }

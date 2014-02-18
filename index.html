@@ -47,8 +47,7 @@
 
 <body>
 
-<div data-role="page" class="jqm-demos ui-responsive-panel"
-     id="panel-responsive-page1" data-title="SC Planner"
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="panel-responsive-page1" data-title="SC Raid Planner"
      data-url="panel-responsive-page1" data-theme="b">
 
 
@@ -56,7 +55,7 @@
 
 
         <h1 trad="trad_RSI_ship_management"></h1>
-        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext" id="left-menu">Menu</a>
         <a href="#add-form" data-icon="gear" data-iconpos="notext">Add</a>
     </div>
     <div data-role="content" data-theme="b">
@@ -67,6 +66,7 @@
             <a href="#" data-role="button" data-icon="search" id="search_pseudo" trad="trad_search"></a>
 
             <div id="info_pseudo"></div>
+            <canvas id="canvas"></canvas>
         </div>
 
         <div class="page manage_ship">
@@ -91,8 +91,8 @@
 		<div id="team_hangar"></div>
         </div>
 
-        <div class="page thanks" trad="trad_thanks">
-
+        <div class="page wip">
+			WIP
         </div>
 
         <!-- Dialog page -->
@@ -116,13 +116,12 @@
     <div data-role="panel" data-display="push" data-theme="b"
          id="nav-panel">
         <ul data-role="listview">
-            <li data-icon="delete"><a href="#" data-rel="close"
-                                      id="close_left_menu" trad="trad_close_menu"></a></li>
+            <li data-icon="delete"><a href="#" data-rel="close" id="close_left_menu" trad="trad_close_menu"></a></li>
             <li><a href="#" trad="trad_your_RSI_handle" goto="handle"></a></li>
             <li><a href="#" trad="trad_manage_ship" goto="manage_ship" need_handle="1"></a></li>
             <li><a href="#" goto="hangar" trad="trad_your_ships" need_handle="1"></a></li>
             <li><a href="#" goto="team" trad="trad_your_team" need_handle="1"></a></li>
-            <li><a href="#" goto="thanks" trad="trad_menu_thanks"></a></li>
+            <li><a href="#" goto="wip" trad="trad_menu_thanks"></a></li>
         </ul>
     </div>
     <!-- /panel -->
