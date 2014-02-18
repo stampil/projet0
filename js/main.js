@@ -138,7 +138,7 @@ function onDeviceReady() {
                 success: function (data) {
 
                     if (data.join_date.year) {
-                    	$('#canvas').show();
+                    	$('#canvas').show(500);
 
 
                         /*$('#info_pseudo').html(
