@@ -133,12 +133,12 @@ function onDeviceReady() {
                 async: true,
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
-                    ctx.clearRect(0,0,3000,3000);
+                    
                 },
                 success: function (data) {
 
                     if (data.join_date.year) {
-                    	
+                    	$('#canvas').show();
 
 
                         /*$('#info_pseudo').html(
@@ -149,7 +149,7 @@ function onDeviceReady() {
                                 + data.team.nb_member + '</div><div>'+trad_inscrit_le+': '+ data.join_date.month   + '  '
                                 + data.join_date.year + '</div><div><span trad="trad_country"></span>: '  + data.live.country
                                 + '</div><div>'+trad_background+': ' + data.bio + '</div>');*/
-                    	
+                    	ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
                         
                         
                         var metrics;
@@ -185,7 +185,6 @@ function onDeviceReady() {
 	                        };
                         }
                         $('#info_pseudo').html('');
-                        $('body').trigger('pagecreate');
                         
                         
                         
@@ -200,6 +199,12 @@ function onDeviceReady() {
                         help_menu_left = setTimeout(function(){
                         	$('#left-menu').trigger('click');
                         },5000);
+                        
+                        $('div[data-role="content"]').width($('div[data-role="content"]').width()+1);
+                        setTimeout(function(){
+                        	 $('div[data-role="content"]').width($('div[data-role="content"]').width()-1);
+                        },200);
+                       
 
                     } else {
                         $('#info_pseudo').html(
