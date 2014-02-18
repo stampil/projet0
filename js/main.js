@@ -133,7 +133,7 @@ function onDeviceReady() {
                 async: true,
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
-                    $('#canvas').show();
+                    ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
                 },
                 success: function (data) {
 
@@ -149,7 +149,7 @@ function onDeviceReady() {
                                 + data.team.nb_member + '</div><div>'+trad_inscrit_le+': '+ data.join_date.month   + '  '
                                 + data.join_date.year + '</div><div><span trad="trad_country"></span>: '  + data.live.country
                                 + '</div><div>'+trad_background+': ' + data.bio + '</div>');*/
-                    	ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
+                    	
                         
                         
                         var metrics;

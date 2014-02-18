@@ -121,7 +121,6 @@ dd {
 	 height:189px;
 	 background:url('../img/canevas.png') no-repeat transparent;
 	 font-family : "orbitron";
-	 display:none;
 	 position: relative;
 	 left: -6px;
 }
