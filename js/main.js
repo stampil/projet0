@@ -3,6 +3,7 @@ var name_ship ='';
 var nb_ship='';
 var c;
 var ctx;
+var help_menu_left =null;
 
 function onDeviceReady() {
     if(navigator.splashscreen) navigator.splashscreen.hide();
@@ -15,6 +16,12 @@ function onDeviceReady() {
         $('.handle').show(500);
 
         display_ship();
+        
+        $('#left-menu').click(function(){
+        	console.log('left clicked');
+        	clearTimeout(help_menu_left);
+        	console.log('timeout :'+help_menu_left);
+        });
 
         if ($.cookie('switch-theme') == '1') {
             console.log('cookie make click');
@@ -130,7 +137,7 @@ function onDeviceReady() {
                 success: function (data) {
 
                     if (data.join_date.year) {
-
+                    	$('#canvas').show();
 
 
                         /*$('#info_pseudo').html(
@@ -141,7 +148,7 @@ function onDeviceReady() {
                                 + data.team.nb_member + '</div><div>'+trad_inscrit_le+': '+ data.join_date.month   + '  '
                                 + data.join_date.year + '</div><div><span trad="trad_country"></span>: '  + data.live.country
                                 + '</div><div>'+trad_background+': ' + data.bio + '</div>');*/
-                    	ctx.clearRect(00,00,$('#canvas').width(),$('#canvas').height());
+                    	ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
                         
                         
                         var metrics;
@@ -177,7 +184,7 @@ function onDeviceReady() {
 	                        };
                         }
                         $('#info_pseudo').html('');
-                        $('#canvas').show(500);
+                        
                         
                         
                         translate();
@@ -188,9 +195,9 @@ function onDeviceReady() {
                         display_hangar();
                         info_orga();
                         
-                        setTimeout(function(){
+                        help_menu_left = setTimeout(function(){
                         	$('#left-menu').trigger('click');
-                        },1000);
+                        },5000);
 
                     } else {
                         $('#info_pseudo').html(
@@ -363,3 +370,7 @@ function info_orga() {
             }
         });
 }
+
+setTimeout(function(){
+	onDeviceReady();
+},2000);
