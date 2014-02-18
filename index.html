@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>starpirates.fr</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/themes/jquerymobile.css"/>
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.0.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/glide.css"/>
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.glide.min.js"></script>
+    <script>
+        var date_expire_cookie = new Date();
+        date_expire_cookie.setTime(date_expire_cookie.getTime()
+                + (12 * 30.4 * 24 * 60 * 60 * 1000));
+        var lang;
+        lang = window.location.search.match(/lang=([^&|$]+)/);
+        if (typeof lang == 'object' && lang) {
+            lang = lang[1];
+            $.cookie('lang', lang, {
+                expires: date_expire_cookie
+            });
+        } else {
+            lang = 'en_GB';
+            if ($.cookie('lang') && $.cookie('lang') != 'undefined') {
+                lang = $.cookie('lang');
+            }
+        }
+        console.log('lang:' + lang);
+        document.write('<' + 'script src="locale/' + lang + '.js?_='+Date.now()+'" type="text/javascript"><' + '/script>');
+    </script>
+
+
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+</head>
+
+
+<body>
+
+<div data-role="page" class="jqm-demos ui-responsive-panel"
+     id="panel-responsive-page1" data-title="SC Planner"
+     data-url="panel-responsive-page1" data-theme="b">
+
+
+    <div data-role="header" data-position="inline">
+
+
+        <h1 trad="trad_RSI_ship_management"></h1>
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext">Menu</a>
+        <a href="#add-form" data-icon="gear" data-iconpos="notext">Add</a>
+    </div>
+    <div data-role="content" data-theme="b">
+
+        <div class="page handle">
+            <label for="pseudo" trad="trad_your_RSI_handle"></label>
+            <input type="search" name="pseudo" id="pseudo" value="" placeholder="...">
+            <a href="#" data-role="button" data-icon="search" id="search_pseudo" trad="trad_search"></a>
+
+            <div id="info_pseudo"></div>
+        </div>
+
+        <div class="page manage_ship">
+            <div class="ui-field-contain" id="nb_ship">
+                <label for="slider" trad="trad_how_many_ship"></label>
+                <input type="range" name="slider" id="slider" value="0" min="0" max="10"/>
+            </div>
+            <div id="member_ship"></div>
+        </div>
+
+        <div class="page team">
+            <div id="member_guilde"></div>
+        </div>
+
+        <div class="page error_need_handle" trad="trad_error_need_your_handle_first">
+
+        </div>
+
+        <div class="page hangar">
+        <div id="your_hangar"></div>
+        <hr />
+		<div id="team_hangar"></div>
+        </div>
+
+        <div class="page thanks" trad="trad_thanks">
+
+        </div>
+
+        <!-- Dialog page -->
+        <div data-role="page" id="confirm">
+            <div data-role="header">
+                <h1>Confirm</h1>
+            </div>
+            <!-- /header -->
+
+            <div data-role="content">
+
+            </div>
+            <!-- /content -->
+        </div>
+        <!-- /page -->
+
+
+    </div>
+
+
+    <div data-role="panel" data-display="push" data-theme="b"
+         id="nav-panel">
+        <ul data-role="listview">
+            <li data-icon="delete"><a href="#" data-rel="close"
+                                      id="close_left_menu" trad="trad_close_menu"></a></li>
+            <li><a href="#" trad="trad_your_RSI_handle" goto="handle"></a></li>
+            <li><a href="#" trad="trad_manage_ship" goto="manage_ship" need_handle="1"></a></li>
+            <li><a href="#" goto="hangar" trad="trad_your_ships" need_handle="1"></a></li>
+            <li><a href="#" goto="team" trad="trad_your_team" need_handle="1"></a></li>
+            <li><a href="#" goto="thanks" trad="trad_menu_thanks"></a></li>
+        </ul>
+    </div>
+    <!-- /panel -->
+    <div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="add-form">
+
+
+        <form>
+            <label for="flip-checkbox-2">Theme:</label>
+            <input type="checkbox" data-role="flipswitch" name="flip-checkbox-2" id="flip-checkbox-2"
+                   data-on-text="Light" data-off-text="Dark" data-wrapper-class="custom-label-flipswitch">
+        </form>
+
+
+        <form>
+            <fieldset data-role="controlgroup" data-mini="true" id="lang">
+                <legend trad="trad_choose_language"></legend>
+                <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a"
+                       value="en_GB"> <label for="radio-choice-v-6a">en_GB</label>
+                <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b"
+                       value="fr_FR"> <label for="radio-choice-v-6b">fr_FR</label>
+                <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c"
+                       value="cn_CN"> <label for="radio-choice-v-6c">cn_CN</label>
+            </fieldset>
+        </form>
+
+
+    </div>
+    <!-- /panel -->
+
+
+    <footer data-role="footer" role="contentinfo" id="footer">
+        <p style="text-align: center">v1.0.0</p>
+    </footer>
+
+
+</div>
+
+
+</body>
+</html>
