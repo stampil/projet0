@@ -195,7 +195,7 @@ function onDeviceReady() {
                         $.cookie('handle', data.handle);
                         $.cookie('pseudo', data.pseudo);
                         display_hangar();
-                        info_orga();
+                        if(data.team.name) info_orga();
                         
                         help_menu_left = setTimeout(function(){
                         	$('#left-menu').trigger('click');
