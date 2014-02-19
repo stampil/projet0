@@ -21,7 +21,7 @@ function onDeviceReady() {
         $('#left-menu').click(function(){
         	console.log('left clicked');
         	clearTimeout(help_menu_left);
-        	console.log('timeout :'+help_menu_left);
+            help_menu_left = -1;
         });
 
         if ($.cookie('switch-theme') == '1') {
@@ -197,9 +197,11 @@ function onDeviceReady() {
                         display_hangar();
                         if(data.team.name) info_orga();
                         
-                        help_menu_left = setTimeout(function(){
-                        	$('#left-menu').trigger('click');
-                        },5000);
+                        if(help_menu_left != -1) {
+                            help_menu_left = setTimeout(function(){
+                                $('#left-menu').trigger('click');
+                            },5000);
+                        }
                         
                         $('div[data-role="content"]').width($('div[data-role="content"]').width()+1);
                         setTimeout(function(){
@@ -370,7 +372,7 @@ function info_orga() {
                     for (var i = 0; i < data.member.nb; i++) {
                     	hangar_teammate='';
                     	for(var j=0; j<data.member[i].ship.nb;j++){
-                    		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_hangar" src="'+data.member[i].ship[j].img+'" /></div> ';
+                    		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_team" src="'+data.member[i].ship[j].img+'" /></div> ';
                     	}
                     	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
                         html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
@@ -401,8 +403,3 @@ function info_orga() {
             }
         });
 }
-
-
-setTimeout(function(){
-	onDeviceReady();
-},10000);

@@ -129,7 +129,10 @@ dd {
 }
 
 .img_team_hangar{
-	width:130px;
+	width:140px;
+}
+.img_team_team{
+    width:120px;
 }
 .nb_team_hangar{
 	position:absolute;
