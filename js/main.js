@@ -268,7 +268,7 @@ function display_hangar() {
                 $('#your_hangar').html('<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3 trad="trad_your_ships"></h3></div><div class="ui-body ui-body-b">');
                 var html = $.cookie('pseudo')+':<br />';
                 for (var i = 0; i < data.ship.nb_res; i++) {
-                    html +=  data.ship[i].nb +'x '+data.ship[i].name+'<br />';
+                    html +=  '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.ship[i].nb +'x</div><img class="img_team_hangar" src="'+data.ship[i].img+'" alt="'+data.ship[i].name+'" /></div> ';
                 }
                 html+='</div></div></div>';
                 $('#your_hangar').html(html);
@@ -370,10 +370,10 @@ function info_orga() {
                     for (var i = 0; i < data.member.nb; i++) {
                     	hangar_teammate='';
                     	for(var j=0; j<data.member[i].ship.nb;j++){
-                    		hangar_teammate+= data.member[i].ship[j].nb +'x '+data.member[i].ship[j].name+', ';
+                    		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_hangar" src="'+data.member[i].ship[j].img+'" /></div> ';
                     	}
-                    	hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
-                        html += '<div><img src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
+                    	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
+                        html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
                             + ' ' + data.member[i].pseudo + '<span class="display_handle"> ' + data.member[i].handle + '</span><br />'
                             + data.member[i].title
                             + '<h2 trad="trad_role"></h2><ul>'
@@ -386,7 +386,7 @@ function info_orga() {
                     html += '</div></div>';
 
                     for(var i=0; i< data.team.nb; i++){
-                        hangar_team+= data.team[i].nb+'x<img src="'+data.team[i].img+'" alt="'+data.team[i].name+'" /> ';
+                        hangar_team+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.team[i].nb+'x</div><img class="img_team_hangar" src="'+data.team[i].img+'" alt="'+data.team[i].name+'" /></div> ';
                     }
 
                     $('#team_hangar').html($.cookie('team')+': <br />'+hangar_team);
