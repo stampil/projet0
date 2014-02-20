@@ -22,6 +22,7 @@ var trad_inscrit_le='Inscrit le';
 var trad_background='Bio';
 var trad_error_nb_ship='Selectionnez au moins 1 vaisseau avec la reglette en haut.';
 var trad_confirm_ok='OK';
+var trad_none='aucun';
 
 var trad_error_need_your_handle_first='Vous devez ecrire votre handle forum avant de pouvoir afficher cette section';
 var trad_error_info_org ='Cette organisation n’a pas été trouvée ';

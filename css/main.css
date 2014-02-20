@@ -32,6 +32,11 @@
 	margin-right: 4px;
 }
 
+.display_pseudo{
+	padding-top:12px;
+	
+}
+
 .display_handle{
 	color:gray;
 	font-size:0.7em;
@@ -49,7 +54,7 @@ h2 {
 }
 
 
-.page, #nb_ship, .norole {
+.page, #nb_ship {
 	display: none;
 }
 .page{
@@ -72,29 +77,12 @@ h2 {
 	user-select: none;
 }
 /* Content styling. */
-dl {
-	font-family: "Times New Roman", Times, serif;
-	padding: 1em;
-}
+dl { font-family: "Orbitron", Times, serif; padding: 1em; }
+dt { font-size: 2em; font-weight: bold; }
+dt span { font-size: .5em; color: #777; margin-left: .5em; }
+dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px solid #eee; }
 
-dt {
-	font-size: 2em;
-	font-weight: bold;
-}
-
-dt span {
-	font-size: .5em;
-	color: #777;
-	margin-left: .5em;
-}
-
-dd {
-	font-size: 1.25em;
-	margin: 1em 0 0;
-	padding-bottom: 1em;
-	border-bottom: 1px solid #eee;
-}
-
+.back-btn { float: right; margin: 0 2em 1em 0; }
 .back-btn {
 	float: right;
 	margin: 0 2em 1em 0;
@@ -157,4 +145,7 @@ dd {
 }
 .slider-arrow--left{
 	left:-20px !important;
+}
+.slider-arrow--right{
+	right:-18px !important;
 }

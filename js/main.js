@@ -5,11 +5,29 @@ var c;
 var ctx;
 var help_menu_left =null;
 var API_SC=0;
+var theme='b';
+
+$( document ).on( "pagecreate", "#page", function() {
+    $( document ).on( "swipeleft swiperight", "#page", function( e ) {
+        // We check if there is no open panel on the page because otherwise
+        // a swipe to close the left panel would also open the right panel (and v.v.).
+        // We do this by checking the data that the framework stores on the page element (panel: open).
+        if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
+            if ( e.type === "swipeleft" ) {
+                $( "#right-panel" ).panel( "open" );
+            } else if ( e.type === "swiperight" ) {
+                $( "#left-panel" ).panel( "open" );
+            }
+        }
+    });
+});
 
 function onDeviceReady() {
     if(navigator.splashscreen) navigator.splashscreen.hide();
 
     $(document).ready(function () {
+    	
+    	
 
     	c=document.getElementById("canvas");
     	ctx=c.getContext("2d");
@@ -62,15 +80,22 @@ function onDeviceReady() {
             $('#close_left_menu').trigger('click');
             return false;
         });
+        
+                
 
         $('.ui-flipswitch').click(function () {
             console.log('switch auto:' + auto_switch + ' cookie' + $.cookie('switch-theme'));
             if ($('.ui-flipswitch-active').length) {
                 $.cookie('switch-theme', 1);
                 $('.ui-body-b').removeClass('ui-body-b').addClass('ui-body-a');
+                $('.ui-page-theme-b').removeClass('ui-page-theme-b').addClass('ui-page-theme-a');
+                theme='a';
+
             }
             else {
                 $('.ui-body-a').removeClass('ui-body-a').addClass('ui-body-b');
+                $('.ui-page-theme-a').removeClass('ui-page-theme-a').addClass('ui-page-theme-b');
+                theme='b';
                 if (!auto_switch) $.cookie('switch-theme', '');
             }
             auto_switch = false;
@@ -267,7 +292,7 @@ function display_hangar() {
             data: 'action=get_ship&handle='+ $.cookie('handle'),
             async: true,
             success: function (data) {
-                $('#your_hangar').html('<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3 trad="trad_your_ships"></h3></div><div class="ui-body ui-body-b">');
+                $('#your_hangar').html('<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_your_ships"></h3></div><div class="ui-body ui-body-'+theme+'">');
                 var html = $.cookie('pseudo')+':<br />';
                 for (var i = 0; i < data.ship.nb_res; i++) {
                     html +=  '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.ship[i].nb +'x</div><img class="img_team_hangar" src="'+data.ship[i].img+'" alt="'+data.ship[i].name+'" /></div> ';
@@ -303,7 +328,7 @@ function save_ship(nom,img,role,crew){
 
 function display_ship() {
     $('#member_ship').html(
-            '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3 trad="trad_manage_ship"></h3></div><div class="ui-body ui-body-b">'+
+            '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_manage_ship"></h3></div><div class="ui-body ui-body-'+theme+'">'+
             '<div class="slider"><ul class="slides"><li trad="trad_loading_your_ship"></li></ul></div></div></div>');
 
     var date_save = new Date();
@@ -365,7 +390,7 @@ function info_orga() {
                 $('#member_guilde').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
             },
             success: function (data) {
-                var html = '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3 trad="trad_your_team"></h3></div><div class="ui-body ui-body-b">';
+                var html = '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_your_team"></h3></div><div class="ui-body ui-body-'+theme+'">';
                 var hangar_teammate='';
                 var hangar_team ='';
                 $('#member_guilde').html();
@@ -378,12 +403,14 @@ function info_orga() {
                     		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_team" src="'+data.member[i].ship[j].img+'" /></div> ';
                     	}
                     	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
-                        html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
-                            + ' ' + data.member[i].pseudo + '<span class="display_handle"> ' + data.member[i].handle + '</span><br />'
-                            + data.member[i].title
-                            + '<h2 trad="trad_role"></h2><ul>'
-                            + data.member[i].role
-                            + '</ul></div><div style="clear:both"></div>'
+                        
+                    	html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
+                            + ' <div class="display_pseudo">' + data.member[i].pseudo + '</div><div class="display_handle"> ' + data.member[i].handle + '</div>'
+                            
+                            + '<div>'+data.member[i].title+'</div>'
+                            + '<div style="clear:both"></div><h2 trad="trad_role"></h2><ul>'
+                            + data.member[i].role.replace('None','- '+trad_none)
+                            + '</ul></div>'
                             +'<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
                             +'<hr />';
                             

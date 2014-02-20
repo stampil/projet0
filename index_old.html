@@ -42,21 +42,25 @@
 
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    
 </head>
 
 
 <body>
-<div data-role="page" id="page" data-url="page" data-theme="b">
-    <div data-role="header" >
+
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="panel-responsive-page1" data-title="SC Raid Planner"
+     data-url="panel-responsive-page1" data-theme="b">
+
+
+    <div data-role="header" data-position="inline">
+
+
         <h1 trad="trad_RSI_ship_management"></h1>
-        <a href="#left-panel" data-icon="bars" data-theme="b" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open left panel</a>
-        <a href="#right-panel" data-icon="gear" data-theme="b" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open right panel</a>
-    </div><!-- /header -->
-    <div role="content" class="ui-content">
-       
-       
-      <div class="page handle">
+        <a href="#nav-panel" data-icon="bars" data-iconpos="notext" id="left-menu">Menu</a>
+        <a href="#add-form" data-icon="gear" data-iconpos="notext">Add</a>
+    </div>
+    <div data-role="content" data-theme="b">
+
+        <div class="page handle">
          <canvas id="canvas"></canvas>
             <label for="pseudo" trad="trad_your_RSI_handle"></label>
             <input type="search" name="pseudo" id="pseudo" value="" placeholder="...">
@@ -104,13 +108,15 @@
             </div>
             <!-- /content -->
         </div>
-        <!-- /page --> 
-       
-       
-    </div><!-- /content -->
-    <div data-role="panel" id="left-panel" data-theme="b">
-           
-   <ul data-role="listview">
+        <!-- /page -->
+
+
+    </div>
+
+
+    <div data-role="panel" data-display="push" data-theme="b"
+         id="nav-panel">
+        <ul data-role="listview">
             <li data-icon="delete"><a href="#" data-rel="close" id="close_left_menu" trad="trad_close_menu"></a></li>
             <li><a href="#" trad="trad_your_RSI_handle" goto="handle"></a></li>
             <li><a href="#" trad="trad_manage_ship" goto="manage_ship" need_handle="1"></a></li>
@@ -118,12 +124,12 @@
             <li><a href="#" goto="team" trad="trad_your_team" need_handle="1"></a></li>
             
         </ul>
-        
-    </div><!-- /panel -->
-    <div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
-        <p>&nbsp;</p>
-        <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-right">Close</a>
-         <form>
+    </div>
+    <!-- /panel -->
+    <div data-role="panel" data-position="right" data-display="reveal" data-theme="a" id="add-form">
+
+
+        <form>
             <label for="flip-checkbox-2">Theme:</label>
             <input type="checkbox" data-role="flipswitch" name="flip-checkbox-2" id="flip-checkbox-2"
                    data-on-text="Light" data-off-text="Dark" data-wrapper-class="custom-label-flipswitch">
@@ -145,18 +151,18 @@
                        value="de_DE"> <label for="radio-choice-v-6e">de_DE</label>                       
             </fieldset>
         </form>
-        
-    </div><!-- /panel -->
-    
-     <footer data-role="footer" role="contentinfo" id="footer">
-        <p style="text-align: center">v1.0.5</p>
+
+
+    </div>
+    <!-- /panel -->
+
+
+    <footer data-role="footer" role="contentinfo" id="footer">
+        <p style="text-align: center">v1.0.4</p>
     </footer>
-    
+
+
 </div>
-
-
-
-
 
 
 </body>
