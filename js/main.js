@@ -6,9 +6,11 @@ var ctx;
 var help_menu_left =null;
 var API_SC=0;
 var theme='b';
+var allow_swipe=true;
 
 $( document ).on( "pagecreate", "#page", function() {
     $( document ).on( "swipeleft swiperight", "#page", function( e ) {
+    	if(!allow_swipe) return false;
         // We check if there is no open panel on the page because otherwise
         // a swipe to close the left panel would also open the right panel (and v.v.).
         // We do this by checking the data that the framework stores on the page element (panel: open).
@@ -59,9 +61,12 @@ function onDeviceReady() {
         }
 
         $("ul.ui-listview li a").click(function () {
+        	
             var page = $(this).attr('goto');
             if (!page) return false; //li a :close is not a page
-
+            
+            allow_swipe = true;
+            
             if($(this).attr('need_handle')=='1' && !$.cookie('handle')){
                 page='error_need_handle';
             }
@@ -69,6 +74,7 @@ function onDeviceReady() {
             $('.page').hide(300);
             $('.' + page).show(500);
             if (page == 'manage_ship') {
+            	allow_swipe = false;
                 setTimeout(function () {
                     $('.slide').trigger("resize");
                     $('.save_ship').button();
