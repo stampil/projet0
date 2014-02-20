@@ -146,3 +146,15 @@ dd {
 	position:relative;
 	display:inline-block;
 }
+
+.slider-nav__item{
+	display:none !important;
+}
+
+.slider-arrow{
+	font-size:4em;
+	text-decoration:none;
+}
+.slider-arrow--left{
+	left:-20px !important;
+}

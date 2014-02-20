@@ -303,7 +303,8 @@ function save_ship(nom,img,role,crew){
 
 function display_ship() {
     $('#member_ship').html(
-            '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3 trad="trad_manage_ship"></h3></div><div class="ui-body ui-body-b"><div class="slider"><ul class="slides"><li trad="trad_loading_your_ship"></li></ul></div></div></div>');
+            '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-b"><h3 trad="trad_manage_ship"></h3></div><div class="ui-body ui-body-b">'+
+            '<div class="slider"><ul class="slides"><li trad="trad_loading_your_ship"></li></ul></div></div></div>');
 
     var date_save = new Date();
     var check_cook = date_save.getMonth()+1+''+date_save.getFullYear();
@@ -341,6 +342,8 @@ function display_ship() {
                 });
                 translate();
                 $.cookie(check_cook,1);
+                $('.slider-arrow--left').html('<');
+                $('.slider-arrow--right').html('&gt;');
             },
             error: function (e) {
                 console.log(e.message);
