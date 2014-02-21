@@ -119,7 +119,7 @@ function onDeviceReady() {
             $('#confirm').hide();
         });
         
-        $('body').delegate('.img_team_team','click', function(){
+        $('body').delegate('.img_team_team, .img_team_hangar','click', function(){
         	alerte($(this).attr('alt'));
         });
 
@@ -151,7 +151,7 @@ function onDeviceReady() {
             });
         
         $('#alert').click(function(){
-        	$('#alert').hide(300);
+        	$('#alert').slideUp(1000);
         });
 
         $('#search_pseudo').click(function () {
@@ -456,12 +456,9 @@ function alerte(txt){
 	clearTimeout(timer_alert);
 	timer_alert=null;
 	$('#alert').html(txt);
-	console.log('alert txt: '+txt);
-	$('#alert').show(300);
-	console.log('alert show: '+txt);
+	$('#alert').slideDown(500);
 	timer_alert = setTimeout(function(){
-		console.log('alert hide: '+txt);
-		$('#alert').hide(300);
+		$('#alert').slideUp(1000);
 	},6000);
 	
 }
