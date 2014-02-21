@@ -4,9 +4,12 @@ var nb_ship='';
 var c;
 var ctx;
 var help_menu_left =null;
+var timer_alert=null;
 var API_SC=0;
 var theme='b';
 var allow_swipe=true;
+
+
 
 $( document ).on( "pagecreate", "#page", function() {
     $( document ).on( "swipeleft swiperight", "#page", function( e ) {
@@ -115,6 +118,10 @@ function onDeviceReady() {
             }
             $('#confirm').hide();
         });
+        
+        $('body').delegate('.img_team_team','click', function(){
+        	alerte($(this).attr('alt'));
+        });
 
 
         $('body').delegate('.save_ship', 'click', function () {
@@ -142,6 +149,10 @@ function onDeviceReady() {
                 }, 100);
 
             });
+        
+        $('#alert').click(function(){
+        	$('#alert').hide(300);
+        });
 
         $('#search_pseudo').click(function () {
             $('#member_guilde').html('');
@@ -230,7 +241,7 @@ function onDeviceReady() {
                         
                         if(help_menu_left != -1) {
                             help_menu_left = setTimeout(function(){
-                                $('#left-menu').trigger('click');
+                            	$( "#left-panel" ).panel( "open" );
                             },5000);
                         }
                         
@@ -406,7 +417,7 @@ function info_orga() {
                     for (var i = 0; i < data.member.nb; i++) {
                     	hangar_teammate='';
                     	for(var j=0; j<data.member[i].ship.nb;j++){
-                    		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_team" src="'+data.member[i].ship[j].img+'" /></div> ';
+                    		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_team" src="'+data.member[i].ship[j].img+'" alt="'+data.member[i].ship[j].name+'" /></div> ';
                     	}
                     	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
                         
@@ -438,4 +449,19 @@ function info_orga() {
                 console.log(e.message);
             }
         });
+}
+
+
+function alerte(txt){
+	clearTimeout(timer_alert);
+	timer_alert=null;
+	$('#alert').html(txt);
+	console.log('alert txt: '+txt);
+	$('#alert').show(300);
+	console.log('alert show: '+txt);
+	timer_alert = setTimeout(function(){
+		console.log('alert hide: '+txt);
+		$('#alert').hide(300);
+	},6000);
+	
 }
