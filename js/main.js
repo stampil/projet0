@@ -151,7 +151,7 @@ function onDeviceReady() {
             });
         
         $('#alert').click(function(){
-        	$('#alert').slideUp(1000);
+        	$('#alert').slideUp(50);
         });
 
         $('#search_pseudo').click(function () {
@@ -456,9 +456,9 @@ function alerte(txt){
 	clearTimeout(timer_alert);
 	timer_alert=null;
 	$('#alert').html(txt);
-	$('#alert').slideDown(500);
+	$('#alert').slideDown(150);
 	timer_alert = setTimeout(function(){
-		$('#alert').slideUp(1000);
+		$('#alert').slideUp(500);
 	},6000);
 	
 }
