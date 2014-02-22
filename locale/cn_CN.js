@@ -23,7 +23,7 @@ var trad_background='背景';
 var trad_error_nb_ship='用上方的滑竿选择至少一艘船';
 var trad_confirm_ok='行';
 var trad_none='无';
-var trad_credits='Credits';
+var trad_credits='积分';
 
 var trad_error_need_your_handle_first='使用前你必须编写你的手柄论坛功能';
 var trad_error_info_org ='此机构未找到';
