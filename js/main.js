@@ -112,8 +112,8 @@ function onDeviceReady() {
 
         translate();
 
-        $('body').delegate('.bouton-confirm', 'click', function () {
-            if ($(this).attr('label') == 'yes') {
+        $('body').delegate('#confirm_btn_1', 'click', function () {
+            if ($(this).attr('action') == 'confirm_ship') {
                 save_ship();
             }
             $('#confirm').hide();
@@ -128,12 +128,13 @@ function onDeviceReady() {
             name_ship = $(this).attr('ship');
             nb_ship= $('#slider').val();
 
+            $( "#popupDialog h1" ).html(trad_save_nb_ship);
+            $('#confirm_btn_1').html(trad_confirm_yes);
+            $('#confirm_btn_1').attr('action','confirm_ship');
+            $('#confirm_btn_2').html(trad_confirm_no);
+            $( "#popupDialog h3" ).html(trad_confirm_nb_ship.replace('$0', $.cookie('pseudo')).replace('$1',nb_ship).replace('$2',name_ship) + '? ');
 
-            $('#confirm .ui-content').html(trad_confirm_nb_ship.replace('$0', $.cookie('pseudo')).replace('$1',nb_ship).replace('$2',name_ship) + '? <input type="button" class="bouton-confirm" label="yes" value="' + trad_confirm_yes + '"> <input type="button"  class="bouton-confirm" label="no" value="' + trad_confirm_no + '" />');
-
-            $('.bouton-confirm').button();
-            $('#confirm').show();
-            $(document).scrollTop(0);
+            $( "#popupDialog" ).popup("open");
         });
 
         $("#lang :radio[value='" + lang + "']").attr('checked', 'checked');
@@ -245,10 +246,7 @@ function onDeviceReady() {
                             },5000);
                         }
                         
-                        $('div[data-role="content"]').width($('div[data-role="content"]').width()+1);
-                        setTimeout(function(){
-                        	 $('div[data-role="content"]').width($('div[data-role="content"]').width()-1);
-                        },200);
+
                        
 
                     } else {
