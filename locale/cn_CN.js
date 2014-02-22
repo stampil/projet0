@@ -25,6 +25,7 @@ var trad_confirm_ok='行';
 var trad_none='无';
 var trad_credits='积分';
 var trad_saved ='保存';
+var trad_development='发育';
 
 var trad_error_need_your_handle_first='使用前你必须编写你的手柄论坛功能';
 var trad_error_info_org ='此机构未找到';

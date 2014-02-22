@@ -22,9 +22,10 @@ var trad_inscrit_le='Registrierungsdatum';
 var trad_background='Bio';
 var trad_error_nb_ship='Wählen mindestens ein Schiff mit dem Schieberegler oben';
 var trad_confirm_ok='OK';
-var trad_none='nicht';
+var trad_none='keine';
 var trad_credits='Kreativ';
 var trad_saved ='gespeichert';
+var trad_development='Erschließung';
 
 var trad_error_need_your_handle_first='Du must deinen Forum Handle eintragen bevor du dieses Funktion nutzen kannst.';
 var trad_error_info_org ='Organisation nicht gefunden.';

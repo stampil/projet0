@@ -36,6 +36,11 @@ function onDeviceReady() {
 
     	c=document.getElementById("canvas");
     	ctx=c.getContext("2d");
+        ctx.fillStyle='#151515';
+        ctx.font='10px borbitron';
+        ctx.fillText(' ', 10, 10);
+        ctx.font='10px "orbitron"';
+        ctx.fillText(' ', 10, 10);
 
         $('.handle').show(500);
 
@@ -177,7 +182,8 @@ function onDeviceReady() {
                 async: true,
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
-                    
+
+
                 },
                 success: function (data) {
 
@@ -194,15 +200,21 @@ function onDeviceReady() {
                                 + data.join_date.year + '</div><div><span trad="trad_country"></span>: '  + data.live.country
                                 + '</div><div>'+trad_background+': ' + data.bio + '</div>');*/
                     	ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
-                        
+                        var link = document.createElement('link');
+                        link.rel = 'stylesheet';
+                        link.type = 'text/css';
+                        link.href = 'http://fonts.googleapis.com/css?family=Vast+Shadow';
+                        document.getElementsByTagName('head')[0].appendChild(link);
+
+                        ctx.font='10px borbitron';
                         
                         var metrics;
                         var width;
                         var font=18;
                         var upp_pseudo = data.pseudo.toUpperCase();
-                        
+
                         do{
-                        	ctx.font=font+"px 'Orbitron'";
+                        	ctx.font=font+'px borbitron';
 	                        metrics = ctx.measureText(upp_pseudo );
 	                        width = metrics.width;
 	                        console.log('width:'+width+' font:'+font);
@@ -210,7 +222,20 @@ function onDeviceReady() {
                         }
                         while(width>178 && font>9);
                         ctx.fillText( upp_pseudo,120,110);
-                        
+
+                        while(data.number.length<8){
+                            data.number= '0'+data.number;
+
+                        }
+                        ctx.save();
+                        ctx.font='10px orbitron';
+                        ctx.fillStyle='#151515';
+                        ctx.translate(150, 94.5);
+                        ctx.rotate(Math.PI/2);
+                        ctx.fillText(data.number, -50, 147);
+                        ctx.restore();
+
+
                         var img = new Image();   // Crée un nouvel objet Image
                         img.src = data.avatar; // Définit le chemin vers sa source
                         img.onload = function(){
@@ -223,11 +248,13 @@ function onDeviceReady() {
 	                        img2.src = data.team.logo;
 	                        img2.onload = function() {
 	                            ctx.save();
-	                            ctx.globalAlpha = 0.4;
+	                            ctx.globalAlpha = 0.3;
 	                            ctx.drawImage(img2, 0, 0, img2.width, img2.height, 125, 27, 76, 61);
 	                            ctx.restore();
 	                        };
                         }
+
+
                         $('#info_pseudo').html('');
                         
                         

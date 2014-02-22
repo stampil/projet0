@@ -25,6 +25,7 @@ var trad_confirm_ok='OK';
 var trad_none='aucun';
 var trad_credits='Crédits';
 var trad_saved ='enregistré';
+var trad_development='Développement';
 
 var trad_error_need_your_handle_first='Vous devez ecrire votre handle forum avant de pouvoir afficher cette section';
 var trad_error_info_org ='Cette organisation n’a pas été trouvée ';
