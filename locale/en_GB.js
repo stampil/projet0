@@ -24,6 +24,7 @@ var trad_error_nb_ship='Select at least one ship with the slider at the top';
 var trad_confirm_ok='OK';
 var trad_none='none';
 var trad_credits='Credits';
+var trad_saved ='saved';
 
 var trad_error_need_your_handle_first='You must write your handle forum before use this feature';
 var trad_error_info_org ='Organisation not found.';
