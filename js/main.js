@@ -325,7 +325,7 @@ function display_hangar() {
         });
 }
 
-function save_ship(nom,img,role,crew){
+function save_infoship(nom,img,role,crew){
 
 	$.ajax({
         type: 'GET',
@@ -362,20 +362,33 @@ function display_ship() {
             success: function (data) {
                 $('#ship, .slides').html('');
                 var html = '';
+                var check_banu = false;
                 for (var i = 0; i < data.ship.total; i++) {
                     html += ' <li class="slide"><img src="https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'
                         + data.ship[i].imageurl  + '" /><br />'
                         + data.ship[i].title
                         + ' ('   + data.ship[i].manufacturer   + ')<br />'
-                        + trad_max_crew  + ':'
+                        + trad_max_crew  + ': '
                         + data.ship[i].maxcrew
                         + '<br />'
                         + trad_role +': ' + data.ship[i].role
                         + '<br /><input type="button" class="save_ship" ship="'
                         + data.ship[i].title  + '" value="'
                         + trad_save_nb_ship + '" />' + '</li>';
-                    if(!$.cookie(check_cook) ) save_ship(data.ship[i].title, 'https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'+data.ship[i].imageurl, data.ship[i].role, data.ship[i].maxcrew);
+                    if(data.ship[i].title.match('banu')){
+                        check_banu = true;
+                    }
+                    if(!$.cookie(check_cook) ) save_infoship(data.ship[i].title, 'https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'+data.ship[i].imageurl, data.ship[i].role, data.ship[i].maxcrew);
                 }
+
+                if(!check_banu){
+                    html +=' <li class="slide"><img src="img/banu.jpg" /><br />Banu Merchantman (Birc)<br />'
+                        + trad_max_crew  + ': 4<br />'
+                        + trad_role +': Merchant Clipper'
+                        + '<br /><input type="button" class="save_ship" ship="Banu Merchantman" value="'
+                        + trad_save_nb_ship + '" />' + '</li>';
+                }
+
                 $('.slides').html(html);
                 $('#nb_ship').show();
 
