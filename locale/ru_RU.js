@@ -23,7 +23,7 @@ var trad_background='Bg';
 var trad_error_nb_ship='Выберите по крайней мере один корабль используя слайдер сверху';
 var trad_confirm_ok='ОК';
 var trad_none='никто';
-var trad_credits='Credits';
+var trad_credits='Кредиты';
 
 var trad_error_need_your_handle_first='Вы должны указать свой форумный хэндл, прежде чем сможете воспользоваться функцией.';
 var trad_error_info_org ='Организация не найдена.';
