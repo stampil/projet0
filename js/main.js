@@ -389,6 +389,8 @@ function display_ship() {
                 $('#ship, .slides').html('');
                 var html = '';
                 var check_banu = false;
+                var check_karthu = false;
+                var check_mustang = false;
                 for (var i = 0; i < data.ship.total; i++) {
                     html += ' <li class="slide"><img src="https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'
                         + data.ship[i].imageurl  + '" /><br />'
@@ -404,6 +406,12 @@ function display_ship() {
                     if(data.ship[i].title.match('banu')){
                         check_banu = true;
                     }
+                    else if(data.ship[i].title.match('karthu')){
+                        check_karthu = true;
+                    }
+                    else if(data.ship[i].title.match('mustang')){
+                        check_mustang = true;
+                    }
                     if(!$.cookie(check_cook) ) save_infoship(data.ship[i].title, 'https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'+data.ship[i].imageurl, data.ship[i].role, data.ship[i].maxcrew);
                 }
 
@@ -412,6 +420,20 @@ function display_ship() {
                         + trad_max_crew  + ': 4<br />'
                         + trad_role +': Merchant Clipper'
                         + '<br /><input type="button" class="save_ship" ship="Banu Merchantman" value="'
+                        + trad_save_nb_ship + '" />' + '</li>';
+                }
+                if(!check_karthu){
+                    html +=' <li class="slide"><img src="img/karthu.jpg" /><br />Xi’An Karthu<br />'
+                        + trad_max_crew  + ': 1<br />'
+                        + trad_role +': Scout'
+                        + '<br /><input type="button" class="save_ship" ship="Xi’An Karthu" value="'
+                        + trad_save_nb_ship + '" />' + '</li>';
+                }
+                if(!check_mustang){
+                    html +=' <li class="slide"><img src="img/mustang.jpg" /><br />Mustang (Consolidated Outland)<br />'
+                        + trad_max_crew  + ': 1<br />'
+                        + trad_role +': Light Fighter'
+                        + '<br /><input type="button" class="save_ship" ship=">Mustang" value="'
                         + trad_save_nb_ship + '" />' + '</li>';
                 }
 
