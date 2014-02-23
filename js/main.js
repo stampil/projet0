@@ -433,7 +433,7 @@ function display_ship() {
                     html +=' <li class="slide"><img src="img/mustang.jpg" /><br />Mustang (Consolidated Outland)<br />'
                         + trad_max_crew  + ': 1<br />'
                         + trad_role +': Light Fighter'
-                        + '<br /><input type="button" class="save_ship" ship=">Mustang" value="'
+                        + '<br /><input type="button" class="save_ship" ship="Mustang" value="'
                         + trad_save_nb_ship + '" />' + '</li>';
                 }
 
