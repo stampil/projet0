@@ -100,7 +100,7 @@ function onDeviceReady() {
                     $('.save_ship').parent().width(175);
                 }, 1000);
             }
-            else if(page =='wip'){
+            else if(page =='stat'){
             	do_chart();
             }
 
