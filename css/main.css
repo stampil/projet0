@@ -18,6 +18,26 @@
 	font-family:'orbitron' !important;
 }
 
+body { 
+  -webkit-animation: bugfix infinite 1s; 
+}
+@-webkit-keyframes bugfix { 
+  from { padding: 0; } 
+  to { padding: 0; } 
+}
+
+/* default checkbox */
+input[type=checkbox] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+label { 
+  cursor: pointer;
+  user-select: none;
+}
+
 /* Custom indentations are needed because the length of custom labels differs from
    the length of the standard labels */
 .custom-label-flipswitch.ui-flipswitch .ui-btn.ui-flipswitch-on {
@@ -116,8 +136,7 @@ dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px
 	 width:300px;
 	 height:189px;
 	 font-family : "orbitron";
-	 position: relative;
-	 left: -6px;
+	 position: absolute;
 	 margin-bottom:15px;
 	 margin: 0 auto;
 }
