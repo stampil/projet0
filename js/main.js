@@ -535,7 +535,9 @@ function info_orga() {
         });
 }
 
+var chart_done=false;
 function do_chart(){
+	if(chart_done) return false;
 	data_pie = new Array();
 	
 	for(var i=0;i<16;i++){
@@ -544,6 +546,7 @@ function do_chart(){
 		//$('#legend_secteur').append('<div><span style="width:63px;display:inline-block;height:20px;margin:5px;background:'+data[i].couleur+'">&nbsp;</span>'+data[i].nom+'</div>');
 	}
 	new Chart(ctx_chart).Pie(data_pie,opt_chart);
+	chart_done=true;
 }
 
 function alerte(txt){
