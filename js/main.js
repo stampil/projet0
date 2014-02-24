@@ -10,6 +10,7 @@ var theme='b';
 var allow_swipe=true;
 var ctx_chart;
 var opt_chart = {"segmentStrokeWidth":1};
+var data_pie;
 
 
 
@@ -22,9 +23,14 @@ $( document ).on( "pagecreate", "#page", function() {
         // We do this by checking the data that the framework stores on the page element (panel: open).
         if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
             if ( e.type === "swipeleft" ) {
+            	$.cookie('tuto',1);
                 $( "#right-panel" ).panel( "open" );
             } else if ( e.type === "swiperight" ) {
+            	console.log('left switched');
+            	clearTimeout(help_menu_left);
+                help_menu_left = -1;
                 $( "#left-panel" ).panel( "open" );
+                $.cookie('tuto',1);
             }
         }
     });
@@ -54,6 +60,7 @@ function onDeviceReady() {
         	console.log('left clicked');
         	clearTimeout(help_menu_left);
             help_menu_left = -1;
+            $.cookie('tuto',1);
         });
 
         if ($.cookie('switch-theme') == '1') {
@@ -279,7 +286,8 @@ function onDeviceReady() {
                         display_hangar();
                         if(data.team.name) info_orga();
                         
-                        if(help_menu_left != -1) {
+                        if(help_menu_left != -1 && !$.cookie('tuto')) {
+                        	$.cookie('tuto',1);
                             help_menu_left = setTimeout(function(){
                             	$( "#left-panel" ).panel( "open" );
                             },5000);
@@ -540,13 +548,44 @@ function do_chart(){
 	if(chart_done) return false;
 	data_pie = new Array();
 	
-	for(var i=0;i<16;i++){
-		data_pie[i] = {"value":Math.round(Math.random()*i),"color":"#" + 
-			    Math.floor((1 + Math.random()) * 16777216).toString(16).substr(1)};
-		//$('#legend_secteur').append('<div><span style="width:63px;display:inline-block;height:20px;margin:5px;background:'+data[i].couleur+'">&nbsp;</span>'+data[i].nom+'</div>');
-	}
-	new Chart(ctx_chart).Pie(data_pie,opt_chart);
-	chart_done=true;
+	
+	$.ajax({
+        type: 'GET',
+        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+        jsonpCallback: 'API_SC'+API_SC++,
+        contentType: "application/json",
+        dataType: 'jsonp',
+        data: 'action=get_statship',
+        async: true,
+        beforeSend: function(){
+            $('#connect_chart').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+        },
+        success: function (data) {
+            
+            $('#connect_chart').html();
+            var legend='';
+
+
+            	
+                for (var i = 0; i < data.ship.nb_res; i++) {
+                	var color = "#" +  Math.floor((1 + Math.random()) * 16777216).toString(16).substr(1);
+                	data_pie[i] = {"value": data.ship[i].nb,"color":color};
+                	legend+='<span style="width:50px;height:20px;display:inline-block;background:'+color+'">&nbsp;</span> '+data.ship[i].name+' : '+data.ship[i].nb+'<br />';
+                }
+            	new Chart(ctx_chart).Pie(data_pie,opt_chart);
+            	$('#connect_chart').html(legend);
+            	chart_done=true;
+                translate();
+
+        },
+        error: function (e) {
+            console.log(e.message);
+        }
+    });
+	
+	
+	
+
 }
 
 function alerte(txt){

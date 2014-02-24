@@ -26,6 +26,8 @@ var trad_none='none';
 var trad_credits='Credits';
 var trad_saved ='saved';
 var trad_development='Development';
+var trad_stats='Stats';
+
 
 var trad_error_need_your_handle_first='You must write your handle forum before use this feature';
 var trad_error_info_org ='Organisation not found.';

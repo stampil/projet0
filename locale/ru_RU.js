@@ -26,6 +26,8 @@ var trad_none='никто';
 var trad_credits='Кредиты';
 var trad_saved ='сохраняются';
 var trad_development='развитие';
+var trad_stats='Статистика';
+
 
 var trad_error_need_your_handle_first='Вы должны указать свой форумный хэндл, прежде чем сможете воспользоваться функцией.';
 var trad_error_info_org ='Организация не найдена.';
