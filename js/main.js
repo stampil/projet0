@@ -16,6 +16,7 @@ var data_pie;
 
 
 $( document ).on( "pagecreate", "#page", function() {
+	$.event.special.swipe.horizontalDistanceThreshold =100;
     $( document ).on( "swipeleft swiperight", "#page", function( e ) {
     	if(!allow_swipe) return false;
         // We check if there is no open panel on the page because otherwise
@@ -23,14 +24,10 @@ $( document ).on( "pagecreate", "#page", function() {
         // We do this by checking the data that the framework stores on the page element (panel: open).
         if ( $( ".ui-page-active" ).jqmData( "panel" ) !== "open" ) {
             if ( e.type === "swipeleft" ) {
-            	$.cookie('tuto',1);
                 $( "#right-panel" ).panel( "open" );
             } else if ( e.type === "swiperight" ) {
-            	console.log('left switched');
-            	clearTimeout(help_menu_left);
-                help_menu_left = -1;
                 $( "#left-panel" ).panel( "open" );
-                $.cookie('tuto',1);
+
             }
         }
     });
@@ -285,16 +282,7 @@ function onDeviceReady() {
                         $.cookie('pseudo', data.pseudo);
                         display_hangar();
                         if(data.team.name) info_orga();
-                        
-                        if(help_menu_left != -1 && !$.cookie('tuto')) {
-                        	$.cookie('tuto',1);
-                            help_menu_left = setTimeout(function(){
-                            	$( "#left-panel" ).panel( "open" );
-                            },5000);
-                        }
-                        
-
-                       
+                     
 
                     } else {
                         $('#info_pseudo').html(
