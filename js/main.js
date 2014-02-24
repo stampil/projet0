@@ -8,6 +8,9 @@ var timer_alert=null;
 var API_SC=0;
 var theme='b';
 var allow_swipe=true;
+var ctx_chart;
+var opt_chart = {"segmentStrokeWidth":1};
+
 
 
 
@@ -25,14 +28,7 @@ $( document ).on( "pagecreate", "#page", function() {
             }
         }
     });
-    
-    $( ".photopopup" ).on({
-        popupbeforeposition: function() {
-            var maxHeight = $( window ).height() - 60 + "px";
-            $( ".photopopup img" ).css( "max-height", maxHeight );
-        }
-    });
-    
+        
 });
 
 function onDeviceReady() {
@@ -40,7 +36,7 @@ function onDeviceReady() {
 
     $(document).ready(function () {
     	
-    	
+    	ctx_chart = $("#chart_ship_all").get(0).getContext("2d");
 
     	c=document.getElementById("canvas");
     	ctx=c.getContext("2d");
@@ -96,6 +92,9 @@ function onDeviceReady() {
                     $('.save_ship').button();
                     $('.save_ship').parent().width(175);
                 }, 1000);
+            }
+            else if(page =='wip'){
+            	do_chart();
             }
 
 
@@ -536,6 +535,16 @@ function info_orga() {
         });
 }
 
+function do_chart(){
+	data_pie = new Array();
+	
+	for(var i=0;i<16;i++){
+		data_pie[i] = {"value":Math.round(Math.random()*i),"color":"#" + 
+			    Math.floor((1 + Math.random()) * 16777216).toString(16).substr(1)};
+		//$('#legend_secteur').append('<div><span style="width:63px;display:inline-block;height:20px;margin:5px;background:'+data[i].couleur+'">&nbsp;</span>'+data[i].nom+'</div>');
+	}
+	new Chart(ctx_chart).Pie(data_pie,opt_chart);
+}
 
 function alerte(txt){
 	clearTimeout(timer_alert);
