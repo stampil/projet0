@@ -1,4 +1,4 @@
-var trad_RSI_ship_management='SC管理';
+var trad_RSI_ship_management='SC Manager';
 var trad_your_RSI_handle ='你的RSI 手柄';
 var trad_choose_language = '选择语言';
 var trad_search ='搜索';

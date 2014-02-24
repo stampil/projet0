@@ -1,4 +1,4 @@
-var trad_RSI_ship_management='SC Verwaltung';
+var trad_RSI_ship_management='SC Manager';
 var trad_your_RSI_handle ='Dein RSI Handle';
 var trad_choose_language = 'Sprache wählen';
 var trad_search ='Suche';
@@ -9,7 +9,7 @@ var trad_your_ships='Dein Hangar';
 var trad_loading_your_ship='Schiff abrufen...';
 var trad_max_crew ='Max Besatzung';
 var trad_how_many_ship='Wie viele hast du?';
-var trad_confirm_nb_ship ='Bist du sicher das du $0 hast $1 $2';
+var trad_confirm_nb_ship ='Bist du sicher, dass du $0 $1 $2 besitzt';
 var trad_save_nb_ship = 'Speichere dieses Schiff';
 var trad_manage_ship ='Schiff verwalten';
 var trad_close_menu='Menü schließen';

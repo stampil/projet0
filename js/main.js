@@ -118,10 +118,15 @@ function onDeviceReady() {
         translate();
 
         $('body').delegate('#confirm_btn_1', 'click', function () {
+            console.log('btn1 clicked');
             if ($(this).attr('action') == 'confirm_ship') {
+                console.log('confirm_ship=>saveship');
                 save_ship();
             }
-            $('#confirm').hide();
+            else{
+                console.log('hide?');
+                $('#confirm').hide();
+            }
         });
         
         $('body').delegate('.img_team_team, .img_team_hangar','click', function(){
@@ -308,9 +313,17 @@ function save_ship(){
         dataType: 'jsonp',
         data: 'action=save_ship&ship='+ name_ship+ '&nb='+nb_ship+'&handle='+ $.cookie('handle'),
         async: true,
+        beforeSend: function(){
+           alerte(trad_connection_internet);
+            console.log('before ajax');
+        },
         success: function (data) {
+            console.log('after ajax');
             alerte(nb_ship+ 'x '+name_ship+ ' '+trad_saved);
             display_hangar();
+            info_orga();
+            console.log('confirm hide');
+            $('#confirm').hide();
         },
         error: function (e) {
             console.log(e.message);

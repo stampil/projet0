@@ -1,4 +1,4 @@
-var trad_RSI_ship_management='Star Planner';
+var trad_RSI_ship_management='SC Manager';
 var trad_your_RSI_handle ='Votre handle RSI';
 var trad_choose_language = 'Choix de la langue';
 var trad_search ='Chercher';
