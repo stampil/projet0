@@ -208,7 +208,7 @@ dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px
 }
 
 .chart{
-	width:120px !important;
-	height:120px !important;
+	width:300px !important;
+	height:150px !important;
 	margin:5px 10px;
 	}
