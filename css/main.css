@@ -180,28 +180,28 @@ dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px
     background: -webkit-gradient(
         linear,
         left top, left bottom,
-        from(#23db51),
-        to(#2f5e09)
+        from(black),
+        to(#252525)
     );
     background: -webkit-linear-gradient(
         top,
-        #23db51,
-        #2f5e09
+        black,
+        #252525
     );
     background: -moz-linear-gradient(
         top,
-        #23db51,
-        #2f5e09
+        black,
+        #252525
     );
     background: -o-linear-gradient(
         top,
-        #23db51,
-        #2f5e09
+        black,
+        #252525
     );
     background: linear-gradient(
         top,
-        #23db51,
-        #2f5e09
+        black,
+        #252525
     );
 
 
