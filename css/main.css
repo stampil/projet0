@@ -115,9 +115,7 @@ dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px
 #canvas{
 	 width:300px;
 	 height:189px;
-	 background:url('../img/canevas.png') no-repeat transparent;
 	 font-family : "orbitron";
-	 display:none;
 	 position: relative;
 	 left: -6px;
 	 margin-bottom:15px;

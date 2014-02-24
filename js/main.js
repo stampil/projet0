@@ -201,14 +201,12 @@ function onDeviceReady() {
                 async: true,
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
-
-
                 },
                 success: function (data) {
 
                     if (data.join_date.year) {
-                    	$('#canvas').show(500);
-
+                    	
+                    	
 
                         /*$('#info_pseudo').html(
                             '<img style="width:76px;height:76px;" src="'+ data.avatar
@@ -227,6 +225,7 @@ function onDeviceReady() {
 
                         ctx.font='10px borbitron';
                         
+                        $('#canvas').css('background','url(img/canevas.png)');
                         var metrics;
                         var width;
                         var font=18;
@@ -253,7 +252,8 @@ function onDeviceReady() {
                         ctx.rotate(Math.PI/2);
                         ctx.fillText(data.number, -50, 147);
                         ctx.restore();
-
+                        
+                        
 
                         var img = new Image();   // Crée un nouvel objet Image
                         img.src = data.avatar; // Définit le chemin vers sa source
