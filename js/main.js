@@ -25,6 +25,14 @@ $( document ).on( "pagecreate", "#page", function() {
             }
         }
     });
+    
+    $( ".photopopup" ).on({
+        popupbeforeposition: function() {
+            var maxHeight = $( window ).height() - 60 + "px";
+            $( ".photopopup img" ).css( "max-height", maxHeight );
+        }
+    });
+    
 });
 
 function onDeviceReady() {
@@ -130,7 +138,7 @@ function onDeviceReady() {
         });
         
         $('body').delegate('.img_team_team, .img_team_hangar','click', function(){
-        	alerte($(this).attr('alt'));
+        	alerte('<img src="'+$(this).attr('src')+'"/><br />' +$(this).attr('alt'));
         });
 
 
@@ -352,9 +360,12 @@ function display_hangar() {
                 var html = $.cookie('pseudo')+':<br />';
                 for (var i = 0; i < data.ship.nb_res; i++) {
                     html +=  '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.ship[i].nb +'x</div><img class="img_team_hangar" src="'+data.ship[i].img+'" alt="'+data.ship[i].name+'" /></div> ';
+                   
+                                   
                 }
                 html+='</div></div></div>';
                 $('#your_hangar').html(html);
+                
                 translate();
 
             },
