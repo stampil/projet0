@@ -19,7 +19,7 @@ var percent_max = 0;
 var percent_max2 = 0;
 var current_anim = true;
 var current_anim2 = true;
-var nb_bars = 33;
+var nb_bars = 30;
 
 
 $( document ).on( "pagecreate", "#page", function() {
@@ -46,7 +46,7 @@ function onDeviceReady() {
 
     $(document).ready(function () {
     	
-    	ctx_chart = $("#chart_ship_all").get(0).getContext("2d");
+    	//ctx_chart = $("#chart_ship_all").get(0).getContext("2d");
 
     	c=document.getElementById("canvas");
     	ctx=c.getContext("2d");
@@ -560,6 +560,15 @@ function do_chart(){
 	if(chart_done) return false;
 	data_pie = new Array();
 	
+	/* for (var i = 0; i < data.ship.nb_res; i++) {
+                	var color = "#" +  Math.floor((1 + Math.random()) * 16777216).toString(16).substr(1);
+                	data_pie[i] = {"value": data.ship[i].nb,"color":color};
+                	legend+='<span style="width:50px;height:20px;display:inline-block;background:'+color+'">&nbsp;</span> '+data.ship[i].name+' : '+data.ship[i].nb+'<br />';
+                }
+            	new Chart(ctx_chart).Pie(data_pie,opt_chart);
+            	$('#connect_chart').html(legend);
+            	chart_done=true;
+            	*/
 	
 	$.ajax({
         type: 'GET',
@@ -580,13 +589,11 @@ function do_chart(){
 
             	
                 for (var i = 0; i < data.ship.nb_res; i++) {
-                	var color = "#" +  Math.floor((1 + Math.random()) * 16777216).toString(16).substr(1);
-                	data_pie[i] = {"value": data.ship[i].nb,"color":color};
-                	legend+='<span style="width:50px;height:20px;display:inline-block;background:'+color+'">&nbsp;</span> '+data.ship[i].name+' : '+data.ship[i].nb+'<br />';
+                	
+                	legend +='<div class="content_team_hangar"><div class="nb_team_hangar">'+data.ship[i].nb+'x</div><img class="img_team_hangar" src="'+data.ship[i].img+'" alt="'+data.ship[i].name+'" /></div>';
                 }
-            	new Chart(ctx_chart).Pie(data_pie,opt_chart);
-            	$('#connect_chart').html(legend);
-            	chart_done=true;
+                chart_done=true;
+                $('#connect_chart').html(legend);
                 translate();
 
         },
