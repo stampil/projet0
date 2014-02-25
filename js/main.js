@@ -218,26 +218,17 @@ function onDeviceReady() {
                 jsonpCallback: 'API_SC'+API_SC++,
                 contentType: "application/json",
                 dataType: 'jsonp',
-                data: 'action=citizens&page='+ handle,
+                data: 'action=citizens&page='+ handle+'&mdp='+$('#mdp').val(),
                 async: true,
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+                    ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
+                    $('#mdp').hide();
                 },
                 success: function (data) {
 
                     if (data.join_date.year) {
-                    	
-                    	
 
-                        /*$('#info_pseudo').html(
-                            '<img style="width:76px;height:76px;" src="'+ data.avatar
-                                + '" /><img src="'+ data.team.logo+ '" style="width:76px;height:76px;" /><div>'+ data.title+ ' '+ data.pseudo + ' ('+ data.handle  + ')<br />'
-                                + trad_your_team+': '+data.team.name
-                                + ' (' + data.team.tag+ ') <br /> '
-                                + data.team.nb_member + '</div><div>'+trad_inscrit_le+': '+ data.join_date.month   + '  '
-                                + data.join_date.year + '</div><div><span trad="trad_country"></span>: '  + data.live.country
-                                + '</div><div>'+trad_background+': ' + data.bio + '</div>');*/
-                    	ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
                         var link = document.createElement('link');
                         link.rel = 'stylesheet';
                         link.type = 'text/css';
@@ -308,7 +299,16 @@ function onDeviceReady() {
                         if(data.team.name) info_orga();
                      
 
-                    } else {
+                    }
+                    else if(data.err=='MDP_REQUIRED'){
+                        $('#info_pseudo').hide();
+                        $('#mdp').show(300);
+                        setTimeout(function(){
+                            $('#mdp').focus();
+                        },350);
+
+                    }
+                    else {
                         $('#info_pseudo').html(
                             trad_error_handle);
                     }
