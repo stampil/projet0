@@ -228,3 +228,31 @@ dd { font-size: 1.25em; margin: 1em 0 0; padding-bottom: 1em; border-bottom: 1px
 	height:150px !important;
 	margin:5px 10px;
 	}
+	
+	.bars, .bars2 {
+background: #021018;
+padding: 10px;
+margin: 15px 10px;
+border-radius: 18px 1px;
+max-width:336px;
+}
+.bars img, .bars2 img{
+ padding:1px;
+}
+
+.progress, .progress2 {
+color: #00c0ff;
+font-family: Courier New;
+font-size: 14px;
+text-transform:uppercase;
+font-weight:bold;
+}
+
+#ret, #citizens{
+ color: #4BF173;
+ font-weight:bold;
+}
+#citizens_max{
+color:orange;
+ font-weight:bold;
+}
