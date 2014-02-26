@@ -199,6 +199,55 @@ function onDeviceReady() {
         $('#alert').click(function(){
         	$('#alert').slideUp(50);
         });
+        
+        $('#save_lock').click(function(){
+        	var saved= false;
+        	if($('#mdp_handle').val() && $('#mdp_handle').val() == $('#confirm_mdp_handle').val() ){
+        		saved=true;
+        	    $.ajax({
+        	        type: 'GET',
+        	        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+        	        jsonpCallback: 'API_SC'+API_SC++,
+        	        contentType: "application/json",
+        	        dataType: 'jsonp',
+        	        data: 'action=lock_handle&mdp='+$('#mdp_handle').val()+'&handle='+ $.cookie('handle'),
+        	        async: true,
+        	        beforeSend: function(){
+        	           alerte(trad_connection_internet);
+        	        },
+        	        success: function (data) {
+        	            alerte(trad_confirm_ok);
+        	        },
+        	        error: function (e) {
+        	            console.log(e.message);
+        	        }
+        	    });
+        	}
+        	if($('#mdp_team').val() && $('#mdp_team').val() == $('#confirm_mdp_team').val() ){
+        		saved=true;
+        	    $.ajax({
+        	        type: 'GET',
+        	        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+        	        jsonpCallback: 'API_SC'+API_SC++,
+        	        contentType: "application/json",
+        	        dataType: 'jsonp',
+        	        data: 'action=lock_team&team='+ $.cookie('team')+ '&mdp='+$('#mdp_team').val()+'&handle='+ $.cookie('handle'),
+        	        async: true,
+        	        beforeSend: function(){
+        	           alerte(trad_connection_internet);
+        	        },
+        	        success: function (data) {
+        	        	 alerte(trad_confirm_ok);
+        	        },
+        	        error: function (e) {
+        	            console.log(e.message);
+        	        }
+        	    });
+        	}
+        	if(!saved){
+        		alerte(trad_confirm_pass);
+        	}
+        });
 
         $('#search_pseudo').click(function () {
             $('#member_guilde').html('');
@@ -223,7 +272,9 @@ function onDeviceReady() {
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
                     ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
-                    $('#mdp').hide();
+                    $('#mdp, .require_mdp, #require_mdp').hide();
+                    $.cookie('team','');
+                    $.cookie('handle','');
                 },
                 success: function (data) {
 
@@ -294,20 +345,37 @@ function onDeviceReady() {
 
                         $.cookie('team',data.team.tag);
                         $.cookie('handle', data.handle);
+                        $('.display_handle').html(data.handle);
+                        $('.display_team').html(data.team.tag);
                         $.cookie('pseudo', data.pseudo);
                         display_hangar();
                         if(data.team.name) info_orga();
                      
 
                     }
-                    else if(data.err=='MDP_REQUIRED'){
-                        $('#info_pseudo').hide();
-                        $('#mdp').show(300);
+                    else if(data.err=='MDP_REQUIRED_HANDLE'){ //handle first more important than team
+                        console.log(data.err);
+                    	$('#info_pseudo, .require_mdp_team').hide();
+                        $('.require_mdp_handle, #mdp').show();
+                        
+                        $('#require_mdp').show(300);
                         setTimeout(function(){
                             $('#mdp').focus();
+                           
                         },350);
 
                     }
+                    else if(data.err=='MDP_REQUIRED_TEAM'){
+                        $('#info_pseudo, .require_mdp_handle').hide();
+                        $('.require_mdp_team,  #mdp').show();
+                        $('#require_mdp').show(300);
+                        setTimeout(function(){
+                            $('#mdp').focus();
+                            $('#trad_info_handle').html('<span class="handle">'+data.requester+'</span>');
+                        },350);
+
+                    }
+
                     else {
                         $('#info_pseudo').html(
                             trad_error_handle);

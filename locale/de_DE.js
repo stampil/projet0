@@ -27,6 +27,13 @@ var trad_credits='Kreativ';
 var trad_saved ='gespeichert';
 var trad_development='Erschließung';
 var trad_stats='Statistik';
+var trad_become_private='werden Privat';
+var trad_info_private='You can lock a Team or handle with password...<br />If they are a team password and a handle password, it’s only the handle password who is required (stronger than team lock).<br />If someone lock this team, he must communicate the password for this teammates... If I have too many PM of people locked, I’ll remove the team password.<br />	If you attempt to lock an another team or handle of another people, I’ll can ban your device.<br />	Password are crypted in bdd, but I higly recommand to use an unique password, not your official ! Let empty the password if you won’t set a  lock, an handle or team locked can’t be unlocked here, for unlocking, PM me on the official forum  @ gourmand';
+var trad_lock_handle='Lock this handle';
+var trad_lock_team='Lock this team';
+var trad_confirm_pass='Confirm the password';
+var trad_require_password_team='Your team has locked the display information of his member, contact <span id="trad_info_handle"></span> for know the password. If this team should not be locked, contact me by PM @ gourmand on the official forum. Else, write the password for unlock:'; 
+var trad_require_password_handle='This handle is locked. If this handle should not be locked, contact me by PM @ gourmand on the official forum.'; 
 
 
 var trad_error_need_your_handle_first='Du must deinen Forum Handle eintragen bevor du dieses Funktion nutzen kannst.';

@@ -27,6 +27,14 @@ var trad_credits='Crédits';
 var trad_saved ='enregistré';
 var trad_development='Développement';
 var trad_stats='Stats';
+var trad_become_private='Devenir privé';
+var trad_info_private='Vous pouvez cacher une team ou handle avec un mot de passe... <br /> Si il existe un mot de passe pour une team et un handle, c’est le mot de passe du handle qui sera requit (plus fort que le verrou de la team). <br /> Si quelqu’un verrouille une team, il doit communiquer le mot de passe pour ces coéquipiers... Si j’ai trop de PM de personnes vérouillée a tord, je me reserve le droit de retirer le mot de passe de la team.<br /> Si vous essayez de bloquer une autre team ou le handle d’une autre personne, je me reserve le droit de bannir votre appareil<br /> Les mots de passe sont cryptés en bdd, mais je recommande vivement d’utiliser un mot de passe unique, pas votre officiel!<br />Laisser vide le mot de passe si vous ne voulez pas configurez de verrou, un handle ou une team verouillé ne peut pas être déverouillé ici, pour dévérouiller, contacter moi par PM sur le forum officiel : @ gourmand';
+var trad_lock_handle='Verrouiller ce handle';
+var trad_lock_team='Verrouiller cette team';
+var trad_confirm_pass='Confirmer le mot de passe';
+var trad_require_password_team='Votre team à verrouillée l’affichage des infos de ses membres, contacter <span id="trad_info_handle"></span> pour connaitre se mot de passe. Si cette team ne devrais pas être verrouillé, contacter moi par PM sur le forum officiel @ gourmand'; 
+var trad_require_password_handle='Cet handle est verrouillé. Si ce handle ne devrait pas être verrouillé, contactez moi par PM @ gourmand sur le forum officiel.'; 
+
 
 var trad_error_need_your_handle_first='Vous devez ecrire votre handle forum avant de pouvoir afficher cette section';
 var trad_error_info_org ='Cette organisation n’a pas été trouvée ';

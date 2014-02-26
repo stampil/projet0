@@ -82,7 +82,7 @@ h2 {
 }
 
 
-.page, #nb_ship, #mdp {
+.page, #nb_ship, #mdp, .require_mdp, #require_mdp {
 	display: none;
 }
 .page{

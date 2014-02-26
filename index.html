@@ -61,7 +61,13 @@
         
             <label for="pseudo" trad="trad_your_RSI_handle"></label>
             <input type="search" name="pseudo" id="pseudo" value="" placeholder="..." />
+            
+            <div id="require_mdp">
+            <div trad="trad_require_password_team" class="require_mdp require_mdp_team"></div>
+             <div trad="trad_require_password_handle" class="require_mdp require_mdp_handle"></div>
             <input type="password" name="mdp" id="mdp" placeholder="password" />
+            </div>
+            
             <a href="#" data-role="button" data-icon="search" id="search_pseudo" trad="trad_search"></a>
 
             <div id="info_pseudo"></div>
@@ -79,6 +85,17 @@
 
         <div class="page team">
             <div id="member_guilde"></div>
+        </div>
+        
+        <div class="page private">
+            <div trad="trad_info_private"></div>
+            <br />
+            <span trad="trad_lock_handle"></span> (<span class="display_handle"></span>) : <input type="password" id="mdp_handle" /> <br />
+            <span trad="trad_confirm_pass"></span>  <input type="password" id="confirm_mdp_handle" /><hr />
+            <span trad="trad_lock_team"></span> (<span class="display_team"></span>) : <input type="password" id="mdp_team" /> <br />
+            <span trad="trad_confirm_pass"></span>  <input type="password" id="confirm_mdp_team" />
+            
+            <input type="button" value="Save" trad="trad_confirm_ok" id="save_lock" />
         </div>
 
         <div class="page error_need_handle" trad="trad_error_need_your_handle_first">
@@ -161,7 +178,7 @@
             <li><a href="#" trad="trad_manage_ship" goto="manage_ship" need_handle="1"></a></li>
             <li><a href="#" goto="hangar" trad="trad_your_ships" need_handle="1"></a></li>
             <li><a href="#" goto="team" trad="trad_your_team" need_handle="1"></a></li>
-
+			<li><a href="#" goto="private" trad="trad_become_private" need_handle="1"></a></li>
             <li><a href="#" goto="stat" trad="trad_stats"></a></li>
             <li><a href="#" goto="credits" trad="trad_credits"></a></li>
         </ul>
