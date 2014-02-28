@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>starpirates.fr</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="stylesheet" href="css/themes/jquerymobile.css"/>
+    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css"/>
+    <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.0.min.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="stylesheet" href="css/glide.css"/>
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/jquery.mobile-1.4.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/jquery.glide.min.js"></script>
+    <script type="text/javascript" src="js/Chart.min.js"></script>
+    <script>
+        var date_expire_cookie = new Date();
+        date_expire_cookie.setTime(date_expire_cookie.getTime()
+                + (12 * 30.4 * 24 * 60 * 60 * 1000));
+        var lang;
+        lang = window.location.search.match(/lang=([^&|$]+)/);
+        if (typeof lang == 'object' && lang) {
+            lang = lang[1];
+            $.cookie('lang', lang, {
+                expires: date_expire_cookie
+            });
+        } else {
+            lang = 'en_GB';
+            if ($.cookie('lang') && $.cookie('lang') != 'undefined') {
+                lang = $.cookie('lang');
+            }
+        }
+        console.log('lang:' + lang);
+        document.write('<' + 'script src="locale/' + lang + '.js?_='+Date.now()+'" type="text/javascript"><' + '/script>');
+    </script>
+
+
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    
+</head>
+
+
+<body>
+<div data-role="page" id="page" data-url="page" data-theme="b">
+    <div data-role="header" >
+        <h1 trad="trad_RSI_ship_management"></h1>
+        <a href="#left-panel" id="left-menu" data-icon="bars" data-theme="b" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open left panel</a>
+        <a href="#right-panel" data-icon="gear" data-theme="b" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-nodisc-icon">Open right panel</a>
+    </div><!-- /header -->
+    <div role="content" class="ui-content">
+       
+       
+      <div class="page handle">
+        
+            <label for="pseudo" trad="trad_your_RSI_handle"></label>
+            <input type="search" name="pseudo" id="pseudo" value="" placeholder="..." />
+            
+            <div id="require_mdp">
+            <div trad="trad_require_password_team" class="require_mdp require_mdp_team"></div>
+             <div trad="trad_require_password_handle" class="require_mdp require_mdp_handle"></div>
+            <input type="password" name="mdp" id="mdp" placeholder="password" />
+            </div>
+            
+            <a href="#" data-role="button" data-icon="search" id="search_pseudo" trad="trad_search"></a>
+
+            <div id="info_pseudo"></div>
+             <canvas id="canvas"></canvas>
+           
+        </div>
+
+        <div class="page manage_ship">
+            <div class="ui-field-contain" id="nb_ship">
+                <label for="slider" trad="trad_how_many_ship"></label>
+                <input type="range" name="slider" id="slider" value="0" min="0" max="10"/>
+            </div>
+            <div id="member_ship"></div>
+        </div>
+
+        <div class="page team">
+            <div id="member_guilde"></div>
+        </div>
+        
+        <div class="page private">
+            <div trad="trad_info_private"></div>
+            <br />
+            <span trad="trad_lock_handle"></span> (<span class="display_handle"></span>) : <input type="password" id="mdp_handle" /> <br />
+            <span trad="trad_confirm_pass"></span>  <input type="password" id="confirm_mdp_handle" /><hr />
+            <span trad="trad_lock_team"></span> (<span class="display_team"></span>) : <input type="password" id="mdp_team" /> <br />
+            <span trad="trad_confirm_pass"></span>  <input type="password" id="confirm_mdp_team" />
+            
+            <input type="button" value="Save" trad="trad_confirm_ok" id="save_lock" />
+        </div>
+
+        <div class="page error_need_handle" trad="trad_error_need_your_handle_first">
+
+        </div>
+
+        <div class="page hangar">
+        <div id="your_hangar"></div>
+        <hr />
+		<div id="team_hangar"></div>
+        </div>
+
+        <div class="page credits">
+            <h2 trad="trad_development">developpement :</h2>
+           <img src="img/avatar2.png" /><br />  Detrios aka Gourmand <br />
+<br />
+            <h2>Thanks to :</h2>
+            <img src="img/VAC-Logo.png" style="float:left;padding:5px" />The Vigilant Addiction (VAC) Team<br style="clear:both" /> and specially Punisher79 and Strikes for funding me an ios developping account of $100 and permit this app come to IOS too.<br />
+            (When the community help funding a Chris roberts game with millions it's unbeleivable, but when a community help the community, it's magic).<br />
+            <p>johnsylar for german traduction</p>
+            <p>My 'chinese' mother-in law for chinese traduction</p>
+            <p>Casidy for russian translation</p>
+            <p>Boulder for giving a great trick for the API</p>
+            <br />
+            This app exist in free version : 'star citizen management'<br />
+            and premium version : 'sc planner'<br />
+            if you want support this, and help me to pay the server where is my API, you could do it with the sc planner.<br />
+            thanks a lot !<br />
+        </div>
+
+        <div class="page stat">
+        
+			<!-- canvas id="chart_ship_all" class="chart"></canvas-->
+			
+			
+			<center>
+			<div class="bars">
+			  <div id="bar" ></div>
+			  <div class="progress">
+			    progress : <span id="percent">0</span>% 
+			    current pledge : <span id="ret"></span>
+			  </div>
+			</div>
+			</center>
+
+
+			<center>
+			<div class="bars2">
+			  <div id="bar2" ></div>
+			  <div class="progress2">
+			    progress : <span id="percent2">0</span>% 
+			    Alpha Citizens : <span id="citizens"></span>/<span id="citizens_max"></span>
+			  </div>
+			</div>
+			</center>
+		
+		<div id="connect_chart"></div>
+        </div>
+
+
+
+         <div data-role="popup" id="popupDialog" data-dismissible="false" data-overlay-theme="a" data-theme="b" style="max-width:400px;" class="ui-corner-all ui-popup ui-body-b ui-overlay-shadow" aria-disabled="false" data-disabled="false" data-shadow="true" data-corners="true" data-transition="none" data-position-to="origin">
+            <div data-role="header" data-theme="b" class="ui-corner-top ui-header ui-bar-b" role="banner">
+                <h1 class="ui-title" role="heading" aria-level="1">Delete Page?</h1>
+            </div>
+            <div data-role="content" data-theme="b" class="ui-corner-bottom ui-content ui-body-b" role="main">
+                <h3 class="ui-title">Are you sure you want to delete this page?</h3>
+
+                <a href="#"  id="confirm_btn_1" data-role="button" data-inline="true" data-rel="back" data-theme="b" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-btn-up-c ui-shadow ui-btn-corner-all ui-btn-inline"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text">btn1</span></span></a>
+                <a href="#" style="float:right" data-role="button" data-inline="true" data-rel="back" data-transition="flow" data-theme="b" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-btn-up-b ui-shadow ui-btn-corner-all ui-btn-inline"><span class="ui-btn-inner ui-btn-corner-all"><span class="ui-btn-text" id="confirm_btn_2">btn2</span></span></a>
+            </div>
+        </div>
+       
+    </div><!-- /content -->
+    <div data-role="panel" id="left-panel" data-theme="b">
+           
+   <ul data-role="listview">
+            <li data-icon="delete"><a href="#" data-rel="close" id="close_left_menu" trad="trad_close_menu"></a></li>
+            <li><a href="#" trad="trad_your_RSI_handle" goto="handle"></a></li>
+            <li><a href="#" trad="trad_manage_ship" goto="manage_ship" need_handle="1"></a></li>
+            <li><a href="#" goto="hangar" trad="trad_your_ships" need_handle="1"></a></li>
+            <li><a href="#" goto="team" trad="trad_your_team" need_handle="1"></a></li>
+			<li><a href="#" goto="private" trad="trad_become_private" need_handle="1"></a></li>
+            <li><a href="#" goto="stat" trad="trad_stats"></a></li>
+            <li><a href="#" goto="credits" trad="trad_credits"></a></li>
+        </ul>
+        
+    </div><!-- /panel -->
+    <div data-role="panel" id="right-panel" data-display="push" data-position="right" data-theme="b">
+        <p>&nbsp;</p>
+        <a href="#" data-rel="close" class="ui-btn ui-corner-all ui-shadow ui-mini ui-btn-inline ui-icon-delete ui-btn-icon-right">Close</a>
+         <form>
+            <label for="flip-checkbox-2">Theme:</label>
+            <input type="checkbox" data-role="flipswitch" name="flip-checkbox-2" id="flip-checkbox-2"
+                   data-on-text="Light" data-off-text="Dark" data-wrapper-class="custom-label-flipswitch">
+        </form>
+
+
+        <form>
+            <fieldset data-role="controlgroup" data-mini="true" id="lang">
+                <legend trad="trad_choose_language"></legend>
+                <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a"
+                       value="en_GB"> <label for="radio-choice-v-6a">en_GB</label>
+                <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b"
+                       value="fr_FR"> <label for="radio-choice-v-6b">fr_FR</label>
+                <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c"
+                       value="cn_CN"> <label for="radio-choice-v-6c">cn_CN</label>
+                <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6d"
+                       value="ru_RU"> <label for="radio-choice-v-6d">ru_RU</label>
+				<input type="radio" name="radio-choice-v-6" id="radio-choice-v-6e"
+                       value="de_DE"> <label for="radio-choice-v-6e">de_DE</label> 
+                 <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6f"
+                       value="es_ES"> <label for="radio-choice-v-6f">es_ES</label>                      
+            </fieldset>
+        </form>
+        
+    </div><!-- /panel -->
+    
+     <footer data-role="footer" role="contentinfo" id="footer">
+        <p style="text-align: center">v1.4.1</p>
+    </footer>
+    
+    <div id="alert">click to close</div>
+    
+</div>
+
+
+
+
+
+
+</body>
+</html>
