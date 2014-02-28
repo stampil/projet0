@@ -28,12 +28,12 @@ var trad_saved ='保存';
 var trad_development='发育';
 var trad_stats='统计';
 var trad_become_private='成为民营';
-var trad_info_private='You can lock a Team or handle with password...<br />If they are a team password and a handle password, it’s only the handle password who is required (stronger than team lock).<br />If someone lock this team, he must communicate the password for this teammates... If I have too many PM of people locked, I’ll remove the team password.<br />	If you attempt to lock an another team or handle of another people, I’ll can ban your device.<br />	Password are crypted in bdd, but I higly recommand to use an unique password, not your official ! Let empty the password if you won’t set a  lock, an handle or team locked can’t be unlocked here, for unlocking, PM me on the official forum  @ gourmand';
-var trad_lock_handle='Lock this handle';
-var trad_lock_team='Lock this team';
-var trad_confirm_pass='Confirm the password';
-var trad_require_password_team='Your team has locked the display information of his member, contact <span id="trad_info_handle"></span> for know the password. If this team should not be locked, contact me by PM @ gourmand on the official forum. Else, write the password for unlock:'; 
-var trad_require_password_handle='This handle is locked. If this handle should not be locked, contact me by PM @ gourmand on the official forum.'; 
+var trad_info_private='您可以锁定一个小组或一个手柄，一个密码...<br/>如果有一支球队密码和手柄密码，只有手柄的密码将被要求（它比队锁定更强）。<br/>如果有人锁这支球队，他必须传达的密码给队友......如果我收到锁定的人太多了下午，我会如果您尝试锁定另一个用户的另一支球队或句柄移除团队密码。<br/>，我会禁止您的设备。<br/>密码是加密的数据库，但我HIGLY建议使用一个唯一的密码，而不是你官方的！保留密码为空，如果你不想设置一个锁。已锁定手柄或团队在这里不能解锁。解锁吧，下午我在官方论坛 @ gourmand';
+var trad_lock_handle='锁定此 handle';
+var trad_lock_team='锁定此团队';
+var trad_confirm_pass='确认密码';
+var trad_require_password_team='你的团队已经锁定了他的成员信息的显示。联系<span id="trad_info_handle"></ span>以找回密码。如果这支球队不应该被锁定，请联系我通过下午@美食家的官方论坛。否则，写密码解锁：'; 
+var trad_require_password_handle='这个句柄被锁定。如果该句柄不应该被锁定，请联系我通过下午@美食家的官方论坛。'; 
 
 
 var trad_error_need_your_handle_first='使用前你必须编写你的手柄论坛功能';
