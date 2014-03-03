@@ -96,15 +96,7 @@ function onDeviceReady() {
 
             $('.page').hide(300);
             $('.' + page).show(500);
-            if (page == 'manage_ship') {
-            	allow_swipe = false;
-                setTimeout(function () {
-                    $('.slide').trigger("resize");
-                    $('.save_ship').button();
-                    $('.save_ship').parent().width(175);
-                }, 1000);
-            }
-            else if(page =='stat'){
+            if(page =='stat'){
             	do_chart();
             	
             	var bar_gen = '';
@@ -167,6 +159,19 @@ function onDeviceReady() {
         $('body').delegate('.img_team_team, .img_team_hangar','click', function(){
         	alerte('<img src="'+$(this).attr('src')+'"/><br />' +$(this).attr('alt'));
         });
+        
+        $('body').delegate('.manage_ship_text','click', function(){
+        	var o = $(this).parent().find('.manage_ship_cache');
+        	if (o.css('opacity')==0 ){
+        		o.css('opacity',0.85);
+        	}
+        	else{
+        		o.css('opacity',0);
+        	}
+
+        });
+        
+        
 
 
         $('body').delegate('.save_ship', 'click', function () {
@@ -271,6 +276,7 @@ function onDeviceReady() {
                 async: true,
                 beforeSend: function(){
                     $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+                    $('#info_pseudo').show();
                     ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
                     $('#mdp, .require_mdp, #require_mdp').hide();
                     $.cookie('team','');
@@ -481,9 +487,6 @@ function save_infoship(nom,img,role,crew){
 }
 
 function display_ship() {
-    $('#member_ship').html(
-            '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_manage_ship"></h3></div><div class="ui-body ui-body-'+theme+'">'+
-            '<div class="slider"><ul class="slides"><li trad="trad_loading_your_ship"></li></ul></div></div></div>');
 
     var date_save = new Date();
     var check_cook = date_save.getMonth()+1+''+date_save.getFullYear();
@@ -497,23 +500,20 @@ function display_ship() {
             data: 'action=ship',
             async: true,
             success: function (data) {
-                $('#ship, .slides').html('');
+               
                 var html = '';
                 var check_banu = false;
                 var check_karthu = false;
                 var check_mustang = false;
                 for (var i = 0; i < data.ship.total; i++) {
-                    html += ' <li class="slide"><img src="https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'
-                        + data.ship[i].imageurl  + '" /><br />'
-                        + data.ship[i].title
-                        + ' ('   + data.ship[i].manufacturer   + ')<br />'
-                        + trad_max_crew  + ': '
-                        + data.ship[i].maxcrew
-                        + '<br />'
-                        + trad_role +': ' + data.ship[i].role
-                        + '<br /><input type="button" class="save_ship" ship="'
-                        + data.ship[i].title  + '" value="'
-                        + trad_save_nb_ship + '" />' + '</li>';
+                                        
+                    
+                    html +='<div class="manage_ship_content">'
+                    	+'<div class="manage_ship_img" ><img src="https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'
+                        + data.ship[i].imageurl  + '" /></div>'
+                	+'<div class="manage_ship_cache"></div>'
+                	+'<div class="manage_ship_text"><center>'+data.ship[i].title+'</center></div></div>';
+                    
                     if(data.ship[i].title.match('banu')){
                         check_banu = true;
                     }
@@ -527,37 +527,26 @@ function display_ship() {
                 }
 
                 if(!check_banu){
-                    html +=' <li class="slide"><img src="img/banu.jpg" /><br />Banu Merchantman (Birc)<br />'
-                        + trad_max_crew  + ': 4<br />'
-                        + trad_role +': Merchant Clipper'
-                        + '<br /><input type="button" class="save_ship" ship="Banu Merchantman" value="'
-                        + trad_save_nb_ship + '" />' + '</li>';
+                    html +='<div class="manage_ship_content">'
+                    	+'<div class="manage_ship_img" ><img src="img/banu.jpg" /></div>'
+                	+'<div class="manage_ship_cache"></div>'
+                	+'<div class="manage_ship_text"><center>Banu Merchantman</center></div></div>';
                 }
                 if(!check_karthu){
-                    html +=' <li class="slide"><img src="img/karthu.jpg" /><br />Xi’An Karthu<br />'
-                        + trad_max_crew  + ': 1<br />'
-                        + trad_role +': Scout'
-                        + '<br /><input type="button" class="save_ship" ship="Xi’An Karthu" value="'
-                        + trad_save_nb_ship + '" />' + '</li>';
+                	html +='<div class="manage_ship_content">'
+                    	+'<div class="manage_ship_img" ><img src="img/karthu.jpg" /></div>'
+                	+'<div class="manage_ship_cache"></div>'
+                	+'<div class="manage_ship_text"><center>Xi’An Karthu</center></div></div>';
                 }
                 if(!check_mustang){
-                    html +=' <li class="slide"><img src="img/mustang.jpg" /><br />Mustang (Consolidated Outland)<br />'
-                        + trad_max_crew  + ': 1<br />'
-                        + trad_role +': Light Fighter'
-                        + '<br /><input type="button" class="save_ship" ship="Mustang" value="'
-                        + trad_save_nb_ship + '" />' + '</li>';
+                	html +='<div class="manage_ship_content">'
+                    	+'<div class="manage_ship_img" ><img src="img/mustang.jpg" /></div>'
+                	+'<div class="manage_ship_cache"></div>'
+                	+'<div class="manage_ship_text"><center>Mustang</center></div></div>';
+                	
                 }
 
-                $('.slides').html(html);
-                $('#nb_ship').show();
-
-                $('.slider').glide({
-                    autoplay: false
-                });
-                translate();
-                $.cookie(check_cook,1);
-                $('.slider-arrow--left').html('<');
-                $('.slider-arrow--right').html('&gt;');
+               $('#member_ship').html(html);
             },
             error: function (e) {
                 console.log(e.message);
@@ -587,12 +576,12 @@ function info_orga() {
                 if (data.member.nb > 0) {
                 	if(data.member.nb>249) data.member.nb = 249; //TODO limite max 249
                     for (var i = 0; i < data.member.nb; i++) {
-                    	hangar_teammate='';
+                    	hangar_teammate='<center>';
                     	for(var j=0; j<data.member[i].ship.nb;j++){
                     		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_team" src="'+data.member[i].ship[j].img+'" alt="'+data.member[i].ship[j].name+'" /></div> ';
                     	}
                     	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
-                        
+                        hangar_teammate+='</center>';
                     	html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
                             + ' <div class="display_pseudo">' + data.member[i].pseudo + '</div><div class="display_handle"> ' + data.member[i].handle + '</div>'
                             

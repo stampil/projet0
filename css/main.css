@@ -256,3 +256,41 @@ font-weight:bold;
 color:orange;
  font-weight:bold;
 }
+
+.manage_ship_content{
+	position:relative;
+	width:138px;
+	height:74px;
+	display:inline-block;
+}
+
+.manage_ship_img, .manage_ship_cache{
+	width:138px;
+	height:74px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor:pointer;
+    position:absolute;
+}
+.manage_ship_img img{
+	width:138px;
+	height:74px;
+	    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.manage_ship_cache{
+	background:black;
+	opacity:0.85;
+}
+
+.manage_ship_text{
+	color:white;
+	text-shadow:black 0px 0px 5px,black 1px 0px 5px,black 0px 1px 5px,black 1px 1px 5px;
+	top:2px;
+	overflow: hidden;
+	width: 138px;
+	height:74px;
+	position:absolute;
+	cursor:pointer;
+}
