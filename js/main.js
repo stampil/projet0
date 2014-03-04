@@ -441,6 +441,9 @@ function display_hangar() {
             dataType: 'jsonp',
             data: 'action=get_ship&handle='+ $.cookie('handle'),
             async: true,
+            beforeSend: function(){
+            	$('#your_hangar').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+            },
             success: function (data) {
                 $('#your_hangar').html('<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_your_ships"></h3></div><div class="ui-body ui-body-'+theme+'">');
                 var html = $.cookie('pseudo')+':<br />';
@@ -492,6 +495,9 @@ function display_ship() {
             dataType: 'jsonp',
             data: 'action=ship',
             async: true,
+            beforeSend: function(){
+            	$('#member_ship').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+            },
             success: function (data) {
                
                 var html = '';
@@ -558,7 +564,7 @@ function info_orga() {
             dataType: 'jsonp',
             data: 'action=org&team=' + $.cookie('team') + '&page=1',
             async: true,
-            beforeSend: function(){
+            beforeSend: function(){           	
                 $('#member_guilde').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
             },
             success: function (data) {
@@ -732,7 +738,11 @@ function check_pledge(){
         contentType: "application/json",
         dataType: 'jsonp',
         data:'action=funding-goals',
+        beforeSend: function(){
+        	$('#pledge_data_loading').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+        },
         success: function(data) {
+        	$('#pledge_data_loading').html('');
             $('#ret').html(data.current_pledge.us);
             $('#citizens').html(number_format(data.stat.data.fans,0,'.',','));
 			$('#citizens_max').html(number_format(parseInt(data.stat.data.fans)+parseInt(data.stat.data.alpha_slots_left),0,'.',','));
