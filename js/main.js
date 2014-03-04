@@ -739,11 +739,8 @@ function check_pledge(){
         contentType: "application/json",
         dataType: 'jsonp',
         data:'action=funding-goals',
-        beforeSend: function(){
-        	$('#pledge_data_loading').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
-        },
         success: function(data) {
-        	$('#pledge_data_loading').html('');
+        	
             $('#ret').html(data.current_pledge.us);
             $('#citizens').html(number_format(data.stat.data.fans,0,'.',','));
 			$('#citizens_max').html(number_format(parseInt(data.stat.data.fans)+parseInt(data.stat.data.alpha_slots_left),0,'.',','));
