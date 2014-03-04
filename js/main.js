@@ -23,7 +23,8 @@ var nb_bars = 30;
 
 
 $( document ).on( "pagecreate", "#page", function() {
-	$.event.special.swipe.horizontalDistanceThreshold =100;
+	$.event.special.swipe.horizontalDistanceThreshold = 60;
+	$.event.special.swipe.verticalDistanceThreshold = 60;
     $( document ).on( "swipeleft swiperight", "#page", function( e ) {
     	if(!allow_swipe) return false;
         // We check if there is no open panel on the page because otherwise
