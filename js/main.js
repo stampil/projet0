@@ -58,17 +58,17 @@ function onDeviceReady() {
 
         $('.handle').show(500);
 
-        display_ship();
+        
         
         $('#left-menu').click(function(){
-        	console.log('left clicked');
+        	
         	clearTimeout(help_menu_left);
             help_menu_left = -1;
             $.cookie('tuto',1);
         });
 
         if ($.cookie('switch-theme') == '1') {
-            console.log('cookie make click');
+            
             auto_switch = true;
             setTimeout(function () {
                 $('.ui-flipswitch').trigger('click');
@@ -125,7 +125,7 @@ function onDeviceReady() {
                 
 
         $('.ui-flipswitch').click(function () {
-            console.log('switch auto:' + auto_switch + ' cookie' + $.cookie('switch-theme'));
+           
             if ($('.ui-flipswitch-active').length) {
                 $.cookie('switch-theme', 1);
                 $('.ui-body-b').removeClass('ui-body-b').addClass('ui-body-a');
@@ -144,17 +144,7 @@ function onDeviceReady() {
 
         translate();
 
-        $('body').delegate('#confirm_btn_1', 'click', function () {
-            console.log('btn1 clicked');
-            if ($(this).attr('action') == 'confirm_ship') {
-                console.log('confirm_ship=>saveship');
-                save_ship();
-            }
-            else{
-                console.log('hide?');
-                $('#confirm').hide();
-            }
-        });
+       
         
         $('body').delegate('.img_team_team, .img_team_hangar','click', function(){
         	alerte('<img src="'+$(this).attr('src')+'"/><br />' +$(this).attr('alt'));
@@ -162,30 +152,33 @@ function onDeviceReady() {
         
         $('body').delegate('.manage_ship_text','click', function(){
         	var o = $(this).parent().find('.manage_ship_cache');
+        	name_ship =$(this).text();
         	if (o.css('opacity')==0 ){
         		o.css('opacity',0.85);
+        		nb_ship= 0;
         	}
         	else{
         		o.css('opacity',0);
+                nb_ship= 1;
         	}
+        	save_ship();
 
         });
         
         
 
 
-        $('body').delegate('.save_ship', 'click', function () {
-            name_ship = $(this).attr('ship');
-            nb_ship= $('#slider').val();
 
-            $( "#popupDialog h1" ).html(trad_save_nb_ship);
+            
+
+           /* $( "#popupDialog h1" ).html(trad_save_nb_ship);
             $('#confirm_btn_1').html(trad_confirm_yes);
             $('#confirm_btn_1').attr('action','confirm_ship');
             $('#confirm_btn_2').html(trad_confirm_no);
             $( "#popupDialog h3" ).html(trad_confirm_nb_ship.replace('$0', $.cookie('pseudo')).replace('$1',nb_ship).replace('$2',name_ship) + '? ');
 
-            $( "#popupDialog" ).popup("open");
-        });
+            $( "#popupDialog" ).popup("open");*/
+
 
         $("#lang :radio[value='" + lang + "']").attr('checked', 'checked');
         $("#lang :radio").checkboxradio("refresh");
@@ -304,7 +297,7 @@ function onDeviceReady() {
                         	ctx.font=font+'px borbitron';
 	                        metrics = ctx.measureText(upp_pseudo );
 	                        width = metrics.width;
-	                        console.log('width:'+width+' font:'+font);
+	                        
 	                        font--;
                         }
                         while(width>178 && font>9);
@@ -354,13 +347,13 @@ function onDeviceReady() {
                         $('.display_handle').html(data.handle);
                         $('.display_team').html(data.team.tag);
                         $.cookie('pseudo', data.pseudo);
-                        display_hangar();
                         if(data.team.name) info_orga();
                      
+                        display_ship();
 
                     }
                     else if(data.err=='MDP_REQUIRED_HANDLE'){ //handle first more important than team
-                        console.log(data.err);
+                       
                     	$('#info_pseudo, .require_mdp_team').hide();
                         $('.require_mdp_handle, #mdp').show();
                         
@@ -416,14 +409,14 @@ function save_ship(){
         async: true,
         beforeSend: function(){
            alerte(trad_connection_internet);
-            console.log('before ajax');
+
         },
         success: function (data) {
-            console.log('after ajax');
+           
             alerte(nb_ship+ 'x '+name_ship+ ' '+trad_saved);
             display_hangar();
             info_orga();
-            console.log('confirm hide');
+           
             $('#confirm').hide();
         },
         error: function (e) {
@@ -453,7 +446,7 @@ function display_hangar() {
                 var html = $.cookie('pseudo')+':<br />';
                 for (var i = 0; i < data.ship.nb_res; i++) {
                     html +=  '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.ship[i].nb +'x</div><img class="img_team_hangar" src="'+data.ship[i].img+'" alt="'+data.ship[i].name+'" /></div> ';
-                   
+                    $('.manage_ship_text:contains('+data.ship[i].name+')').parent().find('.manage_ship_cache').css('opacity',0);
                                    
                 }
                 html+='</div></div></div>';
@@ -547,6 +540,7 @@ function display_ship() {
                 }
 
                $('#member_ship').html(html);
+               display_hangar();
             },
             error: function (e) {
                 console.log(e.message);
