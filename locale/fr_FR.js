@@ -34,7 +34,8 @@ var trad_lock_team='Verrouiller cette team';
 var trad_confirm_pass='Confirmer le mot de passe';
 var trad_require_password_team='Votre team à verrouillée l’affichage des infos de ses membres, contacter <span id="trad_info_handle"></span> pour connaitre se mot de passe. Si cette team ne devrais pas être verrouillé, contacter moi par PM sur le forum officiel @ gourmand'; 
 var trad_require_password_handle='Cet handle est verrouillé. Si ce handle ne devrait pas être verrouillé, contactez moi par PM @ gourmand sur le forum officiel.'; 
-
+var trad_explain_hangar='Cliquer sur le vaisseau que vous possedez pour l’eclairer';
+var trad_create_groupe='Créer des groupes';
 
 var trad_error_need_your_handle_first='Vous devez ecrire votre handle forum avant de pouvoir afficher cette section';
 var trad_error_info_org ='Cette organisation n’a pas été trouvée ';

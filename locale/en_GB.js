@@ -34,7 +34,8 @@ var trad_lock_team='Lock this team';
 var trad_confirm_pass='Confirm the password';
 var trad_require_password_team='Your team has locked the display of information of his members. Contact <span id="trad_info_handle"></span> to retrieve the password. If this team should not be locked, contact me by PM @ gourmand on the official forum. Otherwise, write the password for unlock:'; 
 var trad_require_password_handle='This handle is locked. If this handle should not be locked, contact me by PM @ gourmand on the official forum.'; 
-
+var trad_explain_hangar='Click to enlighten the ship you have';
+var trad_create_groupe='Create group';
 
 var trad_error_need_your_handle_first='You must write your handle forum before using this feature';
 var trad_error_info_org ='Organisation not found.';
