@@ -22,6 +22,37 @@ var current_anim2 = true;
 var nb_bars = 30;
 var connected=true;
 
+var ship= new Array();
+var nb_ship=0;
+ship[nb_ship++] = {nom:"Aurora MR",img:"auroramr.jpg",constructor:"RSI",role:"Interdiction",crew:1};
+ship[nb_ship++] = {nom:"Aurora ES",img:"auroraes.jpg",constructor:"RSI",role:"Exploration",crew:1};
+ship[nb_ship++] = {nom:"Aurora CL",img:"auroracl.jpg",constructor:"RSI",role:"Mercantile",crew:1};
+ship[nb_ship++] = {nom:"Aurora LN",img:"auroraln.jpg",constructor:"RSI",role:"Militia/Patrol",crew:1};
+ship[nb_ship++] = {nom:"Aurora LX",img:"auroralx.jpg",constructor:"RSI",role:"Exploration/Light Mercantile",crew:1};
+ship[nb_ship++] = {nom:"300I",img:"300i.jpg",constructor:"Origin Jumpworks",role:"Touring",crew:1};
+ship[nb_ship++] = {nom:"315P",img:"315p.jpg",constructor:"Origin Jumpworks",role:"Exploration",crew:1};
+ship[nb_ship++] = {nom:"325A",img:"325a.jpg",constructor:"Origin Jumpworks",role:"Interdiction",crew:1};
+ship[nb_ship++] = {nom:"350R",img:"350r.jpg",constructor:"Origin Jumpworks",role:"Racing",crew:1};
+ship[nb_ship++] = {nom:"M50",img:"m50.jpg",constructor:"Origin Jumpworks",role:"Racing",crew:1};
+ship[nb_ship++] = {nom:"F7A Hornet",img:"hornetf7a.jpg",constructor:"Anvil Aerospace",role:"Military Close Support",crew:1};
+ship[nb_ship++] = {nom:"F7C Hornet",img:"hornetf7c.jpg",constructor:"Anvil Aerospace",role:"Civilian Close Support",crew:1};
+ship[nb_ship++] = {nom:"F7C-S Hornet Ghost",img:"hornetghost.jpg",constructor:"Anvil Aerospace",role:"Infiltration",crew:1};
+ship[nb_ship++] = {nom:"F7C-R Hornet Tracker",img:"hornettracker.jpg",constructor:"Anvil Aerospace",role:"Scout/Command and Control",crew:1};
+ship[nb_ship++] = {nom:"F7C-M Super Hornet",img:"hornetsuper.jpg",constructor:"Anvil Aerospace",role:"Space Superiority",crew:2};
+ship[nb_ship++] = {nom:"Avenger",img:"avenger.jpg",constructor:"Aegis Dynamics",role:"Interceptor/Interdiction",crew:1};
+ship[nb_ship++] = {nom:"Avenger Trainer",img:"avenger.jpg",constructor:"Aegis Dynamics",role:"Training",crew:2};
+ship[nb_ship++] = {nom:"Vanduul Scythe",img:"vanduul.jpg",constructor:"Unknown",role:"Military Close Support",crew:1};
+ship[nb_ship++] = {nom:"Cutlass",img:"cutlass.jpg",constructor:"Drake",role:"Militia/Patrol",crew:2};
+ship[nb_ship++] = {nom:"Gladiator",img:"gladiator.jpg",constructor:"Anvil Aerospace",role:"Carrier-Based Bomber",crew:2};
+ship[nb_ship++] = {nom:"Freelancer",img:"freelancer.jpg",constructor:"MISC",role:"Mercantile",crew:2};
+ship[nb_ship++] = {nom:"Caterpillar",img:"caterpillar.jpg",constructor:"Drake",role:"Transport",crew:5};
+ship[nb_ship++] = {nom:"Retaliator",img:"retaliator.jpg",constructor:"Aegis Dynamics",role:"Long-Range Bomber",crew:6};
+ship[nb_ship++] = {nom:"Constellation",img:"constellation.jpg",constructor:"RSI",role:"Multi-function",crew:4};
+ship[nb_ship++] = {nom:"Starfarer",img:"starfarer.jpg",constructor:"MISC",role:"Transport",crew:2};
+ship[nb_ship++] = {nom:"Idris",img:"idris.jpg",constructor:"Aegis Dynamics",role:"Corvette",crew:10};
+ship[nb_ship++] = {nom:"Idris-P",img:"idris.jpg",constructor:"Aegis Dynamics",role:"Corvette",crew:10};
+ship[nb_ship++] = {nom:"P-52 Merlin",img:"p52.jpg",constructor:"Kruger Intergalactic",role:"Close Support",crew:1};
+
 
 $( document ).on( "pagecreate", "#page", function() {
 	$.event.special.swipe.horizontalDistanceThreshold = 60;
@@ -481,7 +512,7 @@ function display_hangar() {
             jsonpCallback: 'API_SC'+API_SC++,
             contentType: "application/json",
             dataType: 'jsonp',
-            data: 'action=get_ship&handle='+ $.cookie('handle'),
+            data: 'action=get_localship&handle='+ $.cookie('handle'),
             async: true,
             beforeSend: function(){
             	if(connected){
@@ -531,16 +562,15 @@ function save_infoship(nom,img,role,crew){
 
 function display_ship() {
 
-    var date_save = new Date();
-    var check_cook = date_save.getMonth()+1+''+date_save.getFullYear();
-
-    $.ajax({
+   
+    
+   $.ajax({
             type: 'GET',
             url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
             jsonpCallback: 'API_SC'+API_SC++,
             contentType: "application/json",
             dataType: 'jsonp',
-            data: 'action=ship',
+            data: 'action=localship',
             async: true,
             beforeSend: function(){
             	if(connected){
@@ -552,50 +582,18 @@ function display_ship() {
             },
             success: function (data) {
                
-                var html = '';
-                var check_banu = false;
-                var check_karthu = false;
-                var check_mustang = false;
+                var html = '';;
                 for (var i = 0; i < data.ship.total; i++) {
                                         
                     
                     html +='<div class="manage_ship_content">'
-                    	+'<div class="manage_ship_img" ><img src="https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'
-                        + data.ship[i].imageurl  + '" /></div>'
+                    	+'<div class="manage_ship_img" ><img src="'
+                        + data.ship[i].img  + '" /></div>'
                 	+'<div class="manage_ship_cache"></div>'
-                	+'<div class="manage_ship_text"><center>'+data.ship[i].title+'</center></div></div>';
-                    
-                    if(data.ship[i].title.match('banu')){
-                        check_banu = true;
-                    }
-                    else if(data.ship[i].title.match('karthu')){
-                        check_karthu = true;
-                    }
-                    else if(data.ship[i].title.match('mustang')){
-                        check_mustang = true;
-                    }
-                    if(!$.cookie(check_cook) ) save_infoship(data.ship[i].title, 'https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'+data.ship[i].imageurl, data.ship[i].role, data.ship[i].maxcrew);
-                }
+                	+'<div class="manage_ship_text"><center>'+data.ship[i].nom+'</center></div></div>';
+               }
 
-                if(!check_banu){
-                    html +='<div class="manage_ship_content">'
-                    	+'<div class="manage_ship_img" ><img src="img/banu.jpg" /></div>'
-                	+'<div class="manage_ship_cache"></div>'
-                	+'<div class="manage_ship_text"><center>Banu Merchantman</center></div></div>';
-                }
-                if(!check_karthu){
-                	html +='<div class="manage_ship_content">'
-                    	+'<div class="manage_ship_img" ><img src="img/karthu.jpg" /></div>'
-                	+'<div class="manage_ship_cache"></div>'
-                	+'<div class="manage_ship_text"><center>Xi’An Karthu</center></div></div>';
-                }
-                if(!check_mustang){
-                	html +='<div class="manage_ship_content">'
-                    	+'<div class="manage_ship_img" ><img src="img/mustang.jpg" /></div>'
-                	+'<div class="manage_ship_cache"></div>'
-                	+'<div class="manage_ship_text"><center>Mustang</center></div></div>';
-                	
-                }
+                
 
                $('#member_ship').html(html);
                display_hangar();
@@ -604,6 +602,7 @@ function display_ship() {
                 console.log(e.message);
             }
         });
+    
 }
 
 function info_orga() {
@@ -614,7 +613,7 @@ function info_orga() {
             jsonpCallback: 'API_SC'+API_SC++,
             contentType: "application/json",
             dataType: 'jsonp',
-            data: 'action=org&team=' + $.cookie('team') + '&page=1',
+            data: 'action=localorg&team=' + $.cookie('team') + '&page=1',
             async: true,
             beforeSend: function(){           	
                 if(connected){
@@ -643,9 +642,7 @@ function info_orga() {
                             + ' <div class="display_pseudo">' + data.member[i].pseudo + '</div><div class="display_handle"> ' + data.member[i].handle + '</div>'
                             
                             + '<div>'+data.member[i].title+'</div>'
-                            + '<div style="clear:both"></div><h2 trad="trad_role"></h2><ul>'
-                            + data.member[i].role.replace('None','- '+trad_none)
-                            + '</ul></div>'
+                            + '<div style="clear:both"></div></div>'
                             +'<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
                             +'<hr />';
                             
