@@ -305,7 +305,7 @@ color:orange;
 
 .img_hangar{
 	border:1px solid black;
-	border-radius:2px;
+	border-radius:30px;
 	-webkit-box-shadow: 3px 3px 12px 0px rgba(44, 50, 50, 0.8);
 -moz-box-shadow:    3px 3px 12px 0px rgba(44, 50, 50, 0.8);
 box-shadow:         3px 3px 12px 0px rgba(44, 50, 50, 0.8);

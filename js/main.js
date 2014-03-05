@@ -208,13 +208,13 @@ function onDeviceReady() {
         	
         	$('.hangarteam').hide(300);
         	
-        	if(old_handle!=handle){
+        	
 	        	setTimeout(function(){
 	        		console.log('show: '+handle);
 	        		$('.hangarteam[handle="'+handle+'"]').show(300);
 	        	},300);
 	        	
-        	}
+        	
 
         });
         
