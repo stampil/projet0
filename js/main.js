@@ -39,23 +39,32 @@ $( document ).on( "pagecreate", "#page", function() {
             }
         }
     });
-        
+  
 });
 
+
+function Offline() {
+    $('#online').html('(nc)');
+}
+
+
+function Online() {
+    $('#online').html('(i)');
+}
+
+
 function onDeviceReady() {
+	
+    document.addEventListener("offline", Offline, false);
+    document.addEventListener("online", Online, false); 
+
     if(navigator.splashscreen) navigator.splashscreen.hide();
 
     $(document).ready(function () {
     	
     	//ctx_chart = $("#chart_ship_all").get(0).getContext("2d");
     	
-    	setInterval(function(){
-    		if(navigator.onLine){
-    			$('#online').html('(i)');
-    		}else{
-    			$('#online').html('(nc)');
-    		}
-    	}, 1000);
+    	
 
     	c=document.getElementById("canvas");
     	ctx=c.getContext("2d");
