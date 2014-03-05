@@ -84,7 +84,7 @@ h2 {
 }
 
 
-.page, #nb_ship, #mdp, .require_mdp, #require_mdp {
+.page, #nb_ship, #mdp, .require_mdp, #require_mdp, .hangarteam {
 	display: none;
 }
 .page{
@@ -301,4 +301,13 @@ color:orange;
 	border: 1px solid black;
 	padding:5px;
 	margin:1px 0 1px 0;
+}
+
+.img_hangar{
+	border:1px solid black;
+	border-radius:2px;
+	-webkit-box-shadow: 3px 3px 12px 0px rgba(44, 50, 50, 0.8);
+-moz-box-shadow:    3px 3px 12px 0px rgba(44, 50, 50, 0.8);
+box-shadow:         3px 3px 12px 0px rgba(44, 50, 50, 0.8);
+cursor:pointer;
 }

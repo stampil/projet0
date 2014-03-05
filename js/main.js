@@ -202,6 +202,22 @@ function onDeviceReady() {
         	alerte('<img src="'+$(this).attr('src')+'"/><br />' +$(this).attr('alt'));
         });
         
+
+        $('body').delegate('.img_hangar','click', function(){
+        	var handle = $(this).attr('handle');
+        	
+        	$('.hangarteam').hide(300);
+        	
+        	if(old_handle!=handle){
+	        	setTimeout(function(){
+	        		console.log('show: '+handle);
+	        		$('.hangarteam[handle="'+handle+'"]').show(300);
+	        	},300);
+	        	
+        	}
+
+        });
+        
         $('body').delegate('.manage_ship_text','click', function(){
         	var o = $(this).parent().find('.manage_ship_cache');
         	name_ship =$(this).text();
@@ -632,19 +648,23 @@ function info_orga() {
                 if (data.member.nb > 0) {
                 	if(data.member.nb>249) data.member.nb = 249; //TODO limite max 249
                     for (var i = 0; i < data.member.nb; i++) {
-                    	hangar_teammate='<center>';
+                    	hangar_teammate='';
                     	for(var j=0; j<data.member[i].ship.nb;j++){
                     		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_team" src="'+data.member[i].ship[j].img+'" alt="'+data.member[i].ship[j].name+'" /></div> ';
                     	}
                     	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
-                        hangar_teammate+='</center>';
+                        
                     	html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
                             + ' <div class="display_pseudo">' + data.member[i].pseudo + '</div><div class="display_handle"> ' + data.member[i].handle + '</div>'
                             
                             + '<div>'+data.member[i].title+'</div>'
                             + '<div style="clear:both"></div></div>'
-                            +'<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
-                            +'<hr />';
+                            + '<center>';
+                    		if(data.member[i].handle){
+                    			html+='<p><img src="img/hangar.jpg" class="img_hangar" handle="' + data.member[i].handle + '" /></p>';
+                    		}
+                    		html+='<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
+                            +'</center><hr />';
                             
                     }
                     html += '</div></div>';
