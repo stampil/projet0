@@ -299,12 +299,20 @@ color:orange;
 
 .groupe{
 	border: 1px solid black;
-	padding:5px;
-	margin:1px 0 1px 0;
+	padding:15px;
+	margin:10px 0 10px 0;
+	cursor:pointer;
+}
+
+.groupe_content{
+	border: 1px dotted black;
+	padding:15px;
+	margin:-10px 0 10px 0;
+	display:none;
 }
 
 .img_hangar{
-	border:1px solid black;
+	border:2px solid black;
 	border-radius:30px;
 	-webkit-box-shadow: 3px 3px 12px 0px rgba(44, 50, 50, 0.8);
 -moz-box-shadow:    3px 3px 12px 0px rgba(44, 50, 50, 0.8);

@@ -77,8 +77,50 @@
 
         <div class="page create_groupe">
 	        <center>
-	        	<div class="groupe">All team (open)</div>
-	            <div class="groupe">All team (closed)</div>
+	        	<div class="groupe" show="open_open">(open)</div>
+	        	<div class="groupe_content open_open">
+	        	
+	        	<table width="100%">
+	        	<tr>
+	        	<td>Name :</td>
+	        	<td><input type="text" id="open_open_name" /></td>
+	        	</tr>
+	        	<tr>
+	        	<td>Max player :</td>
+	        	<td><input type="text" id="open_open_max" /></td>
+	        	</tr>
+	        	<tr>	
+	        	<td colspan="2"><input type="button" id="open_open_submit" value="submit" /></td>
+	        	</tr>
+	        	</table>
+
+	        	
+	        	</div>
+	            <div class="groupe" show="open_fixed">(fixed player open ship )</div>
+	            <div class="groupe_content open_fixed">
+	            
+	            <select multiple="multiple">
+	            <option>player 1</option>
+	            <option>player 2</option>
+	            <option>player 3</option>
+	            <option>player 4</option>
+	            </select>
+
+				</div>
+	            <div class="groupe" show="fixed_open">(fixed ship open player)</div>
+	            <div class="groupe_content fixed_open">
+	            
+	            <select>
+	            <option>ship 1</option>
+	            <option>ship 2</option>
+	            <option>ship 3</option>
+	            <option>ship 4</option>
+	            </select>
+	            
+	            
+	            </div>
+	            <div class="groupe" show="fixed_fixed">(fixed)</div>
+	            <div class="groupe_content fixed_fixed">create</div>
 	        </center>
         </div>
         

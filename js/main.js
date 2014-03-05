@@ -266,6 +266,11 @@ function onDeviceReady() {
         	$('#alert').slideUp(50);
         });
         
+        $('.groupe').click(function(){
+        	$('.groupe_content').hide();
+        	$('.'+$(this).attr('show')).show(300);
+        });
+        
         $('#save_lock').click(function(){
         	var saved= false;
         	if($('#mdp_handle').val() && $('#mdp_handle').val() == $('#confirm_mdp_handle').val() ){
