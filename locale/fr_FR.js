@@ -40,3 +40,4 @@ var trad_create_groupe='Créer des groupes';
 var trad_error_need_your_handle_first='Vous devez ecrire votre handle forum avant de pouvoir afficher cette section';
 var trad_error_info_org ='Cette organisation n’a pas été trouvée ';
 var trad_error_handle='Citizen non reconnu, mettez bien le handle ( pseudo ) forum RSI';
+var trad_error_no_connected='Vous devez vous connectez à internet!';

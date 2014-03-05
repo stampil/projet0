@@ -40,3 +40,4 @@ var trad_create_groupe='Crear grupo';
 var trad_error_need_your_handle_first = 'Debes escribir tu handle forum antes de poder utilizar está funcionalidad';
 var trad_error_info_org = 'No se encontró esta organización.';
 var trad_error_handle = 'No se encontró este Citizen. Comprueba tu handle en el foro RSI.';
+var trad_error_no_connected='Debe conectar sus dispositivos a Internet!';

@@ -20,6 +20,7 @@ var percent_max2 = 0;
 var current_anim = true;
 var current_anim2 = true;
 var nb_bars = 30;
+var connected=true;
 
 
 $( document ).on( "pagecreate", "#page", function() {
@@ -45,11 +46,13 @@ $( document ).on( "pagecreate", "#page", function() {
 
 function Offline() {
     $('#online').html('(nc)');
+    connected=false;
 }
 
 
 function Online() {
     $('#online').html('(i)');
+    connected=true;
 }
 
 
@@ -229,7 +232,12 @@ function onDeviceReady() {
         	        data: 'action=lock_handle&mdp='+$('#mdp_handle').val()+'&handle='+ $.cookie('handle'),
         	        async: true,
         	        beforeSend: function(){
-        	           alerte(trad_connection_internet);
+        	        	if(connected){
+        	        		alerte(trad_connection_internet);
+        	        	}
+        	        	else{
+        	        		alerte(trad_error_no_connected);
+        	        	}
         	        },
         	        success: function (data) {
         	            alerte(trad_confirm_ok);
@@ -250,7 +258,12 @@ function onDeviceReady() {
         	        data: 'action=lock_team&team='+ $.cookie('team')+ '&mdp='+$('#mdp_team').val()+'&handle='+ $.cookie('handle'),
         	        async: true,
         	        beforeSend: function(){
-        	           alerte(trad_connection_internet);
+        	        	if(connected){
+        	        		alerte(trad_connection_internet);
+        	        	}
+        	        	else{
+        	        		alerte(trad_error_no_connected);
+        	        	}
         	        },
         	        success: function (data) {
         	        	 alerte(trad_confirm_ok);
@@ -286,7 +299,13 @@ function onDeviceReady() {
                 data: 'action=citizens&page='+ handle+'&mdp='+$('#mdp').val(),
                 async: true,
                 beforeSend: function(){
-                    $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+                	if(connected){
+                		 $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+    	        	}
+    	        	else{
+    	        		 $('#info_pseudo').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+    	        	}
+
                     $('#info_pseudo').show();
                     ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
                     $('#mdp, .require_mdp, #require_mdp').hide();
@@ -426,7 +445,12 @@ function save_ship(){
         data: 'action=save_ship&ship='+ name_ship+ '&nb='+nb_ship+'&handle='+ $.cookie('handle'),
         async: true,
         beforeSend: function(){
-           alerte(trad_connection_internet);
+        	if(connected){
+        		alerte(trad_connection_internet);
+        	}
+        	else{
+        		alerte(trad_error_no_connected);
+        	}
 
         },
         success: function (data) {
@@ -460,7 +484,12 @@ function display_hangar() {
             data: 'action=get_ship&handle='+ $.cookie('handle'),
             async: true,
             beforeSend: function(){
-            	$('#your_hangar').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+            	if(connected){
+           		 $('#your_hangar').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+	        	}
+	        	else{
+	        		 $('#your_hangar').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+	        	}
             },
             success: function (data) {
                 $('#your_hangar').html('<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_your_ships"></h3></div><div class="ui-body ui-body-'+theme+'">');
@@ -514,7 +543,12 @@ function display_ship() {
             data: 'action=ship',
             async: true,
             beforeSend: function(){
-            	$('#member_ship').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+            	if(connected){
+              		 $('#member_ship').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+   	        	}
+   	        	else{
+   	        		 $('#member_ship').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+   	        	}
             },
             success: function (data) {
                
@@ -583,7 +617,12 @@ function info_orga() {
             data: 'action=org&team=' + $.cookie('team') + '&page=1',
             async: true,
             beforeSend: function(){           	
-                $('#member_guilde').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+                if(connected){
+             		 $('#member_guilde').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+  	        	}
+  	        	else{
+  	        		 $('#member_guilde').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+  	        	}
             },
             success: function (data) {
                 var html = '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_your_team"></h3></div><div class="ui-body ui-body-'+theme+'">';
@@ -654,7 +693,13 @@ function do_chart(){
         data: 'action=get_statship',
         async: true,
         beforeSend: function(){
-            $('#connect_chart').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+        	if(connected){
+        		 $('#connect_chart').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+	        	}
+	        	else{
+	        		 $('#connect_chart').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+	        	}
+
         },
         success: function (data) {
             

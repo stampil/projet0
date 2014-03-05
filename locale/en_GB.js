@@ -40,3 +40,4 @@ var trad_create_groupe='Create group';
 var trad_error_need_your_handle_first='You must write your handle forum before using this feature';
 var trad_error_info_org ='Organisation not found.';
 var trad_error_handle='Citizen not found, check your handle in the RSI forum.';
+var trad_error_no_connected='You must connect your devices to internet!';

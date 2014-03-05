@@ -40,3 +40,4 @@ var trad_create_groupe='创建组';
 var trad_error_need_your_handle_first='使用前你必须编写你的手柄论坛功能';
 var trad_error_info_org ='此机构未找到';
 var trad_error_handle='未确认公民，正确填写RSI论坛手柄 （伪码）';
+var trad_error_no_connected='您必须连接你的设备到网络！';

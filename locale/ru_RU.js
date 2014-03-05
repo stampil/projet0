@@ -40,3 +40,4 @@ var trad_create_groupe='Создать группу';
 var trad_error_need_your_handle_first='Вы должны указать свой форумный хэндл, прежде чем сможете воспользоваться функцией.';
 var trad_error_info_org ='Организация не найдена.';
 var trad_error_handle='Гражданин не найден, проверьте написание хэндла на форуме RSI.';
+var trad_error_no_connected='Вы должны подключать устройства к Интернету!';
