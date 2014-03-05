@@ -687,7 +687,7 @@ function do_chart(){
         jsonpCallback: 'API_SC'+API_SC++,
         contentType: "application/json",
         dataType: 'jsonp',
-        data: 'action=get_statship',
+        data: 'action=get_localstatship',
         async: true,
         beforeSend: function(){
         	if(connected){
