@@ -48,6 +48,14 @@ function onDeviceReady() {
     $(document).ready(function () {
     	
     	//ctx_chart = $("#chart_ship_all").get(0).getContext("2d");
+    	
+    	setInterval(function(){
+    		if(navigator.onLine){
+    			$('#online').html('(i)');
+    		}else{
+    			$('#online').html('(nc)');
+    		}
+    	}, 1000);
 
     	c=document.getElementById("canvas");
     	ctx=c.getContext("2d");
