@@ -652,6 +652,9 @@ function info_orga() {
 
                 if (data.member.nb > 0) {
                 	if(data.member.nb>249) data.member.nb = 249; //TODO limite max 249
+                	
+                	var opt_player='';
+                	
                     for (var i = 0; i < data.member.nb; i++) {
                     	hangar_teammate='';
                     	for(var j=0; j<data.member[i].ship.nb;j++){
@@ -670,9 +673,19 @@ function info_orga() {
                     		}
                     		html+='<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
                             +'</center><hr />';
+                    		
+                    		opt_player+='<option value="'+data.member[i].pseudo+'">'+data.member[i].pseudo+'</option>';
                             
                     }
                     html += '</div></div>';
+                    
+                    $('#select_player').html('<div class="ui-field-contain">'
+            			    +'<label for="open_fixed_select">Player:</label>'
+            			    +'<select name="open_fixed_select" id="open_fixed_select" multiple="multiple" data-native-menu="false">'
+            			    + opt_player
+            			    +'</select>'
+            				+'</div>');
+                    $('#open_fixed_select').selectmenu();
 
                     for(var i=0; i< data.team.nb; i++){
                         hangar_team+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.team[i].nb+'x</div><img class="img_team_hangar" src="'+data.team[i].img+'" alt="'+data.team[i].name+'" /></div> ';
