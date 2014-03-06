@@ -202,6 +202,11 @@ function onDeviceReady() {
         	alerte('<img src="'+$(this).attr('src')+'"/><br />' +$(this).attr('alt'));
         });
         
+        $('body').delegate('.select_select_player_content','change', function(){
+        	$('.select_player_text[handle="'+$(this).attr('handle')+'"]').trigger('click');
+        });
+        
+        
 
         $('body').delegate('.img_hangar','click', function(){
         	var handle = $(this).attr('handle');
@@ -238,7 +243,7 @@ function onDeviceReady() {
         	var nb_player = 0;
         	name_player =$(this).text();
         	if (o.css('opacity')==0 ){
-        		o.css('opacity',0.85);
+        		o.css('opacity',0.95);
         		nb_player= 0;
         	}
         	else{
@@ -677,8 +682,10 @@ function info_orga() {
                 	
                     for (var i = 0; i < data.member.nb; i++) {
                     	hangar_teammate='';
+                    	hangar_teammate2='';
                     	for(var j=0; j<data.member[i].ship.nb;j++){
                     		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_team" src="'+data.member[i].ship[j].img+'" alt="'+data.member[i].ship[j].name+'" /></div> ';
+                    		hangar_teammate2+='<option>'+data.member[i].ship[j].name+'</option>';
                     	}
                     	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
                         
@@ -690,16 +697,21 @@ function info_orga() {
                             + '<center>';
                     		if(data.member[i].handle){
                     			html+='<p><img src="img/hangar.jpg" class="img_hangar" handle="' + data.member[i].handle + '" /></p>';
+                    			
+                    			//un membre sans handle ne peut pas avoir de fixed ship
+                    			html2 +='<div class="select_player_content">'
+                                	+'<div class="select_player_img" ><img src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" /></div>'
+                                	+'<div class="select_player_cache"></div>'
+                                	+'<div class="select_player_text" handle="' + data.member[i].handle + '"><center>'+data.member[i].pseudo+'</center></div></div>'
+                                	+'<select class="select_select_player_content" handle="'+ data.member[i].handle+'">'+hangar_teammate2+'</select><br />'
+                                	+'';
                     		}
                     		html+='<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
                             +'</center><hr />';
                     		
                     		opt_player+='<option value="'+data.member[i].pseudo+'">'+data.member[i].pseudo+'</option>';
                     		
-                    		html2 +='<div class="select_player_content">'
-                            	+'<div class="select_player_img" ><img src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" /></div>'
-                            	+'<div class="select_player_cache"></div>'
-                            	+'<div class="select_player_text"><center>'+data.member[i].pseudo+'</center></div></div>';
+                    		
                             
                     }
                     html += '</div></div>';
@@ -711,7 +723,8 @@ function info_orga() {
             			    + opt_player
             			    +'</select>'
             				+'</div>');
-                    $('#open_fixed_select').selectmenu();
+                    //$('#open_fixed_select').selectmenu();
+                    $('select').selectmenu();
 
                     for(var i=0; i< data.team.nb; i++){
                         hangar_team+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.team[i].nb+'x</div><img class="img_team_hangar" src="'+data.team[i].img+'" alt="'+data.team[i].name+'" /></div> ';

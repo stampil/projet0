@@ -314,9 +314,14 @@ color:orange;
     border-radius: 10px;
 }
 
-.manage_ship_cache, .select_player_cache{
+.manage_ship_cache{
 	background:black;
 	opacity:0.85;
+}
+
+.select_player_cache{
+	background:black;
+	opacity:0.95;
 }
 
 .manage_ship_text, .select_ship_text{
@@ -350,4 +355,14 @@ color:orange;
 -moz-box-shadow:    3px 3px 12px 0px rgba(44, 50, 50, 0.8);
 box-shadow:         3px 3px 12px 0px rgba(44, 50, 50, 0.8);
 cursor:pointer;
+}
+
+.ui-nosvg .ui-icon-avenger:after {
+  background: url("../img/ship/avenger.jpg")no-repeat;
+  background-size: 18px 18px;
+  border-radius:0px!important;
+  -moz-border-radius:0px!important;
+  -webkit-border-radius:0px!important;
+  -ms-border-radius:0px!important;
+  -o-border-radius:0px!important;
 }
