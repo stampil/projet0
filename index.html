@@ -76,40 +76,47 @@
         </div>
 
         <div class="page create_groupe">
-	        <center>
+	        
+	        
 	        <h1>Work In Progress !!!</h1>
-	        	<div class="groupe" show="open_open">(open)</div>
-	        	<div class="groupe_content open_open">
+	        <div data-role="collapsible" >
+			    <h4>(Open player open ship)</h4>
+			    <p>
+			    	Group Name :<input type="text" id="open_open_name" /><br />
+			      	Max player :<input type="number" id="open_open_max" /><br />
+			      	<input type="button" id="open_open_submit" value="submit" />
+				</p>
+			</div>
+			
+			<div data-role="collapsible">
+			    <h4>(fixed player open ship )</h4>
+			    <p>
+			    	 group name : <input type="text" id="open_fixed_name" />
+	            	<div id="select_player"></div>
+			      	<input type="button" id="open_fixed_submit" value="submit" />
+				</p>
+			</div>
 	        	
-	        	Group Name :<input type="text" id="open_open_name" /><br />
-	        	Max player :<input type="number" id="open_open_max" /><br />
-	        	<input type="button" id="open_open_submit" value="submit" />
+			<div data-role="collapsible" >
+			    <h4>(fixed ship open player)</h4>
+			    <p>
+			    	 group name : <input type="text" id="fixed_open_name" />
+	            	<div id="select_ship"></div>
 
-	        	
-	        	</div>
-	            <div class="groupe" show="open_fixed">(fixed player open ship )</div>
-	            <div class="groupe_content open_fixed">
-	            
-	            group name : <input type="text" id="open_fixed_name" />
-	            <div id="select_player"></div>
-				
-
-				</div>
-	            <div class="groupe" show="fixed_open">(fixed ship open player)</div>
-	            <div class="groupe_content fixed_open">
-	            
-	            <select>
-	            <option>ship 1</option>
-	            <option>ship 2</option>
-	            <option>ship 3</option>
-	            <option>ship 4</option>
-	            </select>
-	            
-	            
-	            </div>
-	            <div class="groupe" show="fixed_fixed">(fixed)</div>
-	            <div class="groupe_content fixed_fixed">create</div>
-	        </center>
+			      	<input type="button" id="fixed_open_submit" value="submit" />
+				</p>
+			</div>
+	         
+	        <div data-role="collapsible">
+			    <h4>(fixed player fixed ship)</h4>
+			    <p>
+			    	 group name : <input type="text" id="fixed_name" />
+	            	<div id="select_player_img"></div>
+			      	<input type="button" id="fixed_submit" value="submit" />
+				</p>
+			</div>
+			
+	       
         </div>
         
         
@@ -238,20 +245,25 @@
         <form>
             <fieldset data-role="controlgroup" data-mini="true" id="lang">
                 <legend trad="trad_choose_language"></legend>
+                 <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6g"
+                       value="en_US"> <label for="radio-choice-v-6g"><img src="img/flag/us.png" alt="en_US" class="ui-li-icon ui-corner-none"></label>                      
+                
                 <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6a"
-                       value="en_GB"> <label for="radio-choice-v-6a">en_GB</label>
+                       value="en_GB"> <label for="radio-choice-v-6a"><img src="img/flag/gb.png" alt="en_GB" class="ui-li-icon"></label>
                 <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6b"
-                       value="fr_FR"> <label for="radio-choice-v-6b">fr_FR</label>
+                       value="fr_FR"> <label for="radio-choice-v-6b"><img src="img/flag/fr.png" alt="fr_FR" class="ui-li-icon ui-corner-none"></label>
                 <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6c"
-                       value="cn_CN"> <label for="radio-choice-v-6c">cn_CN</label>
+                       value="cn_CN"> <label for="radio-choice-v-6c"><img src="img/flag/cn.png" alt="cn_CN" class="ui-li-icon ui-corner-none"></label>
                 <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6d"
-                       value="ru_RU"> <label for="radio-choice-v-6d">ru_RU</label>
+                       value="ru_RU"> <label for="radio-choice-v-6d"><img src="img/flag/ru.png" alt="ru_RU" class="ui-li-icon"></label>
 				<input type="radio" name="radio-choice-v-6" id="radio-choice-v-6e"
-                       value="de_DE"> <label for="radio-choice-v-6e">de_DE</label> 
-                 <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6f"
-                       value="es_ES"> <label for="radio-choice-v-6f">es_ES</label>                      
-            </fieldset>
+                       value="de_DE"> <label for="radio-choice-v-6e"><img src="img/flag/de.png" alt="de_DE" class="ui-li-icon"></label> 
+                <input type="radio" name="radio-choice-v-6" id="radio-choice-v-6f"
+                       value="es_ES"> <label for="radio-choice-v-6f"><img src="img/flag/es.png" alt="es_ES" class="ui-li-icon ui-corner-none"></label>
+             </fieldset>
         </form>
+        
+        
         
     </div><!-- /panel -->
     

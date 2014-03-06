@@ -259,14 +259,21 @@ color:orange;
  font-weight:bold;
 }
 
-.manage_ship_content{
+.manage_ship_content, .select_ship_content{
 	position:relative;
 	width:138px;
 	height:74px;
 	display:inline-block;
 }
+ .select_player_content{
+ 	position:relative;
+	width:76px;
+	height:76px;
+	display:inline-block;
+	margin-left: 5px;
+ }
 
-.manage_ship_img, .manage_ship_cache{
+.manage_ship_img, .manage_ship_cache, .select_ship_img, .select_ship_cache{
 	width:138px;
 	height:74px;
     border: 1px solid black;
@@ -274,19 +281,45 @@ color:orange;
     cursor:pointer;
     position:absolute;
 }
-.manage_ship_img img{
+.select_player_cache{
+	width:76px;
+	height:76px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor:pointer;
+    position:absolute;	
+}
+
+#select_player_img{
+	text-align:center;
+}
+.select_player_img{
+	width:76px;
+	height:76px;
+	border: 1px solid black;
+    border-radius: 10px;
+    cursor:pointer;
+    position:absolute;
+}
+.manage_ship_img img, .select_ship_img img{
 	width:138px;
 	height:74px;
 	    border: 1px solid black;
     border-radius: 10px;
 }
 
-.manage_ship_cache{
+.select_player_img img{
+	width:76px;
+	height:76px;
+    border-radius: 10px;
+}
+
+.manage_ship_cache, .select_player_cache{
 	background:black;
 	opacity:0.85;
 }
 
-.manage_ship_text{
+.manage_ship_text, .select_ship_text{
 	color:white;
 	text-shadow:black 0px 0px 5px,black 1px 0px 5px,black 0px 1px 5px,black 1px 1px 5px;
 	top:2px;
@@ -297,19 +330,18 @@ color:orange;
 	cursor:pointer;
 }
 
-.groupe{
-	border: 1px solid black;
-	padding:15px;
-	margin:10px 0 10px 0;
+.select_player_text{
+	color:white;
+	text-shadow:black 0px 0px 5px,black 1px 0px 5px,black 0px 1px 5px,black 1px 1px 5px;
+	top:2px;
+	overflow: hidden;
+	width: 76px;
+	height:76px;
+	position:absolute;
 	cursor:pointer;
+	font-size: 0.8em;
 }
 
-.groupe_content{
-	border: 1px dotted black;
-	padding:15px;
-	margin:-10px 0 10px 0;
-	display:none;
-}
 
 .img_hangar{
 	border:2px solid black;

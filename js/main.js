@@ -233,6 +233,22 @@ function onDeviceReady() {
 
         });
         
+        $('body').delegate('.select_player_text','click', function(){
+        	var o = $(this).parent().find('.select_player_cache');
+        	var nb_player = 0;
+        	name_player =$(this).text();
+        	if (o.css('opacity')==0 ){
+        		o.css('opacity',0.85);
+        		nb_player= 0;
+        	}
+        	else{
+        		o.css('opacity',0);
+        		nb_player= 1;
+        	}
+        	//save_player(nb_player);
+
+        });
+        
         
 
 
@@ -266,10 +282,7 @@ function onDeviceReady() {
         	$('#alert').slideUp(50);
         });
         
-        $('.groupe').click(function(){
-        	$('.groupe_content').hide();
-        	$('.'+$(this).attr('show')).show(300);
-        });
+
         
         $('#save_lock').click(function(){
         	var saved= false;
@@ -603,7 +616,8 @@ function display_ship() {
             },
             success: function (data) {
                
-                var html = '';;
+                var html = '';
+                var html2 = '';
                 for (var i = 0; i < data.ship.total; i++) {
                                         
                     
@@ -612,10 +626,15 @@ function display_ship() {
                         + data.ship[i].img  + '" /></div>'
                 	+'<div class="manage_ship_cache"></div>'
                 	+'<div class="manage_ship_text"><center>'+data.ship[i].nom+'</center></div></div>';
+                    
+                    html2 +='<div class="select_ship_content">'
+                    	+'<div class="select_ship_img" ><img src="'
+                        + data.ship[i].img  + '" /></div>'
+                	+'<div class="select_ship_text"><center>'+data.ship[i].nom+'</center></div></div>';
                }
 
                 
-
+               $('#select_ship').html(html2);
                $('#member_ship').html(html);
                display_hangar();
             },
@@ -646,6 +665,7 @@ function info_orga() {
             },
             success: function (data) {
                 var html = '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_your_team"></h3></div><div class="ui-body ui-body-'+theme+'">';
+                var html2='';
                 var hangar_teammate='';
                 var hangar_team ='';
                 $('#member_guilde').html();
@@ -662,7 +682,7 @@ function info_orga() {
                     	}
                     	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
                         
-                    	html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
+                    	html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '"  />'
                             + ' <div class="display_pseudo">' + data.member[i].pseudo + '</div><div class="display_handle"> ' + data.member[i].handle + '</div>'
                             
                             + '<div>'+data.member[i].title+'</div>'
@@ -675,10 +695,16 @@ function info_orga() {
                             +'</center><hr />';
                     		
                     		opt_player+='<option value="'+data.member[i].pseudo+'">'+data.member[i].pseudo+'</option>';
+                    		
+                    		html2 +='<div class="select_player_content">'
+                            	+'<div class="select_player_img" ><img src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" /></div>'
+                            	+'<div class="select_player_cache"></div>'
+                            	+'<div class="select_player_text"><center>'+data.member[i].pseudo+'</center></div></div>';
                             
                     }
                     html += '</div></div>';
                     
+                    $('#select_player_img').html(html2);
                     $('#select_player').html('<div class="ui-field-contain">'
             			    +'<label for="open_fixed_select">Player:</label>'
             			    +'<select name="open_fixed_select" id="open_fixed_select" multiple="multiple" data-native-menu="false">'
