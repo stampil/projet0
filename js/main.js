@@ -203,7 +203,7 @@ function onDeviceReady() {
         });
         
         $('body').delegate('.select_select_player_content','change', function(){
-        	$('.select_player_text[handle="'+$(this).attr('handle')+'"]').trigger('click');
+        	$('.select_player_cache[handle="'+$(this).attr('handle')+'"]').css('opacity',0);
         });
         
         
@@ -701,8 +701,8 @@ function info_orga() {
                     			//un membre sans handle ne peut pas avoir de fixed ship
                     			html2 +='<div class="select_player_content">'
                                 	+'<div class="select_player_img" ><img src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" /></div>'
-                                	+'<div class="select_player_cache"></div>'
-                                	+'<div class="select_player_text" handle="' + data.member[i].handle + '"><center>'+data.member[i].pseudo+'</center></div></div>'
+                                	+'<div class="select_player_cache" handle="' + data.member[i].handle + '"></div>'
+                                	+'<div class="select_player_text"><center>'+data.member[i].pseudo+'</center></div></div>'
                                 	+'<select class="select_select_player_content" handle="'+ data.member[i].handle+'">'+hangar_teammate2+'</select><br />'
                                 	+'';
                     		}
