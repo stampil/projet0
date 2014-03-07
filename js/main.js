@@ -646,7 +646,7 @@ function display_ship() {
                display_hangar();
                $('#select_ship input').textinput();
                $('#select_ship .ui-input-text').addClass('number_ship');
-               $('.number_vaisseau').css({'text-align':'center','opacity':1}).val(0);
+               $('.number_vaisseau').css({'text-align':'center','opacity':1}).val(0).click(function(){if($(this).val()==0)$(this).val('');});
 
             },
             error: function (e) {
