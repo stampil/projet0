@@ -654,8 +654,7 @@ function display_ship() {
                $('#select_ship .ui-input-text').addClass('number_ship').addClass('number');
                $("#open_open_max").parent().addClass('number');
                $('.number_vaisseau').css({'text-align':'center','opacity':1}).val(0).click(function(){if($(this).val()==0)$(this).val('');});
-               $(".select_select_player_content").parent().css({"width":"200px"});
-               $(".select_select_player_content").parent().parent().css({"display":"inline-block","margin-left":"5px"});
+               
 
             },
             error: function (e) {
@@ -747,6 +746,10 @@ function info_orga() {
 
                     $('#team_hangar').html($.cookie('team')+': <br />'+hangar_team);
                     $('#member_guilde').html(html);
+                    
+                    $(".select_select_player_content").parent().css({"width":"200px"});
+                    $(".select_select_player_content").parent().parent().css({"display":"inline-block","margin-left":"5px"});
+                    
                     translate();
                 } else {
                     $('#member_guilde').html(trad_error_info_org);
