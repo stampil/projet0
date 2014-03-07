@@ -748,7 +748,7 @@ function info_orga() {
                     $('#member_guilde').html(html);
                     
                     $(".select_select_player_content").parent().css({"width":"200px"});
-                    $(".select_select_player_content").parent().parent().css({"display":"inline-block","margin-left":"5px"});
+                    $(".select_select_player_content").parent().parent().css({'display':'inline-block','margin-left':'5px','vertical-align': '82%'});
                     
                     translate();
                 } else {
