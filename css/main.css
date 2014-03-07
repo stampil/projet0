@@ -262,7 +262,7 @@ color:orange;
 
 .manage_ship_content, .select_ship_content{
 	position:relative;
-	width:130px;
+	width:123px;
 	height:74px;
 	display:inline-block;
 	margin:2px;
@@ -276,7 +276,7 @@ color:orange;
  }
 
 .manage_ship_img, .manage_ship_cache, .select_ship_img, .select_ship_cache{
-	width:130px;
+	width:123px;
 	height:74px;
     border: 1px solid black;
     border-radius: 10px;
@@ -304,7 +304,7 @@ color:orange;
     position:absolute;
 }
 .manage_ship_img img, .select_ship_img img{
-	width:130px;
+	width:123px;
 	height:74px;
 	    border: 1px solid black;
     border-radius: 10px;
@@ -331,7 +331,7 @@ color:orange;
 	text-shadow:black 0px 0px 5px,black 1px 0px 5px,black 0px 1px 5px,black 1px 1px 5px;
 	top:2px;
 	overflow: hidden;
-	width: 130px;
+	width: 123px;
 	height:74px;
 	position:absolute;
 	cursor:pointer;
