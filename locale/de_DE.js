@@ -41,3 +41,4 @@ var trad_create_groupe='Gruppe erstellen';
 var trad_error_need_your_handle_first='Du must deinen Forum Handle eintragen bevor du dieses Funktion nutzen kannst.';
 var trad_error_info_org ='Organisation nicht gefunden.';
 var trad_error_handle='Citizen nicht gefunden, überprüfe dein Handle im RSI Forum.';
+var trad_error_no_connected='Sie müssen Ihre Geräte eine Verbindung zum Internet!';

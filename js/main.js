@@ -20,6 +20,38 @@ var percent_max2 = 0;
 var current_anim = true;
 var current_anim2 = true;
 var nb_bars = 30;
+var connected=true;
+
+var ship= new Array();
+var nb_ship=0;
+ship[nb_ship++] = {nom:"Aurora MR",img:"auroramr.jpg",constructor:"RSI",role:"Interdiction",crew:1};
+ship[nb_ship++] = {nom:"Aurora ES",img:"auroraes.jpg",constructor:"RSI",role:"Exploration",crew:1};
+ship[nb_ship++] = {nom:"Aurora CL",img:"auroracl.jpg",constructor:"RSI",role:"Mercantile",crew:1};
+ship[nb_ship++] = {nom:"Aurora LN",img:"auroraln.jpg",constructor:"RSI",role:"Militia/Patrol",crew:1};
+ship[nb_ship++] = {nom:"Aurora LX",img:"auroralx.jpg",constructor:"RSI",role:"Exploration/Light Mercantile",crew:1};
+ship[nb_ship++] = {nom:"300I",img:"300i.jpg",constructor:"Origin Jumpworks",role:"Touring",crew:1};
+ship[nb_ship++] = {nom:"315P",img:"315p.jpg",constructor:"Origin Jumpworks",role:"Exploration",crew:1};
+ship[nb_ship++] = {nom:"325A",img:"325a.jpg",constructor:"Origin Jumpworks",role:"Interdiction",crew:1};
+ship[nb_ship++] = {nom:"350R",img:"350r.jpg",constructor:"Origin Jumpworks",role:"Racing",crew:1};
+ship[nb_ship++] = {nom:"M50",img:"m50.jpg",constructor:"Origin Jumpworks",role:"Racing",crew:1};
+ship[nb_ship++] = {nom:"F7A Hornet",img:"hornetf7a.jpg",constructor:"Anvil Aerospace",role:"Military Close Support",crew:1};
+ship[nb_ship++] = {nom:"F7C Hornet",img:"hornetf7c.jpg",constructor:"Anvil Aerospace",role:"Civilian Close Support",crew:1};
+ship[nb_ship++] = {nom:"F7C-S Hornet Ghost",img:"hornetghost.jpg",constructor:"Anvil Aerospace",role:"Infiltration",crew:1};
+ship[nb_ship++] = {nom:"F7C-R Hornet Tracker",img:"hornettracker.jpg",constructor:"Anvil Aerospace",role:"Scout/Command and Control",crew:1};
+ship[nb_ship++] = {nom:"F7C-M Super Hornet",img:"hornetsuper.jpg",constructor:"Anvil Aerospace",role:"Space Superiority",crew:2};
+ship[nb_ship++] = {nom:"Avenger",img:"avenger.jpg",constructor:"Aegis Dynamics",role:"Interceptor/Interdiction",crew:1};
+ship[nb_ship++] = {nom:"Avenger Trainer",img:"avenger.jpg",constructor:"Aegis Dynamics",role:"Training",crew:2};
+ship[nb_ship++] = {nom:"Vanduul Scythe",img:"vanduul.jpg",constructor:"Unknown",role:"Military Close Support",crew:1};
+ship[nb_ship++] = {nom:"Cutlass",img:"cutlass.jpg",constructor:"Drake",role:"Militia/Patrol",crew:2};
+ship[nb_ship++] = {nom:"Gladiator",img:"gladiator.jpg",constructor:"Anvil Aerospace",role:"Carrier-Based Bomber",crew:2};
+ship[nb_ship++] = {nom:"Freelancer",img:"freelancer.jpg",constructor:"MISC",role:"Mercantile",crew:2};
+ship[nb_ship++] = {nom:"Caterpillar",img:"caterpillar.jpg",constructor:"Drake",role:"Transport",crew:5};
+ship[nb_ship++] = {nom:"Retaliator",img:"retaliator.jpg",constructor:"Aegis Dynamics",role:"Long-Range Bomber",crew:6};
+ship[nb_ship++] = {nom:"Constellation",img:"constellation.jpg",constructor:"RSI",role:"Multi-function",crew:4};
+ship[nb_ship++] = {nom:"Starfarer",img:"starfarer.jpg",constructor:"MISC",role:"Transport",crew:2};
+ship[nb_ship++] = {nom:"Idris",img:"idris.jpg",constructor:"Aegis Dynamics",role:"Corvette",crew:10};
+ship[nb_ship++] = {nom:"Idris-P",img:"idris.jpg",constructor:"Aegis Dynamics",role:"Corvette",crew:10};
+ship[nb_ship++] = {nom:"P-52 Merlin",img:"p52.jpg",constructor:"Kruger Intergalactic",role:"Close Support",crew:1};
 
 
 $( document ).on( "pagecreate", "#page", function() {
@@ -39,15 +71,34 @@ $( document ).on( "pagecreate", "#page", function() {
             }
         }
     });
-        
+  
 });
 
+
+function Offline() {
+    $('#online').html('(nc)');
+    connected=false;
+}
+
+
+function Online() {
+    $('#online').html('(i)');
+    connected=true;
+}
+
+
 function onDeviceReady() {
+	
+    document.addEventListener("offline", Offline, false);
+    document.addEventListener("online", Online, false); 
+
     if(navigator.splashscreen) navigator.splashscreen.hide();
 
     $(document).ready(function () {
     	
     	//ctx_chart = $("#chart_ship_all").get(0).getContext("2d");
+    	
+    	
 
     	c=document.getElementById("canvas");
     	ctx=c.getContext("2d");
@@ -151,6 +202,33 @@ function onDeviceReady() {
         	alerte('<img src="'+$(this).attr('src')+'"/><br />' +$(this).attr('alt'));
         });
         
+        $('body').delegate('.select_select_player_content','change', function(){
+        	$('.select_player_cache[handle="'+$(this).attr('handle')+'"]').css('opacity',0);
+        });
+        
+        $('#select_ship').delegate('.select_ship_text','click', function(){
+        	var ship = $(this).attr('ship_name');
+        	var SearchInput = $('input[ship_name="'+ship+'"]');
+        	SearchInput.val('');
+        	SearchInput.trigger('focus');
+        });
+        
+
+        $('body').delegate('.img_hangar','click', function(){
+        	var handle = $(this).attr('handle');
+        	
+        	$('.hangarteam').hide(300);
+        	
+        	
+	        	setTimeout(function(){
+	        		console.log('show: '+handle);
+	        		$('.hangarteam[handle="'+handle+'"]').show(300);
+	        	},300);
+	        	
+        	
+
+        });
+        
         $('body').delegate('.manage_ship_text','click', function(){
         	var o = $(this).parent().find('.manage_ship_cache');
         	name_ship =$(this).text();
@@ -163,6 +241,22 @@ function onDeviceReady() {
                 nb_ship= 1;
         	}
         	save_ship();
+
+        });
+        
+        $('body').delegate('.select_player_text','click', function(){
+        	var o = $(this).parent().find('.select_player_cache');
+        	var nb_player = 0;
+        	name_player =$(this).text();
+        	if (o.css('opacity')==0 ){
+        		o.css('opacity',0.95);
+        		nb_player= 0;
+        	}
+        	else{
+        		o.css('opacity',0);
+        		nb_player= 1;
+        	}
+        	//save_player(nb_player);
 
         });
         
@@ -199,6 +293,8 @@ function onDeviceReady() {
         	$('#alert').slideUp(50);
         });
         
+
+        
         $('#save_lock').click(function(){
         	var saved= false;
         	if($('#mdp_handle').val() && $('#mdp_handle').val() == $('#confirm_mdp_handle').val() ){
@@ -212,7 +308,12 @@ function onDeviceReady() {
         	        data: 'action=lock_handle&mdp='+$('#mdp_handle').val()+'&handle='+ $.cookie('handle'),
         	        async: true,
         	        beforeSend: function(){
-        	           alerte(trad_connection_internet);
+        	        	if(connected){
+        	        		alerte(trad_connection_internet);
+        	        	}
+        	        	else{
+        	        		alerte(trad_error_no_connected);
+        	        	}
         	        },
         	        success: function (data) {
         	            alerte(trad_confirm_ok);
@@ -233,7 +334,12 @@ function onDeviceReady() {
         	        data: 'action=lock_team&team='+ $.cookie('team')+ '&mdp='+$('#mdp_team').val()+'&handle='+ $.cookie('handle'),
         	        async: true,
         	        beforeSend: function(){
-        	           alerte(trad_connection_internet);
+        	        	if(connected){
+        	        		alerte(trad_connection_internet);
+        	        	}
+        	        	else{
+        	        		alerte(trad_error_no_connected);
+        	        	}
         	        },
         	        success: function (data) {
         	        	 alerte(trad_confirm_ok);
@@ -269,7 +375,13 @@ function onDeviceReady() {
                 data: 'action=citizens&page='+ handle+'&mdp='+$('#mdp').val(),
                 async: true,
                 beforeSend: function(){
-                    $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+                	if(connected){
+                		 $('#info_pseudo').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+    	        	}
+    	        	else{
+    	        		 $('#info_pseudo').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+    	        	}
+
                     $('#info_pseudo').show();
                     ctx.clearRect(0,0,$('#canvas').width(),$('#canvas').height());
                     $('#mdp, .require_mdp, #require_mdp').hide();
@@ -409,7 +521,12 @@ function save_ship(){
         data: 'action=save_ship&ship='+ name_ship+ '&nb='+nb_ship+'&handle='+ $.cookie('handle'),
         async: true,
         beforeSend: function(){
-           alerte(trad_connection_internet);
+        	if(connected){
+        		alerte(trad_connection_internet);
+        	}
+        	else{
+        		alerte(trad_error_no_connected);
+        	}
 
         },
         success: function (data) {
@@ -440,10 +557,15 @@ function display_hangar() {
             jsonpCallback: 'API_SC'+API_SC++,
             contentType: "application/json",
             dataType: 'jsonp',
-            data: 'action=get_ship&handle='+ $.cookie('handle'),
+            data: 'action=get_localship&handle='+ $.cookie('handle'),
             async: true,
             beforeSend: function(){
-            	$('#your_hangar').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+            	if(connected){
+           		 $('#your_hangar').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+	        	}
+	        	else{
+	        		 $('#your_hangar').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+	        	}
             },
             success: function (data) {
                 $('#your_hangar').html('<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_your_ships"></h3></div><div class="ui-body ui-body-'+theme+'">');
@@ -485,74 +607,61 @@ function save_infoship(nom,img,role,crew){
 
 function display_ship() {
 
-    var date_save = new Date();
-    var check_cook = date_save.getMonth()+1+''+date_save.getFullYear();
-
-    $.ajax({
+   
+    
+   $.ajax({
             type: 'GET',
             url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
             jsonpCallback: 'API_SC'+API_SC++,
             contentType: "application/json",
             dataType: 'jsonp',
-            data: 'action=ship',
+            data: 'action=localship',
             async: true,
             beforeSend: function(){
-            	$('#member_ship').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+            	if(connected){
+              		 $('#member_ship').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+   	        	}
+   	        	else{
+   	        		 $('#member_ship').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+   	        	}
             },
             success: function (data) {
                
                 var html = '';
-                var check_banu = false;
-                var check_karthu = false;
-                var check_mustang = false;
+                var html2 = '';
                 for (var i = 0; i < data.ship.total; i++) {
                                         
                     
                     html +='<div class="manage_ship_content">'
-                    	+'<div class="manage_ship_img" ><img src="https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'
-                        + data.ship[i].imageurl  + '" /></div>'
+                    	+'<div class="manage_ship_img" ><img src="'
+                        + data.ship[i].img  + '" /></div>'
                 	+'<div class="manage_ship_cache"></div>'
-                	+'<div class="manage_ship_text"><center>'+data.ship[i].title+'</center></div></div>';
+                	+'<div class="manage_ship_text"><center>'+data.ship[i].nom+'</center></div></div>';
                     
-                    if(data.ship[i].title.match('banu')){
-                        check_banu = true;
-                    }
-                    else if(data.ship[i].title.match('karthu')){
-                        check_karthu = true;
-                    }
-                    else if(data.ship[i].title.match('mustang')){
-                        check_mustang = true;
-                    }
-                    if(!$.cookie(check_cook) ) save_infoship(data.ship[i].title, 'https://robertsspaceindustries.com/rsi/static/images/game/ship-specs/'+data.ship[i].imageurl, data.ship[i].role, data.ship[i].maxcrew);
-                }
+                    html2 +='<div class="select_ship_content">'
+                    	+'<div class="select_ship_img" ><img src="'
+                        + data.ship[i].img  + '" /></div>'
+                	+'<div class="select_ship_text" ship_name="'+data.ship[i].nom+'"><center>'+data.ship[i].nom+'</center></div>'
+                	+'<input type="number" min="0" max="250" class="number number_vaisseau" ship_name="'+data.ship[i].nom+'" />'
+                	+'</div>';
+               }
 
-                if(!check_banu){
-                    html +='<div class="manage_ship_content">'
-                    	+'<div class="manage_ship_img" ><img src="img/banu.jpg" /></div>'
-                	+'<div class="manage_ship_cache"></div>'
-                	+'<div class="manage_ship_text"><center>Banu Merchantman</center></div></div>';
-                }
-                if(!check_karthu){
-                	html +='<div class="manage_ship_content">'
-                    	+'<div class="manage_ship_img" ><img src="img/karthu.jpg" /></div>'
-                	+'<div class="manage_ship_cache"></div>'
-                	+'<div class="manage_ship_text"><center>Xi’An Karthu</center></div></div>';
-                }
-                if(!check_mustang){
-                	html +='<div class="manage_ship_content">'
-                    	+'<div class="manage_ship_img" ><img src="img/mustang.jpg" /></div>'
-                	+'<div class="manage_ship_cache"></div>'
-                	+'<div class="manage_ship_text"><center>Mustang</center></div></div>';
-                	
-                }
-
+                
+               $('#select_ship').html(html2);
                $('#member_ship').html(html);
                display_hangar();
+               $('#select_ship input').textinput();
+               $('#select_ship .ui-input-text').addClass('number_ship').addClass('number');
+               $("#open_open_max").parent().addClass('number');
+               $('.number_vaisseau').css({'text-align':'center','opacity':1}).val(0).click(function(){if($(this).val()==0)$(this).val('');});
+               
+
             },
             error: function (e) {
                 console.log(e.message);
             }
         });
+    
 }
 
 function info_orga() {
@@ -563,38 +672,73 @@ function info_orga() {
             jsonpCallback: 'API_SC'+API_SC++,
             contentType: "application/json",
             dataType: 'jsonp',
-            data: 'action=org&team=' + $.cookie('team') + '&page=1',
+            data: 'action=localorg&team=' + $.cookie('team') + '&page=1',
             async: true,
             beforeSend: function(){           	
-                $('#member_guilde').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+                if(connected){
+             		 $('#member_guilde').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+  	        	}
+  	        	else{
+  	        		 $('#member_guilde').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+  	        	}
             },
             success: function (data) {
                 var html = '<div class="ui-corner-all custom-corners"><div class="ui-bar ui-bar-'+theme+'"><h3 trad="trad_your_team"></h3></div><div class="ui-body ui-body-'+theme+'">';
+                var html2='';
                 var hangar_teammate='';
                 var hangar_team ='';
                 $('#member_guilde').html();
 
                 if (data.member.nb > 0) {
                 	if(data.member.nb>249) data.member.nb = 249; //TODO limite max 249
+                	
+                	var opt_player='';
+                	
                     for (var i = 0; i < data.member.nb; i++) {
-                    	hangar_teammate='<center>';
+                    	hangar_teammate='';
+                    	hangar_teammate2='';
                     	for(var j=0; j<data.member[i].ship.nb;j++){
                     		hangar_teammate+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.member[i].ship[j].nb +'x</div><img class="img_team_team" src="'+data.member[i].ship[j].img+'" alt="'+data.member[i].ship[j].name+'" /></div> ';
+                    		hangar_teammate2+='<option>'+data.member[i].ship[j].name+'</option>';
                     	}
                     	//hangar_teammate = hangar_teammate.substring(0, hangar_teammate.length - 2);
-                        hangar_teammate+='</center>';
-                    	html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" style="'+(data.member[i].ship.nb>0?'border-color:#2ad':'border-color:gray')+'" />'
+                        
+                    	html += '<div><img class="member_guilde_avatar" src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '"  />'
                             + ' <div class="display_pseudo">' + data.member[i].pseudo + '</div><div class="display_handle"> ' + data.member[i].handle + '</div>'
                             
                             + '<div>'+data.member[i].title+'</div>'
-                            + '<div style="clear:both"></div><h2 trad="trad_role"></h2><ul>'
-                            + data.member[i].role.replace('None','- '+trad_none)
-                            + '</ul></div>'
-                            +'<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
-                            +'<hr />';
+                            + '<div style="clear:both"></div></div>'
+                            + '<center>';
+                    		if(data.member[i].handle){
+                    			html+='<p><img src="img/hangar.jpg" class="img_hangar" handle="' + data.member[i].handle + '" /></p>';
+                    			
+                    			//un membre sans handle ne peut pas avoir de fixed ship
+                    			html2 +='<div class="select_player_content">'
+                                	+'<div class="select_player_img" ><img src="http://robertsspaceindustries.com'+ data.member[i].avatar  + '" /></div>'
+                                	+'<div class="select_player_cache" handle="' + data.member[i].handle + '"></div>'
+                                	+'<div class="select_player_text"><center>'+data.member[i].pseudo+'</center></div></div>'
+                                	+'<select class="select_select_player_content" handle="'+ data.member[i].handle+'">'+hangar_teammate2+'</select><br />'
+                                	+'';
+                    		}
+                    		html+='<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
+                            +'</center><hr />';
+                    		
+                    		opt_player+='<option value="'+data.member[i].pseudo+'">'+data.member[i].pseudo+'</option>';
+                    		
+                    		
                             
                     }
                     html += '</div></div>';
+                    
+                    $('#select_player_img').html(html2);
+                    $('#select_player').html('<div class="ui-field-contain">'
+            			    +'<label for="open_fixed_select">Player:</label>'
+            			    +'<select name="open_fixed_select" id="open_fixed_select" multiple="multiple" data-native-menu="false">'
+            			    + opt_player
+            			    +'</select>'
+            				+'</div>');
+                    //$('#open_fixed_select').selectmenu();
+                    $('select').selectmenu();
 
                     for(var i=0; i< data.team.nb; i++){
                         hangar_team+= '<div class="content_team_hangar"><div class="nb_team_hangar">'+data.team[i].nb+'x</div><img class="img_team_hangar" src="'+data.team[i].img+'" alt="'+data.team[i].name+'" /></div> ';
@@ -602,6 +746,10 @@ function info_orga() {
 
                     $('#team_hangar').html($.cookie('team')+': <br />'+hangar_team);
                     $('#member_guilde').html(html);
+                    
+                    $(".select_select_player_content").parent().css({"width":"200px"});
+                    $(".select_select_player_content").parent().parent().css({'display':'inline-block','margin-left':'5px','vertical-align': '82%'});
+                    
                     translate();
                 } else {
                     $('#member_guilde').html(trad_error_info_org);
@@ -634,10 +782,16 @@ function do_chart(){
         jsonpCallback: 'API_SC'+API_SC++,
         contentType: "application/json",
         dataType: 'jsonp',
-        data: 'action=get_statship',
+        data: 'action=get_localstatship',
         async: true,
         beforeSend: function(){
-            $('#connect_chart').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+        	if(connected){
+        		 $('#connect_chart').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+	        	}
+	        	else{
+	        		 $('#connect_chart').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+	        	}
+
         },
         success: function (data) {
             

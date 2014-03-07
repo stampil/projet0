@@ -54,7 +54,6 @@ label {
 .member_guilde_avatar {
 	width: 76px;
 	height: 76px;
-	border: 2px outset gray;
 	border-radius: 5px;
 	float: left;
 	margin-right: 4px;
@@ -70,6 +69,9 @@ label {
 	font-size:0.7em;
 }
 
+.hangarteam{
+	margin-top:10px;
+}
 ul {
 	list-style-type: none !important;
 	margin: 2px;
@@ -82,7 +84,7 @@ h2 {
 }
 
 
-.page, #nb_ship, #mdp, .require_mdp, #require_mdp {
+.page, #nb_ship, #mdp, .require_mdp, #require_mdp, .hangarteam {
 	display: none;
 }
 .page{
@@ -257,26 +259,65 @@ color:orange;
  font-weight:bold;
 }
 
-.manage_ship_content{
+
+.manage_ship_content, .select_ship_content{
 	position:relative;
-	width:138px;
+	width:123px;
 	height:74px;
 	display:inline-block;
+	margin:2px;
 }
+ .select_player_content{
+ 	position:relative;
+	width:76px;
+	height:76px;
+	display:inline-block;
+	margin-left: 5px;
+ }
 
-.manage_ship_img, .manage_ship_cache{
-	width:138px;
+.manage_ship_img, .manage_ship_cache, .select_ship_img, .select_ship_cache{
+	width:123px;
 	height:74px;
     border: 1px solid black;
     border-radius: 10px;
     cursor:pointer;
     position:absolute;
 }
-.manage_ship_img img{
-	width:138px;
+.select_player_cache{
+	width:76px;
+	height:76px;
+    border: 1px solid black;
+    border-radius: 10px;
+    cursor:pointer;
+    position:absolute;	
+}
+
+#select_player_img{
+	text-align:center;
+}
+.select_player_img{
+	width:76px;
+	height:76px;
+	border: 1px solid black;
+    border-radius: 10px;
+    cursor:pointer;
+    position:absolute;
+}
+.manage_ship_img img, .select_ship_img img{
+	width:123px;
 	height:74px;
 	    border: 1px solid black;
     border-radius: 10px;
+}
+
+.select_player_img img{
+	width:76px;
+	height:76px;
+    border-radius: 10px;
+}
+
+#select_ship{
+	text-align:center;
 }
 
 .manage_ship_cache{
@@ -284,19 +325,66 @@ color:orange;
 	opacity:0.85;
 }
 
-.manage_ship_text{
+.select_player_cache{
+	background:black;
+	opacity:0.95;
+}
+
+.manage_ship_text, .select_ship_text{
 	color:white;
 	text-shadow:black 0px 0px 5px,black 1px 0px 5px,black 0px 1px 5px,black 1px 1px 5px;
 	top:2px;
 	overflow: hidden;
-	width: 138px;
+	width: 123px;
 	height:74px;
 	position:absolute;
 	cursor:pointer;
 }
 
-.groupe{
-	border: 1px solid black;
-	padding:5px;
-	margin:1px 0 1px 0;
+.select_player_text{
+	color:white;
+	text-shadow:black 0px 0px 5px,black 1px 0px 5px,black 0px 1px 5px,black 1px 1px 5px;
+	top:2px;
+	overflow: hidden;
+	width: 76px;
+	height:76px;
+	position:absolute;
+	cursor:pointer;
+	font-size: 0.8em;
 }
+
+
+.img_hangar{
+	border:2px solid black;
+	border-radius:30px;
+	-webkit-box-shadow: 3px 3px 12px 0px rgba(44, 50, 50, 0.8);
+-moz-box-shadow:    3px 3px 12px 0px rgba(44, 50, 50, 0.8);
+box-shadow:         3px 3px 12px 0px rgba(44, 50, 50, 0.8);
+cursor:pointer;
+}
+
+.ui-nosvg .ui-icon-avenger:after {
+  background: url("../img/ship/avenger.jpg")no-repeat;
+  background-size: 18px 18px;
+  border-radius:0px!important;
+  -moz-border-radius:0px!important;
+  -webkit-border-radius:0px!important;
+  -ms-border-radius:0px!important;
+  -o-border-radius:0px!important;
+}
+
+.number{
+width: 60px;
+display: inline-block;
+margin-left: 5px;
+}
+
+.number_ship{
+
+position: absolute;
+left: 38px;
+top: 30px;
+
+opacity:0.8;
+}
+
