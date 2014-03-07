@@ -373,9 +373,14 @@ cursor:pointer;
   -o-border-radius:0px!important;
 }
 
-.number_ship{
+.number{
 width: 60px;
 display: inline-block;
+margin-left: 5px;
+}
+
+.number_ship{
+
 position: absolute;
 left: 38px;
 top: 30px;

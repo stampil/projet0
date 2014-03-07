@@ -642,7 +642,7 @@ function display_ship() {
                     	+'<div class="select_ship_img" ><img src="'
                         + data.ship[i].img  + '" /></div>'
                 	+'<div class="select_ship_text" ship_name="'+data.ship[i].nom+'"><center>'+data.ship[i].nom+'</center></div>'
-                	+'<input type="number" min="0" max="250" class="number_vaisseau" ship_name="'+data.ship[i].nom+'" />'
+                	+'<input type="number" min="0" max="250" class="number number_vaisseau" ship_name="'+data.ship[i].nom+'" />'
                 	+'</div>';
                }
 
@@ -651,8 +651,11 @@ function display_ship() {
                $('#member_ship').html(html);
                display_hangar();
                $('#select_ship input').textinput();
-               $('#select_ship .ui-input-text').addClass('number_ship');
+               $('#select_ship .ui-input-text').addClass('number_ship').addClass('number');
+               $("#open_open_max").parent().addClass('number');
                $('.number_vaisseau').css({'text-align':'center','opacity':1}).val(0).click(function(){if($(this).val()==0)$(this).val('');});
+               $(".select_select_player_content").parent().css({"width":"200px"});
+               $(".select_select_player_content").parent().parent().css({"display":"inline-block","margin-left":"5px"});
 
             },
             error: function (e) {
