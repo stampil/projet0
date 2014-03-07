@@ -208,7 +208,9 @@ function onDeviceReady() {
         
         $('#select_ship').delegate('.select_ship_text','click', function(){
         	var ship = $(this).attr('ship_name');
-        	$('input[ship_name="'+ship+'"]').trigger('click');
+        	var SearchInput = $('input[ship_name="'+ship+'"]');
+        	SearchInput.val('');
+        	SearchInput.trigger('focus');
         });
         
 
