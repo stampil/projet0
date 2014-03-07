@@ -259,11 +259,13 @@ color:orange;
  font-weight:bold;
 }
 
+
 .manage_ship_content, .select_ship_content{
 	position:relative;
 	width:138px;
 	height:74px;
 	display:inline-block;
+	margin:2px;
 }
  .select_player_content{
  	position:relative;
@@ -366,3 +368,14 @@ cursor:pointer;
   -ms-border-radius:0px!important;
   -o-border-radius:0px!important;
 }
+
+.number_ship{
+width: 60px;
+display: inline-block;
+position: absolute;
+left: 38px;
+top: 30px;
+
+opacity:0.8;
+}
+

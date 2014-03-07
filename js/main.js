@@ -635,13 +635,19 @@ function display_ship() {
                     html2 +='<div class="select_ship_content">'
                     	+'<div class="select_ship_img" ><img src="'
                         + data.ship[i].img  + '" /></div>'
-                	+'<div class="select_ship_text"><center>'+data.ship[i].nom+'</center></div></div>';
+                	+'<div class="select_ship_text"><center>'+data.ship[i].nom+'</center></div>'
+                	+'<input type="number" min="0" max="250" class="number_vaisseau" />'
+                	+'</div>';
                }
 
                 
                $('#select_ship').html(html2);
                $('#member_ship').html(html);
                display_hangar();
+               $('#select_ship input').textinput();
+               $('#select_ship .ui-input-text').addClass('number_ship');
+               $('.number_vaisseau').css('text-align','center').css('opacity',1).val(0);
+
             },
             error: function (e) {
                 console.log(e.message);
