@@ -316,6 +316,10 @@ color:orange;
     border-radius: 10px;
 }
 
+#select_ship{
+	text-align:center;
+}
+
 .manage_ship_cache{
 	background:black;
 	opacity:0.85;

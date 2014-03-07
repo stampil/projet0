@@ -206,6 +206,10 @@ function onDeviceReady() {
         	$('.select_player_cache[handle="'+$(this).attr('handle')+'"]').css('opacity',0);
         });
         
+        $('#select_ship').delegate('.select_ship_text','click', function(){
+        	var ship = $(this).attr('ship_name');
+        	$('input[ship_name="'+ship+'"]').trigger('click');
+        });
         
 
         $('body').delegate('.img_hangar','click', function(){
@@ -635,8 +639,8 @@ function display_ship() {
                     html2 +='<div class="select_ship_content">'
                     	+'<div class="select_ship_img" ><img src="'
                         + data.ship[i].img  + '" /></div>'
-                	+'<div class="select_ship_text"><center>'+data.ship[i].nom+'</center></div>'
-                	+'<input type="number" min="0" max="250" class="number_vaisseau" />'
+                	+'<div class="select_ship_text" ship_name="'+data.ship[i].nom+'"><center>'+data.ship[i].nom+'</center></div>'
+                	+'<input type="number" min="0" max="250" class="number_vaisseau" ship_name="'+data.ship[i].nom+'" />'
                 	+'</div>';
                }
 
