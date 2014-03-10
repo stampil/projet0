@@ -902,7 +902,7 @@ function check_pledge(){
             first_check++;
 			first_check2++;
             percent_max = data.current_pledge.percentless;
-			percent_max2 = data.stat.data.alpha_slots_percentage;
+			percent_max2 = Math.round((data.stat.data.fans / (data.stat.data.fans +data.stat.data.alpha_slots_left))*100);
 
 			
             
