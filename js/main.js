@@ -216,15 +216,19 @@ function onDeviceReady() {
 
         $('body').delegate('.img_hangar','click', function(){
         	var handle = $(this).attr('handle');
+        	var to_visible= false;
+        	if(!$('.hangarteam[handle="'+handle+'"]:visible')[0]){
+        		to_visible = true;
+        	}
         	
         	$('.hangarteam').hide(300);
         	
-        	
+        	if(to_visible){
 	        	setTimeout(function(){
 	        		console.log('show: '+handle);
 	        		$('.hangarteam[handle="'+handle+'"]').show(300);
 	        	},300);
-	        	
+        	}	
         	
 
         });
