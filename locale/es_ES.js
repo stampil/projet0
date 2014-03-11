@@ -36,6 +36,8 @@ var trad_require_password_team = 'Tu equipo ha bloqueado la muestra de informaci
 var trad_require_password_handle = 'Este handle está bloqueado. Si no debería estarlo, contáctame por PM @ gourmand en el foro oficial.'; 
 var trad_explain_hangar='Haga clic para iluminar la nave que tiene-';
 var trad_create_groupe='Crear grupo';
+var trad_no_ship='Ninguna nave';
+
 
 var trad_error_need_your_handle_first = 'Debes escribir tu handle forum antes de poder utilizar está funcionalidad';
 var trad_error_info_org = 'No se encontró esta organización.';

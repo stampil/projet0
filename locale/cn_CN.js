@@ -36,6 +36,8 @@ var trad_require_password_team='你的团队已经锁定了他的成员信息的
 var trad_require_password_handle='这个句柄被锁定。如果该句柄不应该被锁定，请联系我通过下午@美食家的官方论坛。'; 
 var trad_explain_hangar='点击启迪你的船，有';
 var trad_create_groupe='创建组';
+var trad_no_ship='无船';
+
 
 var trad_error_need_your_handle_first='使用前你必须编写你的手柄论坛功能';
 var trad_error_info_org ='此机构未找到';

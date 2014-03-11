@@ -36,6 +36,8 @@ var trad_require_password_team='Ihr Team hat die Anzeige von Informationen seine
 var trad_require_password_handle='Dieser Griff verriegelt ist. Wenn dieser Griff sollte nicht gesperrt werden kann, kontaktieren Sie mich per PM @ Gourmand im offiziellen Forum.'; 
 var trad_explain_hangar='Klicken Sie auf das Schiff, das Sie-haben erleuchten';
 var trad_create_groupe='Gruppe erstellen';
+var trad_no_ship='Kein Schiff';
+
 
 
 var trad_error_need_your_handle_first='Du must deinen Forum Handle eintragen bevor du dieses Funktion nutzen kannst.';

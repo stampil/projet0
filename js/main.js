@@ -216,6 +216,10 @@ function onDeviceReady() {
 
         $('body').delegate('.img_hangar','click', function(){
         	var handle = $(this).attr('handle');
+        	var ship =  $(this).attr('ship');
+        	if(ship=='no'){
+        		alerte(trad_no_ship);
+        	}
         	var to_visible= false;
         	if(!$('.hangarteam[handle="'+handle+'"]:visible')[0]){
         		to_visible = true;
@@ -714,7 +718,7 @@ function info_orga() {
                             + '<div style="clear:both"></div></div>'
                             + '<center>';
                     		if(data.member[i].handle){
-                    			html+='<p><img src="img/hangar.jpg" class="img_hangar" handle="' + data.member[i].handle + '" /></p>';
+                    			html+='<p><img src="img/hangar.jpg" class="img_hangar" ship="yes" handle="' + data.member[i].handle + '" /></p>';
                     			
                     			//un membre sans handle ne peut pas avoir de fixed ship
                     			html2 +='<div class="select_player_content">'
@@ -723,6 +727,9 @@ function info_orga() {
                                 	+'<div class="select_player_text"><center>'+data.member[i].pseudo+'</center></div></div>'
                                 	+'<select class="select_select_player_content" handle="'+ data.member[i].handle+'">'+hangar_teammate2+'</select><br />'
                                 	+'';
+                    		}
+                    		else{
+                    			html+='<p><img src="img/hangar2.jpg" class="img_hangar" ship="no" handle="' + data.member[i].handle + '" /></p>';
                     		}
                     		html+='<div class="hangarteam" handle="' + data.member[i].handle + '">'+hangar_teammate+'</div>'
                             +'</center><hr />';
