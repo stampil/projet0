@@ -301,6 +301,98 @@ function onDeviceReady() {
         	$('#alert').slideUp(50);
         });
         
+        $('#open_open_submit').click(function(){
+        	$.ajax({
+    	        type: 'GET',
+    	        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+    	        jsonpCallback: 'API_SC'+API_SC++,
+    	        contentType: "application/json",
+    	        dataType: 'jsonp',
+    	        data: 'action=save_open_open&team='+$.cookie('team')+'&name='+ $('#open_open_name').val()+'&max_player='+ $('#open_open_max').val()+'&handle='+ $.cookie('handle'),
+    	        async: true,
+    	        beforeSend: function(){
+    	        	if(connected){
+    	        		alerte(trad_connection_internet);
+    	        	}
+    	        	else{
+    	        		alerte(trad_error_no_connected);
+    	        	}
+    	        },
+    	        success: function (data) {
+    	            alerte(trad_confirm_ok);
+    	        },
+    	        error: function (e) {
+    	            console.log(e.message);
+    	        }
+    	    });
+        });
+        
+        $('#fixed_open_submit').click(function(){
+        	var to_save='';
+        	$('.select_ship_content .select_ship_text').each(function(e){
+        		var ship = $(this).text();
+        		var nb = $('input[type="number"][ship_name="'+ship+'"]').val();
+        		
+        		if(parseInt(nb)>0) {	
+        			to_save+=nb+'☼'+ship+'◙';
+        		}
+        	});
+        	
+        	$.ajax({
+    	        type: 'GET',
+    	        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+    	        jsonpCallback: 'API_SC'+API_SC++,
+    	        contentType: "application/json",
+    	        dataType: 'jsonp',
+    	        data: 'action=save_fixed_open&team='+$.cookie('team')+'&name='+ $('#fixed_open_name').val()+'&ship='+ to_save+'&handle='+ $.cookie('handle'),
+    	        async: true,
+    	        beforeSend: function(){
+    	        	if(connected){
+    	        		alerte(trad_connection_internet);
+    	        	}
+    	        	else{
+    	        		alerte(trad_error_no_connected);
+    	        	}
+    	        },
+    	        success: function (data) {
+    	            alerte(trad_confirm_ok);
+    	        },
+    	        error: function (e) {
+    	            console.log(e.message);
+    	        }
+    	    });
+        	
+        	
+        });
+        
+        $('#open_fixed_submit').click(function(){
+        	$.ajax({
+    	        type: 'GET',
+    	        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+    	        jsonpCallback: 'API_SC'+API_SC++,
+    	        contentType: "application/json",
+    	        dataType: 'jsonp',
+    	        data: 'action=save_open_fixed&team='+$.cookie('team')+'&name='+ $('#open_fixed_name').val()+'&players='+ $('#open_fixed_select-button span:nth-child(1)').text()+'&handle='+ $.cookie('handle'),
+    	        async: true,
+    	        beforeSend: function(){
+    	        	if(connected){
+    	        		alerte(trad_connection_internet);
+    	        	}
+    	        	else{
+    	        		alerte(trad_error_no_connected);
+    	        	}
+    	        },
+    	        success: function (data) {
+    	            alerte(trad_confirm_ok);
+    	        },
+    	        error: function (e) {
+    	            console.log(e.message);
+    	        }
+    	    });
+        });
+        
+         
+        
 
         
         $('#save_lock').click(function(){
