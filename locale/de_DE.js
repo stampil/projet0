@@ -37,6 +37,10 @@ var trad_require_password_handle='Dieser Griff verriegelt ist. Wenn dieser Griff
 var trad_explain_hangar='Klicken Sie auf das Schiff, das Sie-haben erleuchten';
 var trad_create_groupe='Gruppe erstellen';
 var trad_no_ship='Kein Schiff';
+var trad_open_open='Open player open ship';
+var trad_open_fixed='fixed player open ship ';
+var trad_fixed_open='fixed ship open player';
+var trad_fixed_fixed='fixed player fixed ship';
 
 
 

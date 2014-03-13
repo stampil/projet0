@@ -37,6 +37,10 @@ var trad_require_password_handle = 'Este handle está bloqueado. Si no debería 
 var trad_explain_hangar='Haga clic para iluminar la nave que tiene-';
 var trad_create_groupe='Crear grupo';
 var trad_no_ship='Ninguna nave';
+var trad_open_open='Open player open ship';
+var trad_open_fixed='fixed player open ship ';
+var trad_fixed_open='fixed ship open player';
+var trad_fixed_fixed='fixed player fixed ship';
 
 
 var trad_error_need_your_handle_first = 'Debes escribir tu handle forum antes de poder utilizar está funcionalidad';

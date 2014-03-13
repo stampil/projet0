@@ -37,6 +37,10 @@ var trad_require_password_handle='Cet handle est verrouillé. Si ce handle ne de
 var trad_explain_hangar='Cliquer sur le vaisseau que vous possedez pour l’eclairer';
 var trad_create_groupe='Créer des groupes';
 var trad_no_ship='Aucun vaisseau';
+var trad_open_open='Joueur libre vaisseau libre';
+var trad_open_fixed='joueur fixé vaisseau libre ';
+var trad_fixed_open='vaisseau fixé joueur libre';
+var trad_fixed_fixed='joueur fixé vaisseau fixé';
 
 var trad_error_need_your_handle_first='Vous devez ecrire votre handle forum avant de pouvoir afficher cette section';
 var trad_error_info_org ='Cette organisation n’a pas été trouvée ';
