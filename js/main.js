@@ -327,6 +327,50 @@ function onDeviceReady() {
     	    });
         });
         
+        $('#fixed_fixed_submit').click(function(){
+        	var to_save='';
+        	$('.select_player_cache').filter(function() {
+        	    return $(this).css('opacity') == '0';
+        	}).each(function(e){
+        		var handle= $(this).attr('handle');
+        		var ship = $('.select_select_player_content[handle="'+handle+'"] option:selected').val();
+        		to_save+=handle+'☼'+ship+'◙';
+        		
+        	});
+        	
+        	$.ajax({
+    	        type: 'GET',
+    	        url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+    	        jsonpCallback: 'API_SC'+API_SC++,
+    	        contentType: "application/json",
+    	        dataType: 'jsonp',
+    	        data: {
+    	        	action:'save_fixed_fixed',
+    	        	handle:$.cookie('handle'),
+    	        	name:$('#fixed_fixed_name').val(),
+    	        	team:$.cookie('team'),
+    	        	ship:to_save
+    	        },
+    	        async: true,
+    	        beforeSend: function(){
+    	        	if(connected){
+    	        		alerte(trad_connection_internet);
+    	        	}
+    	        	else{
+    	        		alerte(trad_error_no_connected);
+    	        	}
+    	        },
+    	        success: function (data) {
+    	            alerte(trad_confirm_ok);
+    	        },
+    	        error: function (e) {
+    	            console.log(e.message);
+    	        }
+    	    });
+        	
+        	
+        });
+        
         $('#fixed_open_submit').click(function(){
         	var to_save='';
         	$('.select_ship_content .select_ship_text').each(function(e){
