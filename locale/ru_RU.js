@@ -36,6 +36,7 @@ var trad_require_password_team='Ваша команда заблокировал
 var trad_require_password_handle='Эта ручка блокируется. Если это ручка не должен быть заблокирован, свяжитесь со мной по PM @ gourmand на официальном форуме.'; 
 var trad_explain_hangar='Нажмите, чтобы просветить корабль вы-есть';
 var trad_create_groupe='Создать группу';
+var trad_manage_groupe='Manage group';
 var trad_no_ship='Нет корабль';
 var trad_open_open='Open player open ship';
 var trad_open_fixed='fixed player open ship ';

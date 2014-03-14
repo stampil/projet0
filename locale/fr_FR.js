@@ -36,6 +36,7 @@ var trad_require_password_team='Votre team à verrouillée l’affichage des inf
 var trad_require_password_handle='Cet handle est verrouillé. Si ce handle ne devrait pas être verrouillé, contactez moi par PM @ gourmand sur le forum officiel.'; 
 var trad_explain_hangar='Cliquer sur le vaisseau que vous possedez pour l’eclairer';
 var trad_create_groupe='Créer des groupes';
+var trad_manage_groupe='Manage group';
 var trad_no_ship='Aucun vaisseau';
 var trad_open_open='Joueur libre vaisseau libre';
 var trad_open_fixed='joueur fixé vaisseau libre ';

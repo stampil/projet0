@@ -148,25 +148,9 @@ function onDeviceReady() {
 
             $('.page').hide(300);
             $('.' + page).show(500);
-            if(page =='stat'){
-            	do_chart();
-            	
-            	var bar_gen = '';
-            	 var bar_gen2 = '';
-            	 for (var i=1; i<=nb_bars; i++){
-            	 	bar_gen+='<img src="img/off.png" alt="|" id="bar_'+i+'"/>';
-            	 }
-            	 for (var i=1; i<=nb_bars; i++){
-            	 	bar_gen2+='<img src="img/off.png" alt="|" id="bar2_'+i+'"/>';
-            	 }
-            	 $('#bar').html(bar_gen);
-            	 $('#bar2').html(bar_gen2);
-            	 check_pledge();
-            	setInterval(check_pledge,60000); //refresh all minutes
 
-
-     
-            	
+            if(page=='manage_groupe'){
+            	show_group();
             }
 
 
@@ -195,9 +179,58 @@ function onDeviceReady() {
         });
 
         translate();
+        do_chart();
+    	
+    	var bar_gen = '';
+    	var bar_gen2 = '';
+    	 for (var i=1; i<=nb_bars; i++){
+    	 	bar_gen+='<img src="img/off.png" alt="|" id="bar_'+i+'"/>';
+    	 }
+    	 for (var i=1; i<=nb_bars; i++){
+    	 	bar_gen2+='<img src="img/off.png" alt="|" id="bar2_'+i+'"/>';
+    	 }
+    	 $('#bar').html(bar_gen);
+    	 $('#bar2').html(bar_gen2);
+    	 check_pledge();
+    	setInterval(check_pledge,60000); //refresh all minutes
 
        
-        
+    	
+        $('body').delegate('.delete_group','click', function(){
+        	
+        	var o = $(this).parent();
+        	 var ok = confirm('delete '+$(this).attr('name')+'?');  
+        	 if(ok){
+        	$.ajax({
+                type: 'GET',
+                url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+                jsonpCallback: 'API_SC'+API_SC++,
+                contentType: "application/json",
+                dataType: 'jsonp',
+                data: 'action=delete_'+$(this).attr('context')+'&team='+$.cookie('team')+'&name='+$(this).attr('name'),
+                async: true,
+                beforeSend: function(){
+                	if(connected){
+                		alerte('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+        	        	}
+        	        	else{
+        	        		alerte('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+        	        	}
+
+                },
+                success: function (data) {
+                    
+                    o.hide();
+
+                },
+                error: function (e) {
+                    console.log(e.message);
+                }
+            });
+        	 }
+        	
+        });
+    	
         $('body').delegate('.img_team_team, .img_team_hangar','click', function(){
         	alerte('<img src="'+$(this).attr('src')+'"/><br />' +$(this).attr('alt'));
         });
@@ -871,9 +904,7 @@ function info_orga() {
                             +'</center><hr />';
                     		
                     		opt_player+='<option value="'+data.member[i].pseudo+'">'+data.member[i].pseudo+'</option>';
-                    		
-                    		
-                            
+         
                     }
                     html += '</div></div>';
                     
@@ -901,6 +932,61 @@ function info_orga() {
                 } else {
                     $('#member_guilde').html(trad_error_info_org);
                 }
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+}
+
+function show_group() {
+
+    $.ajax({
+            type: 'GET',
+            url: 'http://vps36292.ovh.net/mordu/API_2.8.php',
+            jsonpCallback: 'API_SC'+API_SC++,
+            contentType: "application/json",
+            dataType: 'jsonp',
+            data: 'action=show_group&team=' + $.cookie('team'),
+            async: true,
+            beforeSend: function(){           	
+                if(connected){
+             		 $('.manage_open_open .manage_fixed_open .manage_open_fixed .manage_fixed_fixed').html('<div class="waitingForConnection">'+trad_connection_internet+'</div>');
+  	        	}
+  	        	else{
+  	        		 $('.manage_open_open .manage_fixed_open .manage_open_fixed .manage_fixed_fixed').html('<div class="waitingForConnection">'+trad_error_no_connected+'</div>');
+  	        	}
+            },
+            success: function (data) {
+                var html_open_open = '';
+                var html_fixed_open='';
+                var html_open_fixed='';
+                var html_fixed_fixed='';
+               
+                $('.manage_open_open .manage_fixed_open .manage_open_fixed .manage_fixed_fixed').html();
+                
+                for(var i = 0; i< data.open_open.nb; i++){
+                	html_open_open+='<div>- '+data.open_open[i].name+' ('+data.open_open[i].max_player+' <img src="img/users.png" />) <a context="open_open" name="'+data.open_open[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                }
+                
+                for(var i = 0; i< data.open_fixed.nb; i++){
+                	html_open_fixed+='<div>- '+data.open_fixed[i].name+' <a context="open_fixed" name="'+data.open_fixed[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                }
+
+                for(var i = 0; i< data.fixed_open.nb; i++){
+                	html_fixed_open+='<div>- '+data.fixed_open[i].name+' <a context="fixed_open" name="'+data.fixed_open[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                }
+                
+                for(var i = 0; i< data.fixed_fixed.nb; i++){
+                	html_fixed_fixed+='<div>- '+data.fixed_fixed[i].name+' <a context="fixed_fixed" name="'+data.fixed_fixed[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                }
+                
+                $('.manage_open_open').html(html_open_open);
+                $('.manage_open_fixed').html(html_open_fixed);
+                $('.manage_fixed_open').html(html_fixed_open);
+                $('.manage_fixed_fixed').html(html_fixed_fixed);
+                
+                translate();
             },
             error: function (e) {
                 console.log(e.message);
@@ -960,9 +1046,6 @@ function do_chart(){
             console.log(e.message);
         }
     });
-	
-	
-	
 
 }
 

@@ -36,6 +36,7 @@ var trad_require_password_team = 'Tu equipo ha bloqueado la muestra de informaci
 var trad_require_password_handle = 'Este handle está bloqueado. Si no debería estarlo, contáctame por PM @ gourmand en el foro oficial.'; 
 var trad_explain_hangar='Haga clic para iluminar la nave que tiene-';
 var trad_create_groupe='Crear grupo';
+var trad_manage_groupe='Manage group';
 var trad_no_ship='Ninguna nave';
 var trad_open_open='Open player open ship';
 var trad_open_fixed='fixed player open ship ';
