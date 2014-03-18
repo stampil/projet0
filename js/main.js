@@ -591,18 +591,18 @@ function onDeviceReady() {
 	                        font--;
                         }
                         while(width>178 && font>9);
-                        ctx.fillText( upp_pseudo,120,110);
+                        ctx.fillText( upp_pseudo,125,135);
 
                         while(data.number.length<8){
                             data.number= '0'+data.number;
 
                         }
                         ctx.save();
-                        ctx.font='10px orbitron';
+                        ctx.font='12px orbitron';
                         ctx.fillStyle='#151515';
                         ctx.translate(150, 94.5);
                         ctx.rotate(Math.PI/2);
-                        ctx.fillText(data.number, -50, 147);
+                        ctx.fillText(data.number, -40, 148);
                         ctx.restore();
                         
                         
@@ -610,8 +610,8 @@ function onDeviceReady() {
                         var img = new Image();   // Crée un nouvel objet Image
                         img.src = data.avatar; // Définit le chemin vers sa source
                         img.onload = function(){
-                        	//ctx.drawImage(img, 220, 25,76,76);
-                        	ctx.drawImage(img, 0, 0, img.width, img.height, 217, 27, 76, 61);
+                        	ctx.drawImage(img, 216, 35,76,76);
+                        	
                         };
                         
                         if(data.team.logo){
@@ -620,7 +620,7 @@ function onDeviceReady() {
 	                        img2.onload = function() {
 	                            ctx.save();
 	                            ctx.globalAlpha = 0.3;
-	                            ctx.drawImage(img2, 0, 0, img2.width, img2.height, 125, 27, 76, 61);
+	                            ctx.drawImage(img2, 125, 35, 76, 76);
 	                            ctx.restore();
 	                        };
                         }
