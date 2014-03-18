@@ -353,6 +353,7 @@ function onDeviceReady() {
     	        },
     	        success: function (data) {
     	            alerte(trad_confirm_ok);
+    	            $('a[goto="manage_groupe"]').trigger('click');
     	        },
     	        error: function (e) {
     	            console.log(e.message);
@@ -395,6 +396,7 @@ function onDeviceReady() {
     	        },
     	        success: function (data) {
     	            alerte(trad_confirm_ok);
+    	            $('a[goto="manage_groupe"]').trigger('click');
     	        },
     	        error: function (e) {
     	            console.log(e.message);
@@ -433,6 +435,7 @@ function onDeviceReady() {
     	        },
     	        success: function (data) {
     	            alerte(trad_confirm_ok);
+    	            $('a[goto="manage_groupe"]').trigger('click');
     	        },
     	        error: function (e) {
     	            console.log(e.message);
@@ -440,6 +443,10 @@ function onDeviceReady() {
     	    });
         	
         	
+        });
+        
+        $('#open_open_max').click(function(){
+        	$('#open_open_max').focus().select();
         });
         
         $('#open_fixed_submit').click(function(){
@@ -461,6 +468,7 @@ function onDeviceReady() {
     	        },
     	        success: function (data) {
     	            alerte(trad_confirm_ok);
+    	            $('a[goto="manage_groupe"]').trigger('click');
     	        },
     	        error: function (e) {
     	            console.log(e.message);
