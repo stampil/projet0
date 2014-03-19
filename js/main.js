@@ -86,9 +86,10 @@ function Online() {
     connected=true;
 }
 
-
+var ready = null;
 function onDeviceReady() {
-	
+	clearTimeout(ready);
+	ready=1;
     document.addEventListener("offline", Offline, false);
     document.addEventListener("online", Online, false); 
 
@@ -194,8 +195,10 @@ function onDeviceReady() {
     	 check_pledge();
     	setInterval(check_pledge,60000); //refresh all minutes
 
-       
     	
+    	 $('body').delegate('.info_manage_group','click', function(){
+    		 $('#info_manage_group_'+$(this).attr('info')).show(500);
+    	 });
         $('body').delegate('.delete_group','click', function(){
         	
         	var o = $(this).parent();
@@ -970,23 +973,40 @@ function show_group() {
                 var html_fixed_open='';
                 var html_open_fixed='';
                 var html_fixed_fixed='';
+                var ligne=0;
                
                 $('.manage_open_open .manage_fixed_open .manage_open_fixed .manage_fixed_fixed').html();
                 
                 for(var i = 0; i< data.open_open.nb; i++){
-                	html_open_open+='<div>- '+data.open_open[i].name+' ('+data.open_open[i].max_player+' <img src="img/users.png" />) <a context="open_open" name="'+data.open_open[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                	html_open_open+='<div>- <span class="info_manage_group" info="'+ligne+'">'+data.open_open[i].name+'</span>  <a context="open_open" name="'+data.open_open[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                	html_open_open+='<div id="info_manage_group_'+(ligne++)+'" style="display:none">Max: '+data.open_open[i].max_player+'</div>';
                 }
                 
                 for(var i = 0; i< data.open_fixed.nb; i++){
-                	html_open_fixed+='<div>- '+data.open_fixed[i].name+' <a context="open_fixed" name="'+data.open_fixed[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                	html_open_fixed+='<div>- <span class="info_manage_group" info="'+ligne+'">'+data.open_fixed[i].name+'</span> <a context="open_fixed" name="'+data.open_fixed[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                	html_open_fixed+='<div id="info_manage_group_'+(ligne++)+'" style="display:none">';
+                	for (var j=0; j< data.open_fixed[i].handle.nb; j++){
+                		html_open_fixed+='<p>'+data.open_fixed[i].handle[j].name+'</p>';
+                	}
+                	html_open_fixed+='</div>';
                 }
 
                 for(var i = 0; i< data.fixed_open.nb; i++){
-                	html_fixed_open+='<div>- '+data.fixed_open[i].name+' <a context="fixed_open" name="'+data.fixed_open[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                	html_fixed_open+='<div>- <span class="info_manage_group"  info="'+ligne+'">'+data.fixed_open[i].name+'</name> <a context="fixed_open" name="'+data.fixed_open[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                	html_fixed_open+='<div id="info_manage_group_'+(ligne++)+'" style="display:none">';
+                	for (var j=0; j< data.fixed_open[i].ship.nb; j++){
+                		html_fixed_open+='<p>'+data.fixed_open[i].ship[j].nb+'x '+data.fixed_open[i].ship[j].name+'</p>';
+                	}
+                	html_fixed_open+='</div>';
                 }
                 
                 for(var i = 0; i< data.fixed_fixed.nb; i++){
-                	html_fixed_fixed+='<div>- '+data.fixed_fixed[i].name+' <a context="fixed_fixed" name="'+data.fixed_fixed[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                	html_fixed_fixed+='<div>- <span class="info_manage_group"  info="'+ligne+'">'+data.fixed_fixed[i].name+'</span> <a context="fixed_fixed" name="'+data.fixed_fixed[i].name+'" href="index.html" class="delete_group ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext">Delete</a></div>';
+                	html_fixed_fixed+='<div id="info_manage_group_'+(ligne++)+'" style="display:none">';
+                	for (var j=0; j< data.fixed_fixed[i].user.nb; j++){
+                		html_fixed_fixed+='<p>'+data.fixed_fixed[i].user[j].handle+': '+data.fixed_fixed[i].user[j].ship+'</p>';
+                	}
+                	html_fixed_fixed+='</div>';
                 }
                 
                 $('.manage_open_open').html(html_open_open);
@@ -1228,3 +1248,7 @@ function number_format (number, decimals, dec_point, thousands_sep) {
   }
   return s.join(dec);
 }
+
+setTimeout(function(){
+	if(!ready) onDeviceReady();
+},4000);

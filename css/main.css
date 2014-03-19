@@ -388,7 +388,7 @@ top: 30px;
 opacity:0.8;
 }
 
-.delete_group{
+.delete_group, .see_groupe{
 	display: inline-table;
 	vertical-align: middle;
 }
